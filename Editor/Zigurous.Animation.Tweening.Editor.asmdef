@@ -1,0 +1,15 @@
+{
+    "name": "Zigurous.Animation.Tweening.Editor",
+    "references": [
+        "GUID:c2d21db32495a854fb22c01ac224c003"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
