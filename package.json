@@ -4,9 +4,6 @@
   "displayName": "Zigurous Animation Tweening",
   "description": "An animation system for tweening object properties in Unity.",
   "unity": "2019.4",
-  "dependencies": {
-    "com.zigurous.data-structures": "https://github.com/zigurous/unity-data-structures.git"
-  },
   "author": {
     "name": "Zigurous",
     "email": "support@zigurous.com",

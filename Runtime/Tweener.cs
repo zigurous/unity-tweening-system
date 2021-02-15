@@ -130,9 +130,9 @@ namespace Zigurous.Animation.Tweening
                 tween.Complete();
             }
 
-            // If autoKill is true, then calling Complete
-            // will already have called Kill
-            if (!tween.autoKill) {
+            // Only kill the tween if it is not automatically killed when
+            // completed
+            if (!tween.autoKill || !complete) {
                 tween.Kill();
             }
         }

@@ -1,65 +1,80 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Zigurous.DataStructures;
 
 namespace Zigurous.Animation.Tweening
 {
-    internal sealed class TweenUpdater : SingletonBehavior<TweenUpdater>
+    internal sealed class TweenUpdater : MonoBehaviour
     {
+        private static object _lock = new object();
+        private static bool _isUnloading = false;
+        private static volatile TweenUpdater _instance;
+        public static TweenUpdater Instance
+        {
+            get
+            {
+                if (_isUnloading) {
+                    return null;
+                }
+
+                if (_instance == null)
+                {
+                    lock (_lock)
+                    {
+                        _instance = FindObjectOfType<TweenUpdater>();
+
+                        if (_instance == null)
+                        {
+                            GameObject singleton = new GameObject();
+                            singleton.name = typeof(TweenUpdater).Name;
+                            singleton.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
+
+                            _instance = singleton.AddComponent<TweenUpdater>();
+                            DontDestroyOnLoad(singleton);
+                        }
+                    }
+                }
+
+                return _instance;
+            }
+        }
+
         public List<Tween> tweens { get; private set; } = new List<Tween>(64);
-        private List<Tween> _tweensToAdd = new List<Tween>(16);
-        private List<Tween> _tweensToRemove = new List<Tween>(16);
-        private ObjectPool<Tween> _tweensPool = new ObjectPool<Tween>(() => new Tween(), 64);
+        private List<Tween> _adding = new List<Tween>(16);
+        private List<Tween> _removing = new List<Tween>(16);
+        private Queue<Tween> _pool = new Queue<Tween>(Settings.initialCapacity);
 
-        public void Track(Tween tween)
+        private void Awake()
         {
-            _tweensToAdd.Add(tween);
-            _tweensToRemove.Remove(tween);
-        }
+            _isUnloading = false;
 
-        public void Untrack(Tween tween)
-        {
-            _tweensToRemove.Add(tween);
-            _tweensToAdd.Remove(tween);
-        }
-
-        internal Tween AcquireTween(Tween.Getter getter, Tween.Setter setter, float endValue, float duration)
-        {
-            Tween tween = _tweensPool.Retrieve();
-
-            if (tween == null) {
-                tween = new Tween();
+            if (_instance == null) {
+                _instance = this;
             } else {
-                tween.Reset();
+                Destroy(this);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            _isUnloading = true;
+
+            if (_instance == this) {
+                _instance = null;
             }
 
-            tween.getter = getter;
-            tween.setter = setter;
-            tween.endValue = endValue;
-            tween.duration = duration;
-
-            Track(tween);
-
-            return tween;
-        }
-
-        protected override void OnDestroy()
-        {
             Tweener.KillAll();
 
             this.tweens.Clear();
             this.tweens = null;
 
-            _tweensToAdd.Clear();
-            _tweensToAdd = null;
+            _adding.Clear();
+            _adding = null;
 
-            _tweensToRemove.Clear();
-            _tweensToRemove = null;
+            _removing.Clear();
+            _removing = null;
 
-            _tweensPool.Dispose();
-            _tweensPool = null;
-
-            base.OnDestroy();
+            _pool.Clear();
+            _pool = null;
         }
 
         private void Update()
@@ -75,29 +90,61 @@ namespace Zigurous.Animation.Tweening
             }
 
             // Add new tweens
-            if (_tweensToAdd.Count > 0)
+            if (_adding.Count > 0)
             {
-                foreach (Tween tween in _tweensToAdd) {
+                foreach (Tween tween in _adding) {
                     this.tweens.Add(tween);
                 }
 
-                _tweensToAdd.Clear();
+                _adding.Clear();
             }
 
             // Remove old tweens
-            if (_tweensToRemove.Count > 0)
+            if (_removing.Count > 0)
             {
-                foreach (Tween tween in _tweensToRemove)
+                foreach (Tween tween in _removing)
                 {
                     this.tweens.Remove(tween);
 
                     if (tween.recyclable) {
-                        _tweensPool.Recycle(tween);
+                        _pool.Enqueue(tween);
                     }
                 }
 
-                _tweensToRemove.Clear();
+                _removing.Clear();
             }
+        }
+
+        public void Track(Tween tween)
+        {
+            _adding.Add(tween);
+            _removing.Remove(tween);
+        }
+
+        public void Untrack(Tween tween)
+        {
+            _removing.Add(tween);
+            _adding.Remove(tween);
+        }
+
+        internal Tween AcquireTween(Tween.Getter getter, Tween.Setter setter, float endValue, float duration)
+        {
+            Tween tween = _pool.Count > 0 ? _pool.Dequeue() : null;
+
+            if (tween == null) {
+                tween = new Tween();
+            } else {
+                tween.Reset();
+            }
+
+            tween.getter = getter;
+            tween.setter = setter;
+            tween.endValue = endValue;
+            tween.duration = duration;
+
+            Track(tween);
+
+            return tween;
         }
 
     }

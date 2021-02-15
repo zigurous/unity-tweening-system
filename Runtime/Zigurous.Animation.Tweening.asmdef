@@ -1,8 +1,6 @@
 {
     "name": "Zigurous.Animation.Tweening",
-    "references": [
-        "GUID:a421f28dfcb15d14e80bdc058713e344"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
