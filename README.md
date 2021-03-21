@@ -1,5 +1,7 @@
 # Animation Tweening
 
+The Animation Tweening package provides a system for tweening object properties in Unity.
+
 ## Installation
 
 The Unity Package Manager can load a package from a Git repository on a remote server.
