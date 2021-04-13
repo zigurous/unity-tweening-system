@@ -1,6 +1,6 @@
-# Animation Tweening
+# Object Tweening
 
-The Animation Tweening package provides a system for tweening object properties in Unity.
+The Object Tweening package provides a system for tweening object properties in Unity. A tween is an animation of a value from a start position to an end position over time using an easing function that provides a natural sense of motion.
 
 ## Installation
 
