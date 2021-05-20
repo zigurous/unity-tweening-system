@@ -10,7 +10,7 @@
         public static float defaultDuration = 0.3f;
         public static float defaultDelay = 0.0f;
         public static float overshoot = 1.70158f;
-        internal static int initialCapacity = 64;
+        public static int initialCapacity = 16;
 
     }
 

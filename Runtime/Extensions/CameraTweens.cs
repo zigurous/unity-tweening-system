@@ -33,7 +33,7 @@ namespace Zigurous.Animation.Tweening
                        setter: distance => camera.farClipPlane = distance,
                        to, duration).SetTarget(camera);
 
-        public static Tween TweenOrthoSize(this Camera camera, float to, float duration) =>
+        public static Tween TweenOrthographicSize(this Camera camera, float to, float duration) =>
             Tweener.To(getter: () => camera.orthographicSize,
                        setter: size => camera.orthographicSize = size,
                        to, duration).SetTarget(camera);

@@ -2,25 +2,51 @@ namespace Zigurous.Animation.Tweening
 {
     public enum TweenState
     {
-        Queued,
+        Ready,
         Playing,
         Stopped,
         Complete,
         Killed
     }
 
-    internal static class TweenStateTransition
+    internal enum InternalTweenState
     {
-        internal static bool CanPlay(TweenState state) =>
-            state != TweenState.Playing && state != TweenState.Complete && state != TweenState.Killed;
-        internal static bool CanStop(TweenState state) =>
-            state == TweenState.Playing;
-        internal static bool CanRestart(TweenState state) =>
-            state != TweenState.Killed;
-        internal static bool CanComplete(TweenState state) =>
-            state != TweenState.Complete && state != TweenState.Killed;
-        internal static bool CanKill(TweenState state) =>
-            state != TweenState.Killed;
+        Queued,
+        Active,
+        Dequeued,
+        Recycled,
+        Killed
+    }
+
+    public static class TweenStateExtensions
+    {
+        public static bool CanTransition(this TweenState state, TweenState transition)
+        {
+            // Cannot transition to self
+            if (state == transition) {
+                return false;
+            }
+
+            // Killed tweens cannot make any state changes
+            if (state == TweenState.Killed) {
+                return false;
+            }
+
+            // Cannot transition to Ready state, reserved internally
+            if (transition == TweenState.Ready) {
+                return false;
+            }
+
+            switch (transition)
+            {
+                case TweenState.Stopped:
+                    return state == TweenState.Playing;
+
+                default:
+                    return true;
+            }
+        }
+
     }
 
 }
