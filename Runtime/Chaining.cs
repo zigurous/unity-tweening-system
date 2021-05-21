@@ -1,19 +1,36 @@
 namespace Zigurous.Animation.Tweening
 {
+    /// <summary>
+    /// Provides method chaining for tweens. This allows multiple properties to
+    /// be assigned in a single statement without requiring a variable to store
+    /// the intermediate results.
+    /// </summary>
     public static class Chaining
     {
+        /// <summary>
+        /// Sets the id of the tween such that it can be identified by the given
+        /// target object.
+        /// </summary>
         internal static Tween SetTarget<T>(this Tween tween, T target) where T: class
         {
             tween.id = target.GetHashCode();
             return tween;
         }
 
+        /// <summary>
+        /// Sets the id of the tween such that it can be identified by the given
+        /// target object.
+        /// </summary>
         internal static TweenBase SetTarget<T>(this TweenBase tween, T target) where T: class
         {
             tween.id = target.GetHashCode();
             return tween;
         }
 
+        /// <summary>
+        /// Sets the id of the tween sequence such that it can be identified by
+        /// the given target object.
+        /// </summary>
         internal static TweenSequence SetTarget<T>(this TweenSequence sequence, T target) where T: class
         {
             sequence.id = target.GetHashCode();

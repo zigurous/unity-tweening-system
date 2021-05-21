@@ -3,7 +3,8 @@
 namespace Zigurous.Animation.Tweening
 {
     /// <summary>
-    /// Plays a sequence of tweens in order.
+    /// Plays a sequence of tweens in order. The sequence itself maintains its
+    /// own state.
     /// </summary>
     public sealed class TweenSequence : TweenBase
     {
@@ -32,20 +33,33 @@ namespace Zigurous.Animation.Tweening
             }
         }
 
+        /// <summary>
+        /// Constructs a new tween sequence.
+        /// </summary>
         public TweenSequence() : base() {}
 
+        /// <summary>
+        /// Plays the tween sequence, whether starting for the first time or
+        /// resuming from a stopped state.
+        /// </summary>
         public new TweenSequence Play()
         {
             base.Play();
             return this;
         }
 
+        /// <summary>
+        /// Adds a new tween to the end of the sequence.
+        /// </summary>
         public TweenSequence Append(Tween tween)
         {
             this.tweens.Add(Prepare(tween));
             return this;
         }
 
+        /// <summary>
+        /// Adds a new tween to the beginning of the sequence.
+        /// </summary>
         public TweenSequence Prepend(Tween tween)
         {
             this.tweens.Insert(0, Prepare(tween));

@@ -3,11 +3,22 @@ using UnityEngine;
 
 namespace Zigurous.Animation.Tweening
 {
-    public delegate float EaseFunction(float x);
-
-    public static class EaseFunctions
+    /// <summary>
+    /// Contains timing functions of every ease type. Easing functions specify
+    /// the rate of change of a parameter over time.
+    /// </summary>
+    public static class EaseFunction
     {
-        internal static Dictionary<Ease, EaseFunction> functions = new Dictionary<Ease, EaseFunction>(32, new EaseEqualityComparer())
+        /// <summary>
+        /// A function type that returns the value along a timing curve given
+        /// the x-axis value, i.e., f(x).
+        /// </summary>
+        public delegate float TimingCurve(float x);
+
+        /// <summary>
+        /// A dictionary of every timing function classified by ease type.
+        /// </summary>
+        internal static Dictionary<Ease, TimingCurve> lookup = new Dictionary<Ease, TimingCurve>(32, new EaseEqualityComparer())
         {
             { Ease.Linear, Linear },
 

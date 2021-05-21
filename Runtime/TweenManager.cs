@@ -3,8 +3,15 @@ using UnityEngine;
 
 namespace Zigurous.Animation.Tweening
 {
+    /// <summary>
+    /// Manages the lifecycle of all tween objects, including updating,
+    /// creating, destroying, and recycling tweens.
+    /// </summary>
     internal sealed class TweenManager : MonoBehaviour
     {
+        /// <summary>
+        /// A list of all alive tween objects.
+        /// </summary>
         internal List<TweenBase> tweens = new List<TweenBase>(Settings.initialCapacity);
 
         private static bool _isUnloading = false;
@@ -97,6 +104,9 @@ namespace Zigurous.Animation.Tweening
             }
         }
 
+        /// <summary>
+        /// Recycles or creates a new tween object.
+        /// </summary>
         internal Tween Build(Tween.Getter getter, Tween.Setter setter, float endValue, float duration)
         {
             Tween tween = null;
@@ -127,6 +137,9 @@ namespace Zigurous.Animation.Tweening
             return tween;
         }
 
+        /// <summary>
+        /// Recycles or creates a new tween sequence.
+        /// </summary>
         internal TweenSequence Build(Tween[] tweens = null)
         {
             TweenSequence sequence = null;
@@ -158,6 +171,10 @@ namespace Zigurous.Animation.Tweening
             return sequence;
         }
 
+        /// <summary>
+        /// Adds a tween to the list of alive tweens so it can be managed and
+        /// updated.
+        /// </summary>
         internal void Track(TweenBase tween)
         {
             if (!this.tweens.Contains(tween)) {

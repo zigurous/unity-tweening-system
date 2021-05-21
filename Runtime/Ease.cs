@@ -2,6 +2,10 @@
 
 namespace Zigurous.Animation.Tweening
 {
+    /// <summary>
+    /// An easing function type. Easing functions specify the rate of change of
+    /// a parameter over time.
+    /// </summary>
     public enum Ease : int
     {
         Linear,
@@ -42,6 +46,18 @@ namespace Zigurous.Animation.Tweening
         public bool Equals(Ease x, Ease y) => x == y;
 
         public int GetHashCode(Ease ease) => (int)ease;
+    }
+
+    public static class EaseExtensions
+    {
+        /// <summary>
+        /// Returns the f(x) value using the ease function.
+        /// </summary>
+        public static float ValueAt(this Ease ease, float x)
+        {
+            return EaseFunction.lookup[ease](x);
+        }
+
     }
 
 }
