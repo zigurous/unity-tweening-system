@@ -4,14 +4,10 @@ namespace Zigurous.Animation.Tweening
 {
     public static class TransformTweens
     {
-        public static Tween TweenPosition(this Transform transform, Vector3 to, float duration)
-        {
-            Vector3 from = transform.position;
-            return Tweener.To(
-                getter: () => { from = transform.position; return 0.0f; },
-                setter: t => { transform.position = Vector3.Lerp(from, to, t); },
-                endValue: 1.0f, duration).SetTarget(transform);
-        }
+        public static Tween TweenPosition(this Transform transform, Vector3 to, float duration) =>
+            Tweener.To(getter: () => transform.position,
+                       setter: position => transform.position = position,
+                       to, duration).SetTarget(transform);
 
         public static Tween TweenPositionX(this Transform transform, float to, float duration) =>
             Tweener.To(getter: () => transform.position.x,
@@ -28,14 +24,10 @@ namespace Zigurous.Animation.Tweening
                        setter: z => transform.position = new Vector3(transform.position.x, transform.position.y, z),
                        to, duration).SetTarget(transform);
 
-        public static Tween TweenLocalPosition(this Transform transform, Vector3 to, float duration)
-        {
-            Vector3 from = transform.localPosition;
-            return Tweener.To(
-                getter: () => { from = transform.localPosition; return 0.0f; },
-                setter: t => { transform.localPosition = Vector3.Lerp(from, to, t); },
-                endValue: 1.0f, duration).SetTarget(transform);
-        }
+        public static Tween TweenLocalPosition(this Transform transform, Vector3 to, float duration) =>
+            Tweener.To(getter: () => transform.localPosition,
+                       setter: position => transform.localPosition = position,
+                       to, duration).SetTarget(transform);
 
         public static Tween TweenLocalPositionX(this Transform transform, float to, float duration) =>
             Tweener.To(getter: () => transform.localPosition.x,
@@ -52,14 +44,10 @@ namespace Zigurous.Animation.Tweening
                        setter: z => transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, z),
                        to, duration).SetTarget(transform);
 
-        public static Tween TweenScale(this Transform transform, Vector3 to, float duration)
-        {
-            Vector3 from = transform.localScale;
-            return Tweener.To(
-                getter: () => { from = transform.localScale; return 0.0f; },
-                setter: t => { transform.localScale = Vector3.Lerp(from, to, t); },
-                endValue: 1.0f, duration).SetTarget(transform);
-        }
+        public static Tween TweenScale(this Transform transform, Vector3 to, float duration) =>
+            Tweener.To(getter: () => transform.localScale,
+                       setter: scale => transform.localScale = scale,
+                       to, duration).SetTarget(transform);
 
         public static Tween TweenScaleX(this Transform transform, float to, float duration) =>
             Tweener.To(getter: () => transform.localScale.x,
@@ -76,14 +64,15 @@ namespace Zigurous.Animation.Tweening
                        setter: z => transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, z),
                        to, duration).SetTarget(transform);
 
-        public static Tween TweenRotation(this Transform transform, Quaternion to, float duration)
-        {
-            Quaternion from = transform.rotation;
-            return Tweener.To(
-                getter: () => { from = transform.rotation; return 0.0f; },
-                setter: t => { transform.rotation = Quaternion.Lerp(from, to, t); },
-                endValue: 1.0f, duration).SetTarget(transform);
-        }
+        public static Tween TweenRotation(this Transform transform, Quaternion to, float duration) =>
+            Tweener.To(getter: () => transform.rotation,
+                       setter: rotation => transform.rotation = rotation,
+                       to, duration).SetTarget(transform);
+
+        public static Tween TweenLocalRotation(this Transform transform, Quaternion to, float duration) =>
+            Tweener.To(getter: () => transform.localRotation,
+                       setter: rotation => transform.localRotation = rotation,
+                       to, duration).SetTarget(transform);
 
         public static Tween TweenEulerAngles(this Transform transform, Vector3 to, float duration) =>
             TweenRotation(transform, Quaternion.Euler(to), duration);
@@ -96,15 +85,6 @@ namespace Zigurous.Animation.Tweening
 
         public static Tween TweenEulerAnglesZ(this Transform transform, float to, float duration) =>
             TweenRotation(transform, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, to), duration);
-
-        public static Tween TweenLocalRotation(this Transform transform, Quaternion to, float duration)
-        {
-            Quaternion from = transform.localRotation;
-            return Tweener.To(
-                getter: () => { from = transform.localRotation; return 0.0f; },
-                setter: t => { transform.localRotation = Quaternion.Lerp(from, to, t); },
-                endValue: 1.0f, duration).SetTarget(transform);
-        }
 
         public static Tween TweenLocalEulerAngles(this Transform transform, Vector3 to, float duration) =>
             TweenLocalRotation(transform, Quaternion.Euler(to), duration);
