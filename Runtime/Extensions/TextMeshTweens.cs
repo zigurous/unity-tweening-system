@@ -4,6 +4,16 @@ namespace Zigurous.Animation.Tweening
 {
     public static class TextMeshTweens
     {
+        public static Tween TweenColor(this TextMesh textMesh, Color to, float duration) =>
+            Tweener.To(getter: () => textMesh.color,
+                       setter: color => textMesh.color = color,
+                       to, duration).SetTarget(textMesh);
+
+        public static Tween TweenAlpha(this TextMesh textMesh, float to, float duration) =>
+            Tweener.To(getter: () => textMesh.color.a,
+                       setter: alpha => textMesh.color = new Color(textMesh.color.r, textMesh.color.g, textMesh.color.b, alpha),
+                       to, duration).SetTarget(textMesh);
+
         public static Tween TweenFontSize(this TextMesh textMesh, int to, float duration) =>
             Tweener.To(getter: () => textMesh.fontSize,
                        setter: fontSize => textMesh.fontSize = (int)fontSize,
@@ -19,18 +29,14 @@ namespace Zigurous.Animation.Tweening
                        setter: characterSize => textMesh.characterSize = characterSize,
                        to, duration).SetTarget(textMesh);
 
-        public static Tween TweenColor(this TextMesh textMesh, Color to, float duration)
-        {
-            Color from = textMesh.color;
-            return Tweener.To(
-                getter: () => { from = textMesh.color; return 0.0f; },
-                setter: t => { textMesh.color = Color.Lerp(from, to, t); },
-                endValue: 1.0f, duration).SetTarget(textMesh);
-        }
+        public static Tween TweenLineSpacing(this TextMesh textMesh, float to, float duration) =>
+            Tweener.To(getter: () => textMesh.lineSpacing,
+                       setter: lineSpacing => textMesh.lineSpacing = lineSpacing,
+                       to, duration).SetTarget(textMesh);
 
-        public static Tween TweenAlpha(this TextMesh textMesh, float to, float duration) =>
-            Tweener.To(getter: () => textMesh.color.a,
-                       setter: alpha => textMesh.color = new Color(textMesh.color.r, textMesh.color.g, textMesh.color.b, alpha),
+        public static Tween TweenTabSize(this TextMesh textMesh, float to, float duration) =>
+            Tweener.To(getter: () => textMesh.tabSize,
+                       setter: tabSize => textMesh.tabSize = tabSize,
                        to, duration).SetTarget(textMesh);
 
     }
