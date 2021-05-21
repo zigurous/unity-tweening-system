@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Zigurous.Animation.Tweening
 {
@@ -13,22 +14,153 @@ namespace Zigurous.Animation.Tweening
         public static int Count => TweenManager.Instance.tweens.Count;
 
         /// <summary>
-        /// Creates a tween that animates from the target object's current value
-        /// to the given end value over a set duration.
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
         /// </summary>
-        public static Tween To(Tween.Getter getter, Tween.Setter setter, float endValue, float duration)
+        public static Tween To(Tween.Getter<float> getter, Tween.Setter<float> setter, float endValue, float duration)
         {
-            return TweenManager.Instance.Build(getter, setter, endValue, duration);
+            Tween tween = TweenManager.Instance.Build();
+            tween.getter = getter;
+            tween.setter = setter;
+            tween.endValue = endValue;
+            tween.duration = duration;
+            tween.reversed = false;
+            return tween;
         }
 
         /// <summary>
-        /// Creates a tween that animates from the given end value to the target
-        /// object's current value over a set duration.
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
         /// </summary>
-        public static Tween From(Tween.Getter getter, Tween.Setter setter, float endValue, float duration)
+        public static Tween To(Tween.Getter<Vector2> getter, System.Action<Vector2> setter, Vector2 endValue, float duration)
         {
-            return TweenManager.Instance.Build(getter, setter, endValue, duration)
-                                        .SetReversed(true);
+            Vector2 startValue = new Vector2();
+            return Tweener.To(getter: () => { startValue = getter(); return 0.0f; },
+                              setter: t => setter(Vector2.Lerp(startValue, endValue, t)),
+                              endValue: 1.0f, duration);
+        }
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween To(Tween.Getter<Vector3> getter, System.Action<Vector3> setter, Vector3 endValue, float duration)
+        {
+            Vector3 startValue = new Vector3();
+            return Tweener.To(getter: () => { startValue = getter(); return 0.0f; },
+                              setter: t => setter(Vector3.Lerp(startValue, endValue, t)),
+                              endValue: 1.0f, duration);
+        }
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween To(Tween.Getter<Vector4> getter, System.Action<Vector4> setter, Vector4 endValue, float duration)
+        {
+            Vector4 startValue = new Vector4();
+            return Tweener.To(getter: () => { startValue = getter(); return 0.0f; },
+                              setter: t => setter(Vector4.Lerp(startValue, endValue, t)),
+                              endValue: 1.0f, duration);
+        }
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween To(Tween.Getter<Quaternion> getter, System.Action<Quaternion> setter, Quaternion endValue, float duration)
+        {
+            Quaternion startValue = new Quaternion();
+            return Tweener.To(getter: () => { startValue = getter(); return 0.0f; },
+                              setter: t => setter(Quaternion.Lerp(startValue, endValue, t)),
+                              endValue: 1.0f, duration);
+        }
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween To(Tween.Getter<Color> getter, System.Action<Color> setter, Color endValue, float duration)
+        {
+            Color startValue = new Color();
+            return Tweener.To(getter: () => { startValue = getter(); return 0.0f; },
+                              setter: t => setter(Color.Lerp(startValue, endValue, t)),
+                              endValue: 1.0f, duration);
+        }
+
+        /// <summary>
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
+        /// </summary>
+        public static Tween From(Tween.Getter<float> getter, Tween.Setter<float> setter, float endValue, float duration)
+        {
+            Tween tween = TweenManager.Instance.Build();
+            tween.getter = getter;
+            tween.setter = setter;
+            tween.endValue = endValue;
+            tween.duration = duration;
+            tween.reversed = true;
+            return tween;
+        }
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween From(Tween.Getter<Vector2> getter, System.Action<Vector2> setter, Vector2 endValue, float duration)
+        {
+            Vector2 startValue = new Vector2();
+            return Tweener.From(getter: () => { startValue = getter(); return 0.0f; },
+                                setter: t => setter(Vector2.Lerp(startValue, endValue, t)),
+                                endValue: 1.0f, duration);
+        }
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween From(Tween.Getter<Vector3> getter, System.Action<Vector3> setter, Vector3 endValue, float duration)
+        {
+            Vector3 startValue = new Vector3();
+            return Tweener.From(getter: () => { startValue = getter(); return 0.0f; },
+                                setter: t => setter(Vector3.Lerp(startValue, endValue, t)),
+                                endValue: 1.0f, duration);
+        }
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween From(Tween.Getter<Vector4> getter, System.Action<Vector4> setter, Vector4 endValue, float duration)
+        {
+            Vector4 startValue = new Vector4();
+            return Tweener.From(getter: () => { startValue = getter(); return 0.0f; },
+                                setter: t => setter(Vector4.Lerp(startValue, endValue, t)),
+                                endValue: 1.0f, duration);
+        }
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween From(Tween.Getter<Quaternion> getter, System.Action<Quaternion> setter, Quaternion endValue, float duration)
+        {
+            Quaternion startValue = new Quaternion();
+            return Tweener.From(getter: () => { startValue = getter(); return 0.0f; },
+                                setter: t => setter(Quaternion.Lerp(startValue, endValue, t)),
+                                endValue: 1.0f, duration);
+        }
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween From(Tween.Getter<Color> getter, System.Action<Color> setter, Color endValue, float duration)
+        {
+            Color startValue = new Color();
+            return Tweener.From(getter: () => { startValue = getter(); return 0.0f; },
+                                setter: t => setter(Color.Lerp(startValue, endValue, t)),
+                                endValue: 1.0f, duration);
         }
 
         /// <summary>
@@ -36,7 +168,7 @@ namespace Zigurous.Animation.Tweening
         /// </summary>
         public static TweenSequence Sequence()
         {
-            return TweenManager.Instance.Build();
+            return TweenManager.Instance.BuildSequence();
         }
 
         /// <summary>
@@ -44,7 +176,7 @@ namespace Zigurous.Animation.Tweening
         /// </summary>
         public static TweenSequence Sequence(params Tween[] tweens)
         {
-            return TweenManager.Instance.Build(tweens);
+            return TweenManager.Instance.BuildSequence(tweens);
         }
 
         /// <summary>

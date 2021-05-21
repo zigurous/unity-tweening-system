@@ -107,7 +107,7 @@ namespace Zigurous.Animation.Tweening
         /// <summary>
         /// Recycles or creates a new tween object.
         /// </summary>
-        internal Tween Build(Tween.Getter getter, Tween.Setter setter, float endValue, float duration)
+        internal Tween Build()
         {
             Tween tween = null;
 
@@ -129,10 +129,10 @@ namespace Zigurous.Animation.Tweening
 
             tween.state = TweenState.Ready;
             tween.internalState = InternalTweenState.Queued;
-            tween.getter = getter;
-            tween.setter = setter;
-            tween.endValue = endValue;
-            tween.duration = duration;
+            tween.getter = null;
+            tween.setter = null;
+            tween.startValue = 0.0f;
+            tween.endValue = 0.0f;
 
             return tween;
         }
@@ -140,7 +140,7 @@ namespace Zigurous.Animation.Tweening
         /// <summary>
         /// Recycles or creates a new tween sequence.
         /// </summary>
-        internal TweenSequence Build(Tween[] tweens = null)
+        internal TweenSequence BuildSequence(Tween[] tweens = null)
         {
             TweenSequence sequence = null;
 

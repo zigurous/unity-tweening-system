@@ -10,23 +10,23 @@
         /// A function type that gets the current value of the parameter being
         /// animated by the tween.
         /// </summary>
-        public delegate float Getter();
+        public delegate T Getter<T>();
 
         /// <summary>
         /// A function type that sets a new value of the parameter being
         /// animated by the tween.
         /// </summary>
-        public delegate void Setter(float value);
+        public delegate void Setter<T>(T value);
 
         /// <summary>
         /// Gets the current value of the parameter being animated by the tween.
         /// </summary>
-        internal Getter getter;
+        internal Getter<float> getter;
 
         /// <summary>
         /// Sets a new value of the parameter being animated by the tween.
         /// </summary>
-        internal Setter setter;
+        internal Setter<float> setter;
 
         /// <summary>
         /// The starting value of the parameter being animated.
