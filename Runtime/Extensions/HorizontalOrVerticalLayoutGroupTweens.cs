@@ -4,10 +4,10 @@ namespace Zigurous.TweenEngine
 {
     public static class HorizontalOrVerticalLayoutGroupTweens
     {
-        public static Tween TweenSpacing(this HorizontalOrVerticalLayoutGroup group, float to, float duration) =>
-            Tweening.To(getter: () => group.spacing,
-                        setter: spacing => group.spacing = spacing,
-                        to, duration).SetTarget(group);
+        public static Tween TweenSpacing(this HorizontalOrVerticalLayoutGroup layoutGroup, float to, float duration) =>
+            Tweening.To(getter: () => layoutGroup.spacing,
+                        setter: spacing => layoutGroup.spacing = spacing,
+                        to, duration).SetTarget(layoutGroup);
 
     }
 
