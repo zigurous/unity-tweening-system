@@ -11,7 +11,7 @@ namespace Zigurous.Animation.Tweening
         /// Sets the id of the tween such that it can be identified by the given
         /// target object.
         /// </summary>
-        internal static Tween SetTarget<T>(this Tween tween, T target) where T: class
+        internal static Tween SetTarget<T>(this Tween tween, T target)
         {
             tween.id = target.GetHashCode();
             return tween;
@@ -21,7 +21,7 @@ namespace Zigurous.Animation.Tweening
         /// Sets the id of the tween such that it can be identified by the given
         /// target object.
         /// </summary>
-        internal static TweenBase SetTarget<T>(this TweenBase tween, T target) where T: class
+        internal static TweenBase SetTarget<T>(this TweenBase tween, T target)
         {
             tween.id = target.GetHashCode();
             return tween;
@@ -31,7 +31,7 @@ namespace Zigurous.Animation.Tweening
         /// Sets the id of the tween sequence such that it can be identified by
         /// the given target object.
         /// </summary>
-        internal static TweenSequence SetTarget<T>(this TweenSequence sequence, T target) where T: class
+        internal static TweenSequence SetTarget<T>(this TweenSequence sequence, T target)
         {
             sequence.id = target.GetHashCode();
             return sequence;
