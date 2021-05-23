@@ -17,12 +17,10 @@ namespace Zigurous.Animation.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
-        public static Tween To(Tween.Getter<float> getter, Tween.Setter<float> setter, float endValue, float duration)
+        public static Tween To(ITweenable parameter, float duration)
         {
             Tween tween = TweenManager.Instance.Build();
-            tween.getter = getter;
-            tween.setter = setter;
-            tween.endValue = endValue;
+            tween.parameter = parameter;
             tween.duration = duration;
             tween.reversed = false;
             return tween;
@@ -32,136 +30,168 @@ namespace Zigurous.Animation.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
-        public static Tween To(Tween.Getter<Vector2> getter, System.Action<Vector2> setter, Vector2 endValue, float duration)
-        {
-            Vector2 startValue = new Vector2();
-            return Tweener.To(getter: () => { startValue = getter(); return 0.0f; },
-                              setter: t => setter(Vector2.Lerp(startValue, endValue, t)),
-                              endValue: 1.0f, duration);
-        }
+        public static Tween To(System.Func<float> getter, System.Action<float> setter, float endValue, float duration) =>
+            Tweener.To(new FloatAdapter().Build(getter, setter, endValue), duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
-        public static Tween To(Tween.Getter<Vector3> getter, System.Action<Vector3> setter, Vector3 endValue, float duration)
-        {
-            Vector3 startValue = new Vector3();
-            return Tweener.To(getter: () => { startValue = getter(); return 0.0f; },
-                              setter: t => setter(Vector3.Lerp(startValue, endValue, t)),
-                              endValue: 1.0f, duration);
-        }
+        public static Tween To(System.Func<double> getter, System.Action<double> setter, double endValue, float duration) =>
+            Tweener.To(new DoubleAdapter().Build(getter, setter, endValue), duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
-        public static Tween To(Tween.Getter<Vector4> getter, System.Action<Vector4> setter, Vector4 endValue, float duration)
-        {
-            Vector4 startValue = new Vector4();
-            return Tweener.To(getter: () => { startValue = getter(); return 0.0f; },
-                              setter: t => setter(Vector4.Lerp(startValue, endValue, t)),
-                              endValue: 1.0f, duration);
-        }
+        public static Tween To(System.Func<long> getter, System.Action<long> setter, long endValue, float duration) =>
+            Tweener.To(new LongAdapter().Build(getter, setter, endValue), duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
-        public static Tween To(Tween.Getter<Quaternion> getter, System.Action<Quaternion> setter, Quaternion endValue, float duration)
-        {
-            Quaternion startValue = new Quaternion();
-            return Tweener.To(getter: () => { startValue = getter(); return 0.0f; },
-                              setter: t => setter(Quaternion.Lerp(startValue, endValue, t)),
-                              endValue: 1.0f, duration);
-        }
+        public static Tween To(System.Func<int> getter, System.Action<int> setter, int endValue, float duration) =>
+            Tweener.To(new IntAdapter().Build(getter, setter, endValue), duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
-        public static Tween To(Tween.Getter<Color> getter, System.Action<Color> setter, Color endValue, float duration)
-        {
-            Color startValue = new Color();
-            return Tweener.To(getter: () => { startValue = getter(); return 0.0f; },
-                              setter: t => setter(Color.Lerp(startValue, endValue, t)),
-                              endValue: 1.0f, duration);
-        }
+        public static Tween To(System.Func<Vector2> getter, System.Action<Vector2> setter, Vector2 endValue, float duration) =>
+            Tweener.To(new Vector2Adapter().Build(getter, setter, endValue), duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween To(System.Func<Vector2Int> getter, System.Action<Vector2Int> setter, Vector2Int endValue, float duration) =>
+            Tweener.To(new Vector2IntAdapter().Build(getter, setter, endValue), duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween To(System.Func<Vector3> getter, System.Action<Vector3> setter, Vector3 endValue, float duration) =>
+            Tweener.To(new Vector3Adapter().Build(getter, setter, endValue), duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween To(System.Func<Vector3Int> getter, System.Action<Vector3Int> setter, Vector3Int endValue, float duration) =>
+            Tweener.To(new Vector3IntAdapter().Build(getter, setter, endValue), duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween To(System.Func<Vector4> getter, System.Action<Vector4> setter, Vector4 endValue, float duration) =>
+            Tweener.To(new Vector4Adapter().Build(getter, setter, endValue), duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween To(System.Func<Quaternion> getter, System.Action<Quaternion> setter, Quaternion endValue, float duration) =>
+            Tweener.To(new QuaternionAdapter().Build(getter, setter, endValue), duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        public static Tween To(System.Func<Color> getter, System.Action<Color> setter, Color endValue, float duration) =>
+            Tweener.To(new ColorAdapter().Build(getter, setter, endValue), duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
-        public static Tween From(Tween.Getter<float> getter, Tween.Setter<float> setter, float endValue, float duration)
+        public static Tween From(ITweenable parameter, float duration)
         {
             Tween tween = TweenManager.Instance.Build();
-            tween.getter = getter;
-            tween.setter = setter;
-            tween.endValue = endValue;
+            tween.parameter = parameter;
             tween.duration = duration;
             tween.reversed = true;
             return tween;
         }
 
         /// <summary>
-        /// Creates a tween that animates a parameter to a given end value over
-        /// a set duration.
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
         /// </summary>
-        public static Tween From(Tween.Getter<Vector2> getter, System.Action<Vector2> setter, Vector2 endValue, float duration)
-        {
-            Vector2 startValue = new Vector2();
-            return Tweener.From(getter: () => { startValue = getter(); return 0.0f; },
-                                setter: t => setter(Vector2.Lerp(startValue, endValue, t)),
-                                endValue: 1.0f, duration);
-        }
+        public static Tween From(System.Func<float> getter, System.Action<float> setter, float endValue, float duration) =>
+            Tweener.From(new FloatAdapter().Build(getter, setter, endValue), duration);
 
         /// <summary>
-        /// Creates a tween that animates a parameter to a given end value over
-        /// a set duration.
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
         /// </summary>
-        public static Tween From(Tween.Getter<Vector3> getter, System.Action<Vector3> setter, Vector3 endValue, float duration)
-        {
-            Vector3 startValue = new Vector3();
-            return Tweener.From(getter: () => { startValue = getter(); return 0.0f; },
-                                setter: t => setter(Vector3.Lerp(startValue, endValue, t)),
-                                endValue: 1.0f, duration);
-        }
+        public static Tween From(System.Func<double> getter, System.Action<double> setter, double endValue, float duration) =>
+            Tweener.From(new DoubleAdapter().Build(getter, setter, endValue), duration);
 
         /// <summary>
-        /// Creates a tween that animates a parameter to a given end value over
-        /// a set duration.
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
         /// </summary>
-        public static Tween From(Tween.Getter<Vector4> getter, System.Action<Vector4> setter, Vector4 endValue, float duration)
-        {
-            Vector4 startValue = new Vector4();
-            return Tweener.From(getter: () => { startValue = getter(); return 0.0f; },
-                                setter: t => setter(Vector4.Lerp(startValue, endValue, t)),
-                                endValue: 1.0f, duration);
-        }
+        public static Tween From(System.Func<long> getter, System.Action<long> setter, long endValue, float duration) =>
+            Tweener.From(new LongAdapter().Build(getter, setter, endValue), duration);
 
         /// <summary>
-        /// Creates a tween that animates a parameter to a given end value over
-        /// a set duration.
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
         /// </summary>
-        public static Tween From(Tween.Getter<Quaternion> getter, System.Action<Quaternion> setter, Quaternion endValue, float duration)
-        {
-            Quaternion startValue = new Quaternion();
-            return Tweener.From(getter: () => { startValue = getter(); return 0.0f; },
-                                setter: t => setter(Quaternion.Lerp(startValue, endValue, t)),
-                                endValue: 1.0f, duration);
-        }
+        public static Tween From(System.Func<int> getter, System.Action<int> setter, int endValue, float duration) =>
+            Tweener.From(new IntAdapter().Build(getter, setter, endValue), duration);
 
         /// <summary>
-        /// Creates a tween that animates a parameter to a given end value over
-        /// a set duration.
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
         /// </summary>
-        public static Tween From(Tween.Getter<Color> getter, System.Action<Color> setter, Color endValue, float duration)
-        {
-            Color startValue = new Color();
-            return Tweener.From(getter: () => { startValue = getter(); return 0.0f; },
-                                setter: t => setter(Color.Lerp(startValue, endValue, t)),
-                                endValue: 1.0f, duration);
-        }
+        public static Tween From(System.Func<Vector2> getter, System.Action<Vector2> setter, Vector2 endValue, float duration) =>
+            Tweener.From(new Vector2Adapter().Build(getter, setter, endValue), duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
+        /// </summary>
+        public static Tween From(System.Func<Vector2Int> getter, System.Action<Vector2Int> setter, Vector2Int endValue, float duration) =>
+            Tweener.From(new Vector2IntAdapter().Build(getter, setter, endValue), duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
+        /// </summary>
+        public static Tween From(System.Func<Vector3> getter, System.Action<Vector3> setter, Vector3 endValue, float duration) =>
+            Tweener.From(new Vector3Adapter().Build(getter, setter, endValue), duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
+        /// </summary>
+        public static Tween From(System.Func<Vector3Int> getter, System.Action<Vector3Int> setter, Vector3Int endValue, float duration) =>
+            Tweener.From(new Vector3IntAdapter().Build(getter, setter, endValue), duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
+        /// </summary>
+        public static Tween From(System.Func<Vector4> getter, System.Action<Vector4> setter, Vector4 endValue, float duration) =>
+            Tweener.From(new Vector4Adapter().Build(getter, setter, endValue), duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
+        /// </summary>
+        public static Tween From(System.Func<Quaternion> getter, System.Action<Quaternion> setter, Quaternion endValue, float duration) =>
+            Tweener.From(new QuaternionAdapter().Build(getter, setter, endValue), duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
+        /// </summary>
+        public static Tween From(System.Func<Color> getter, System.Action<Color> setter, Color endValue, float duration) =>
+            Tweener.From(new ColorAdapter().Build(getter, setter, endValue), duration);
 
         /// <summary>
         /// Creates a new, empty tween sequence.

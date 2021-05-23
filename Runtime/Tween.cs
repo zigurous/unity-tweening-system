@@ -7,36 +7,9 @@
     public sealed class Tween : TweenBase
     {
         /// <summary>
-        /// A function type that gets the current value of the parameter being
-        /// animated by the tween.
+        /// The tweenable parameter being animated by the tween.
         /// </summary>
-        public delegate T Getter<T>();
-
-        /// <summary>
-        /// A function type that sets a new value of the parameter being
-        /// animated by the tween.
-        /// </summary>
-        public delegate void Setter<T>(T value);
-
-        /// <summary>
-        /// Gets the current value of the parameter being animated by the tween.
-        /// </summary>
-        internal Getter<float> getter;
-
-        /// <summary>
-        /// Sets a new value of the parameter being animated by the tween.
-        /// </summary>
-        internal Setter<float> setter;
-
-        /// <summary>
-        /// The starting value of the parameter being animated.
-        /// </summary>
-        public float startValue;
-
-        /// <summary>
-        /// The desired ending value of the parameter being animated.
-        /// </summary>
-        public float endValue;
+        public ITweenable parameter;
 
         /// <summary>
         /// The amount of seconds the tween takes to complete.
@@ -100,7 +73,7 @@
 
         private void Animate(float percentComplete)
         {
-            if (this.setter == null) {
+            if (this.parameter == null) {
                 return;
             }
 
@@ -109,8 +82,7 @@
             }
 
             float time = EaseFunction.lookup[this.ease](percentComplete);
-            float value = time * (this.endValue - this.startValue) + this.startValue;
-            this.setter.Invoke(value);
+            this.parameter.Interpolate(time);
         }
 
         protected override void OnUpdate(float deltaTime)
@@ -136,8 +108,8 @@
             this.elapsed = 0.0f;
             this.delayElapsed = 0.0f;
 
-            if (this.getter != null) {
-                this.startValue = this.getter.Invoke();
+            if (this.parameter != null) {
+                this.parameter.Initialize();
             }
 
             Animate(0.0f);
@@ -153,17 +125,12 @@
 
         protected override void OnKill()
         {
-            this.getter = null;
-            this.setter = null;
+            this.parameter = null;
         }
 
         protected override void OnReset()
         {
-            this.getter = null;
-            this.setter = null;
-
-            this.startValue = 0.0f;
-            this.endValue = 0.0f;
+            this.parameter = null;
 
             this.duration = Settings.defaultDuration;
             this.elapsed = 0.0f;

@@ -16,7 +16,7 @@ namespace Zigurous.Animation.Tweening
 
         public static Tween TweenFontSize(this TextMesh textMesh, int to, float duration) =>
             Tweener.To(getter: () => textMesh.fontSize,
-                       setter: fontSize => textMesh.fontSize = (int)fontSize,
+                       setter: fontSize => textMesh.fontSize = fontSize,
                        to, duration).SetTarget(textMesh);
 
         public static Tween TweenOffsetZ(this TextMesh textMesh, float to, float duration) =>

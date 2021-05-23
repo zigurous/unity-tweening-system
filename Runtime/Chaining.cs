@@ -55,18 +55,6 @@ namespace Zigurous.Animation.Tweening
             return sequence;
         }
 
-        public static Tween SetStartValue(this Tween tween, float startValue)
-        {
-            tween.startValue = startValue;
-            return tween;
-        }
-
-        public static Tween SetEndValue(this Tween tween, float endValue)
-        {
-            tween.endValue = endValue;
-            return tween;
-        }
-
         public static Tween SetEase(this Tween tween, Ease ease)
         {
             tween.ease = ease;

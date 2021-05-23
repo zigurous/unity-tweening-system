@@ -129,10 +129,7 @@ namespace Zigurous.Animation.Tweening
 
             tween.state = TweenState.Ready;
             tween.internalState = InternalTweenState.Queued;
-            tween.getter = null;
-            tween.setter = null;
-            tween.startValue = 0.0f;
-            tween.endValue = 0.0f;
+            tween.parameter = null;
 
             return tween;
         }
