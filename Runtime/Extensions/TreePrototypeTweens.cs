@@ -4,10 +4,10 @@ namespace Zigurous.TweenEngine
 {
     public static class TreePrototypeTweens
     {
-        public static Tween TweenTileSize(this TreePrototype prototype, float to, float duration) =>
-            Tweening.To(getter: () => prototype.bendFactor,
-                        setter: bendFactor => prototype.bendFactor = bendFactor,
-                        to, duration).SetTarget(prototype);
+        public static Tween TweenTileSize(this TreePrototype tree, float to, float duration) =>
+            Tweening.To(getter: () => tree.bendFactor,
+                        setter: bendFactor => tree.bendFactor = bendFactor,
+                        to, duration).SetTarget(tree);
 
     }
 
