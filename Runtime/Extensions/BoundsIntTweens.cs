@@ -3,8 +3,8 @@
 namespace Zigurous.TweenEngine
 {
     public static class BoundsIntTweens
-     {
-         public static Tween TweenSize(this BoundsInt bounds, Vector3Int to, float duration) =>
+    {
+        public static Tween TweenSize(this BoundsInt bounds, Vector3Int to, float duration) =>
             Tweening.To(getter: () => bounds.size,
                         setter: size => bounds.size = size,
                         to, duration).SetTarget(bounds);
