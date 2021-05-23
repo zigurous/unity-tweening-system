@@ -1,15 +1,16 @@
 {
   "name": "com.zigurous.animation.tweening",
   "version": "1.0.1",
-  "displayName": "Zigurous Object Tweening",
-  "description": "The Object Tweening package provides a system for tweening object properties in Unity. A tween is an animation of a value from a start position to an end position over time using an easing function that provides a natural sense of motion.",
+  "displayName": "Zigurous Tween Engine",
+  "description": "The Tween Engine package provides a system for tweening object properties in Unity. A tween is an animation of a value from a start position to an end position using an easing function, providing a natural sense of motion.",
   "unity": "2019.4",
   "keywords": [
     "animation",
     "tweening",
-    "system"
+    "system",
+    "tool"
   ],
-  "repository": "https://github.com/zigurous/unity-animation-tweening",
+  "repository": "https://github.com/zigurous/unity-tween-engine",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@zigurous"
   },

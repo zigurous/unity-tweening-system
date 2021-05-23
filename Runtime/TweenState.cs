@@ -1,4 +1,4 @@
-namespace Zigurous.Animation.Tweening
+namespace Zigurous.TweenEngine
 {
     /// <summary>
     /// A type of animation state that a tween can be in.

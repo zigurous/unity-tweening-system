@@ -1,6 +1,6 @@
-# Object Tweening
+# Tween Engine
 
-The Object Tweening package provides a system for tweening object properties in Unity. A tween is an animation of a value from a start position to an end position over time using an easing function that provides a natural sense of motion.
+The Tween Engine package provides a system for tweening object properties in Unity. A tween is an animation of a value from a start position to an end position using an easing function, providing a natural sense of motion.
 
 ## Installation
 
@@ -12,4 +12,4 @@ To load a package from a Git URL:
 2. Click the add (`+`) button in the status bar
 3. Select **Add package from git URL** from the add menu
 4. Enter the following Git URL in the text box and click Add:
-   `https://github.com/zigurous/unity-animation-tweening.git`
+   `https://github.com/zigurous/unity-tween-engine.git`

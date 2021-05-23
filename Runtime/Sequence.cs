@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace Zigurous.Animation.Tweening
+namespace Zigurous.TweenEngine
 {
     /// <summary>
     /// Plays a sequence of tweens in order. The sequence itself maintains its
     /// own state.
     /// </summary>
-    public sealed class TweenSequence : TweenBase
+    public sealed class Sequence : Tween
     {
         /// <summary>
         /// The index of the current tween in the sequence being played.
@@ -36,13 +36,16 @@ namespace Zigurous.Animation.Tweening
         /// <summary>
         /// Constructs a new tween sequence.
         /// </summary>
-        public TweenSequence() : base() {}
+        public Sequence() : base()
+        {
+            this.type = TweenType.Sequence;
+        }
 
         /// <summary>
         /// Plays the tween sequence, whether starting for the first time or
         /// resuming from a stopped state.
         /// </summary>
-        public new TweenSequence Play()
+        public new Sequence Play()
         {
             base.Play();
             return this;
@@ -51,7 +54,7 @@ namespace Zigurous.Animation.Tweening
         /// <summary>
         /// Adds a new tween to the end of the sequence.
         /// </summary>
-        public TweenSequence Append(Tween tween)
+        public Sequence Append(Tween tween)
         {
             this.tweens.Add(Prepare(tween));
             return this;
@@ -60,7 +63,7 @@ namespace Zigurous.Animation.Tweening
         /// <summary>
         /// Adds a new tween to the beginning of the sequence.
         /// </summary>
-        public TweenSequence Prepend(Tween tween)
+        public Sequence Prepend(Tween tween)
         {
             this.tweens.Insert(0, Prepare(tween));
             return this;
@@ -141,6 +144,11 @@ namespace Zigurous.Animation.Tweening
         {
             this.tweens.Clear();
             this.currentIndex = -1;
+        }
+
+        protected override void Animate()
+        {
+            // Do nothing. The individual tweens are animated on their own.
         }
 
     }

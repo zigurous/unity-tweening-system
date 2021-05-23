@@ -1,15 +1,65 @@
-﻿namespace Zigurous.Animation.Tweening
+﻿namespace Zigurous.TweenEngine
 {
     /// <summary>
     /// A tween object, an animation that changes a value over time using an
     /// easing function.
     /// </summary>
-    public sealed class Tween : TweenBase
+    public abstract class Tween
     {
         /// <summary>
-        /// The tweenable parameter being animated by the tween.
+        /// An identifier that can be used to distinguish the tween from others.
+        /// This is not explicitly required nor is it necessarily unique. The id
+        /// is often used to identify which object the parameter being animated
+        /// belongs to, and often that object is animating multiple parameters.
         /// </summary>
-        public ITweenable parameter;
+        public int id;
+
+        /// <summary>
+        /// The template type used by the tween, if relevant.
+        /// </summary>
+        internal System.Type template;
+
+        /// <summary>
+        /// The type of tween, used internally for managing and recycling
+        /// tweens.
+        /// </summary>
+        internal TweenType type;
+
+        /// <summary>
+        /// The internal state of the tween as it relates to the lifeycle and
+        /// management of the tween.
+        /// </summary>
+        internal InternalTweenState internalState = InternalTweenState.Queued;
+
+        /// <summary>
+        /// The animation state of the tween.
+        /// </summary>
+        public TweenState state { get; internal set; } = TweenState.Ready;
+
+        /// <summary>
+        /// Whether the tween is playing.
+        /// </summary>
+        public bool IsPlaying => this.state == TweenState.Playing;
+
+        /// <summary>
+        /// Whether the tween is stopped.
+        /// </summary>
+        public bool IsStopped => this.state == TweenState.Stopped;
+
+        /// <summary>
+        /// Whether the tween is complete.
+        /// </summary>
+        public bool IsComplete => this.state == TweenState.Complete;
+
+        /// <summary>
+        /// Whether the tween is killed.
+        /// </summary>
+        public bool IsKilled => this.state == TweenState.Killed;
+
+        /// <summary>
+        /// The easing function type used by the tween to animate values.
+        /// </summary>
+        public Ease ease = Settings.defaultEase;
 
         /// <summary>
         /// The amount of seconds the tween takes to complete.
@@ -46,101 +96,254 @@
         public bool IsDelayed => this.delayElapsed < this.delay;
 
         /// <summary>
-        /// The easing function type used by the tween to animate values.
-        /// </summary>
-        public Ease ease = Settings.defaultEase;
-
-        /// <summary>
         /// Animates from the end value to the start value as opposed to
         /// animating from the start value to the end value like normal.
         /// </summary>
         public bool reversed = false;
 
         /// <summary>
+        /// Keeps the tween in memory to be re-used after being killed.
+        /// </summary>
+        public bool recyclable = Settings.defaultRecyclable;
+
+        /// <summary>
+        /// Automatically starts the tween after being created.
+        /// </summary>
+        public bool autoStart = Settings.defaultAutoStart;
+
+        /// <summary>
+        /// Automatically kills the tween after being completed.
+        /// </summary>
+        public bool autoKill = Settings.defaultAutoKill;
+
+        /// <summary>
+        /// The callback invoked every time the tween is updated, i.e., any time
+        /// the parameter being animated is changed.
+        /// </summary>
+        public TweenCallback onUpdate;
+
+        /// <summary>
+        /// The callback invoked when the tween is started.
+        /// </summary>
+        public TweenCallback onStart;
+
+        /// <summary>
+        /// The callback invoked when the tween is stopped.
+        /// </summary>
+        public TweenCallback onStop;
+
+        /// <summary>
+        /// The callback invoked when the tween is completed.
+        /// </summary>
+        public TweenCallback onComplete;
+
+        /// <summary>
+        /// The callback invoked when the tween is killed.
+        /// </summary>
+        public TweenCallback onKill;
+
+        /// <summary>
         /// Constructs a new tween object.
         /// </summary>
-        public Tween() : base() {}
+        internal Tween()
+        {
+            TweenManager.Instance.Track(this);
+        }
+
+        /// <summary>
+        /// Animates the parameter being tweened to the latest state.
+        /// </summary>
+        protected abstract void Animate();
+
+        /// <summary>
+        /// Advances the tween's elapsed time by the given delta time causing
+        /// the tween to be animated and any lifecycle events to be triggered.
+        /// </summary>
+        internal void Update(float deltaTime)
+        {
+            if (this.IsPlaying)
+            {
+                if (this.elapsed >= this.duration)
+                {
+                    Complete();
+                }
+                else if (!this.IsDelayed)
+                {
+                    this.elapsed += deltaTime;
+
+                    Animate();
+                    OnUpdate();
+
+                    if (this.onUpdate != null) {
+                        this.onUpdate.Invoke();
+                    }
+                }
+                else
+                {
+                    this.delayElapsed += deltaTime;
+                }
+            }
+            else if (this.state == TweenState.Ready && this.autoStart)
+            {
+                Play();
+            }
+        }
 
         /// <summary>
         /// Plays the tween, whether starting for the first time or resuming
         /// from a stopped state.
         /// </summary>
-        public new Tween Play()
+        public void Play()
         {
-            base.Play();
-            return this;
+            if (this.state.CanTransition(TweenState.Playing)) {
+                TransitionToPlaying(this.state);
+            }
         }
 
-        private void Animate(float percentComplete)
+        /// <summary>
+        /// Stops the tween if currently being played.
+        /// </summary>
+        public void Stop()
         {
-            if (this.parameter == null) {
-                return;
+            if (this.state.CanTransition(TweenState.Stopped)) {
+                TransitionToStopped();
             }
-
-            if (this.reversed) {
-                percentComplete = 1.0f - percentComplete;
-            }
-
-            float time = EaseFunction.lookup[this.ease](percentComplete);
-            this.parameter.Interpolate(time);
         }
 
-        protected override void OnUpdate(float deltaTime)
+        /// <summary>
+        /// Completes the tween, jumping to the end value.
+        /// </summary>
+        public void Complete()
         {
-            if (this.elapsed >= this.duration)
-            {
-                Complete();
+            if (this.state.CanTransition(TweenState.Complete)) {
+                TransitionToComplete();
             }
-            else if (!this.IsDelayed)
-            {
-                this.elapsed += deltaTime;
+        }
 
-                Animate(this.PercentComplete);
+        /// <summary>
+        /// Kills the tween in its place, preventing any further state changes
+        /// or changes to the parameter being animated.
+        /// </summary>
+        public void Kill()
+        {
+            if (this.state.CanTransition(TweenState.Killed)) {
+                TransitionToKilled();
+            }
+        }
+
+        /// <summary>
+        /// Restarts the tween as along as it has not been killed.
+        /// </summary>
+        public void Restart()
+        {
+            Stop();
+            Play();
+        }
+
+        /// <summary>
+        /// Resets all properties of the tween back to their default values.
+        /// </summary>
+        internal void Reset()
+        {
+            this.id = -1;
+            this.state = TweenState.Ready;
+            this.internalState = InternalTweenState.Queued;
+            this.ease = Settings.defaultEase;
+            this.duration = Settings.defaultDuration;
+            this.elapsed = 0.0f;
+            this.delay = Settings.defaultDelay;
+            this.delayElapsed = 0.0f;
+            this.reversed = false;
+            this.autoStart = Settings.defaultAutoStart;
+            this.autoKill = Settings.defaultAutoKill;
+            this.recyclable = Settings.defaultRecyclable;
+
+            this.onUpdate = null;
+            this.onStart = null;
+            this.onStop = null;
+            this.onComplete = null;
+            this.onKill = null;
+
+            OnReset();
+        }
+
+        private void TransitionToPlaying(TweenState previousState)
+        {
+            this.state = TweenState.Playing;
+            this.internalState = InternalTweenState.Active;
+
+            if (previousState == TweenState.Stopped)
+            {
+                OnResume();
             }
             else
             {
-                this.delayElapsed += deltaTime;
+                this.elapsed = 0.0f;
+                this.delayElapsed = 0.0f;
+
+                OnStart();
+                Animate();
+
+                if (this.onStart != null) {
+                    this.onStart.Invoke();
+                }
             }
         }
 
-        protected override void OnStart()
+        private void TransitionToStopped()
         {
-            this.elapsed = 0.0f;
-            this.delayElapsed = 0.0f;
+            this.state = TweenState.Stopped;
 
-            if (this.parameter != null) {
-                this.parameter.Initialize();
+            OnStop();
+
+            if (this.onStop != null) {
+                this.onStop.Invoke();
             }
-
-            Animate(0.0f);
         }
 
-        protected override void OnComplete()
+        private void TransitionToComplete()
         {
+            this.state = TweenState.Complete;
             this.elapsed = this.duration;
             this.delayElapsed = this.delay;
 
-            Animate(1.0f);
+            Animate();
+            OnComplete();
+
+            if (this.onComplete != null) {
+                this.onComplete.Invoke();
+            }
+
+            if (this.autoKill) {
+                Kill();
+            }
         }
 
-        protected override void OnKill()
+        private void TransitionToKilled()
         {
-            this.parameter = null;
+            this.state = TweenState.Killed;
+            this.internalState = InternalTweenState.Dequeued;
+
+            OnKill();
+
+            if (this.onKill != null) {
+                this.onKill.Invoke();
+            }
+
+            this.onKill = null;
+            this.onUpdate = null;
+            this.onStart = null;
+            this.onStop = null;
+            this.onComplete = null;
         }
 
-        protected override void OnReset()
-        {
-            this.parameter = null;
-
-            this.duration = Settings.defaultDuration;
-            this.elapsed = 0.0f;
-
-            this.delay = Settings.defaultDelay;
-            this.delayElapsed = 0.0f;
-
-            this.ease = Settings.defaultEase;
-            this.reversed = false;
-        }
+        protected virtual void OnUpdate() {}
+        protected virtual void OnStart() {}
+        protected virtual void OnStop() {}
+        protected virtual void OnResume() {}
+        protected virtual void OnComplete() {}
+        protected virtual void OnKill() {}
+        protected virtual void OnReset() {}
 
     }
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Zigurous.Animation.Tweening
+namespace Zigurous.TweenEngine
 {
     /// <summary>
     /// Manages the lifecycle of all tween objects, including updating,
@@ -12,7 +12,7 @@ namespace Zigurous.Animation.Tweening
         /// <summary>
         /// A list of all alive tween objects.
         /// </summary>
-        internal List<TweenBase> tweens = new List<TweenBase>(Settings.initialCapacity);
+        internal List<Tween> tweens = new List<Tween>(Settings.initialCapacity);
 
         private static bool _isUnloading = false;
         private static object _lock = new object();
@@ -20,7 +20,7 @@ namespace Zigurous.Animation.Tweening
         public static bool HasInstance => _instance != null;
 
         private static volatile TweenManager _instance;
-        public static TweenManager Instance
+        internal static TweenManager Instance
         {
             get
             {
@@ -69,7 +69,9 @@ namespace Zigurous.Animation.Tweening
                 _instance = null;
             }
 
-            Tweener.KillAll(false);
+            foreach (Tween tween in this.tweens) {
+                tween.Kill();
+            }
 
             this.tweens.Clear();
         }
@@ -80,7 +82,7 @@ namespace Zigurous.Animation.Tweening
 
             for (int i = this.tweens.Count - 1; i >= 0; i--)
             {
-                TweenBase tween = this.tweens[i];
+                Tween tween = this.tweens[i];
 
                 switch (tween.internalState)
                 {
@@ -107,63 +109,58 @@ namespace Zigurous.Animation.Tweening
         /// <summary>
         /// Recycles or creates a new tween object.
         /// </summary>
-        internal Tween Build()
+        internal Tweener<T> BuildTweener<T>()
         {
-            Tween tween = null;
+            Tweener<T> tweener = null;
 
-            foreach (TweenBase trackedTween in this.tweens)
+            foreach (Tween tween in this.tweens)
             {
-                if (trackedTween.internalState == InternalTweenState.Recycled &&
-                    trackedTween is Tween)
+                if (tween.internalState == InternalTweenState.Recycled &&
+                    tween.type == TweenType.Tweener &&
+                    tween.template == typeof(T))
                 {
-                    tween = (Tween)trackedTween;
+                    tweener = (Tweener<T>)tween;
                     break;
                 }
             }
 
-            if (tween == null) {
-                tween = new Tween();
+            if (tweener == null) {
+                tweener = new Tweener<T>();
             } else {
-                tween.Reset();
+                tweener.Reset();
             }
 
-            tween.state = TweenState.Ready;
-            tween.internalState = InternalTweenState.Queued;
-            tween.parameter = null;
+            tweener.state = TweenState.Ready;
+            tweener.internalState = InternalTweenState.Queued;
 
-            return tween;
+            return tweener;
         }
 
         /// <summary>
         /// Recycles or creates a new tween sequence.
         /// </summary>
-        internal TweenSequence BuildSequence(Tween[] tweens = null)
+        internal Sequence BuildSequence()
         {
-            TweenSequence sequence = null;
+            Sequence sequence = null;
 
-            foreach (TweenBase trackedTween in this.tweens)
+            foreach (Tween tween in this.tweens)
             {
-                if (trackedTween.internalState == InternalTweenState.Recycled &&
-                    trackedTween is TweenSequence)
+                if (tween.internalState == InternalTweenState.Recycled &&
+                    tween.type == TweenType.Sequence)
                 {
-                    sequence = (TweenSequence)trackedTween;
+                    sequence = (Sequence)tween;
                     break;
                 }
             }
 
             if (sequence == null) {
-                sequence = new TweenSequence();
+                sequence = new Sequence();
             } else {
                 sequence.Reset();
             }
 
             sequence.state = TweenState.Ready;
             sequence.internalState = InternalTweenState.Queued;
-            sequence.tweens.Clear();
-
-            if (tweens != null) {
-                sequence.tweens.AddRange(tweens);
-            }
 
             return sequence;
         }
@@ -172,7 +169,7 @@ namespace Zigurous.Animation.Tweening
         /// Adds a tween to the list of alive tweens so it can be managed and
         /// updated.
         /// </summary>
-        internal void Track(TweenBase tween)
+        internal void Track(Tween tween)
         {
             if (!this.tweens.Contains(tween)) {
                 this.tweens.Add(tween);

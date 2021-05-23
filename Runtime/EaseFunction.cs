@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Zigurous.Animation.Tweening
+namespace Zigurous.TweenEngine
 {
     /// <summary>
     /// Contains timing functions of every ease type. Easing functions specify
