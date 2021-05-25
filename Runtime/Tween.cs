@@ -59,12 +59,12 @@
         /// <summary>
         /// The easing function type used by the tween to animate values.
         /// </summary>
-        public Ease ease = Settings.defaultEase;
+        public Ease ease = Tweening.defaultEase;
 
         /// <summary>
         /// The amount of seconds the tween takes to complete.
         /// </summary>
-        public float duration = Settings.defaultDuration;
+        public float duration = Tweening.defaultDuration;
 
         /// <summary>
         /// The amount of seconds that have elapsed since the tween started.
@@ -80,7 +80,7 @@
         /// The amount of seconds the tween waits before playing after being
         /// started.
         /// </summary>
-        public float delay = Settings.defaultDelay;
+        public float delay = Tweening.defaultDelay;
 
         /// <summary>
         /// The amount of seconds that have elapsed during the tween's delayed
@@ -104,17 +104,17 @@
         /// <summary>
         /// Keeps the tween in memory to be re-used after being killed.
         /// </summary>
-        public bool recyclable = Settings.defaultRecyclable;
+        public bool recyclable = Tweening.defaultRecyclable;
 
         /// <summary>
         /// Automatically starts the tween after being created.
         /// </summary>
-        public bool autoStart = Settings.defaultAutoStart;
+        public bool autoStart = Tweening.defaultAutoStart;
 
         /// <summary>
         /// Automatically kills the tween after being completed.
         /// </summary>
-        public bool autoKill = Settings.defaultAutoKill;
+        public bool autoKill = Tweening.defaultAutoKill;
 
         /// <summary>
         /// The callback invoked every time the tween is updated, i.e., any time
@@ -308,15 +308,15 @@
             this.id = -1;
             this.state = TweenState.Ready;
             this.internalState = InternalTweenState.Queued;
-            this.ease = Settings.defaultEase;
-            this.duration = Settings.defaultDuration;
+            this.ease = Tweening.defaultEase;
+            this.duration = Tweening.defaultDuration;
             this.elapsed = 0.0f;
-            this.delay = Settings.defaultDelay;
+            this.delay = Tweening.defaultDelay;
             this.delayElapsed = 0.0f;
             this.reversed = false;
-            this.autoStart = Settings.defaultAutoStart;
-            this.autoKill = Settings.defaultAutoKill;
-            this.recyclable = Settings.defaultRecyclable;
+            this.autoStart = Tweening.defaultAutoStart;
+            this.autoKill = Tweening.defaultAutoKill;
+            this.recyclable = Tweening.defaultRecyclable;
 
             this.onUpdate = null;
             this.onStart = null;

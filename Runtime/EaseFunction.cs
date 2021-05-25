@@ -63,12 +63,6 @@ namespace Zigurous.Tweening
             { Ease.BounceInOut, BounceInOut },
         };
 
-        private static float c1 = Settings.overshoot;
-        private static float c2 = c1 * 1.525f;
-        private static float c3 = c1 + 1.0f;
-        private static float c4 = (2.0f * Mathf.PI) / 3.0f;
-        private static float c5 = (2.0f * Mathf.PI) / 4.5f;
-
         public static float Linear(float x)
         {
             return x;
@@ -193,16 +187,17 @@ namespace Zigurous.Tweening
 
         public static float BackIn(float x)
         {
-            return c3 * x * x * x - c1 * x * x;
+            return (Tweening.overshoot + 1.0f) * x * x * x - Tweening.overshoot * x * x;
         }
 
         public static float BackOut(float x)
         {
-            return 1.0f + c3 * Mathf.Pow(x - 1.0f, 3.0f) + c1 * Mathf.Pow(x - 1.0f, 2.0f);
+            return 1.0f + (Tweening.overshoot + 1.0f) * Mathf.Pow(x - 1.0f, 3.0f) + Tweening.overshoot * Mathf.Pow(x - 1.0f, 2.0f);
         }
 
         public static float BackInOut(float x)
         {
+            float c2 = Tweening.overshoot * 1.525f;
             return x < 0.5f ?
                 (Mathf.Pow(2.0f * x, 2.0f) * ((c2 + 1.0f) * 2.0f * x - c2)) / 2.0f :
                 (Mathf.Pow(2.0f * x - 2.0f, 2.0f) * ((c2 + 1.0f) * (x * 2.0f - 2.0f) + c2) + 2.0f) / 2.0f;
@@ -211,20 +206,20 @@ namespace Zigurous.Tweening
         public static float ElasticIn(float x)
         {
             return x <= 0.0f ? 0.0f : x >= 1.0f ? 1.0f :
-                -Mathf.Pow(2.0f, 10.0f * x - 10.0f) * Mathf.Sin((x * 10.0f - 10.75f) * c4);
+                -Mathf.Pow(2.0f, 10.0f * x - 10.0f) * Mathf.Sin((x * 10.0f - 10.75f) * ((2.0f * Mathf.PI) / 3.0f));
         }
 
         public static float ElasticOut(float x)
         {
             return x <= 0.0f ? 0.0f : x >= 1.0f ? 1.0f :
-                Mathf.Pow(2.0f, -10.0f * x) * Mathf.Sin((x * 10.0f - 0.75f) * c4) + 1.0f;
+                Mathf.Pow(2.0f, -10.0f * x) * Mathf.Sin((x * 10.0f - 0.75f) * ((2.0f * Mathf.PI) / 3.0f)) + 1.0f;
         }
 
         public static float ElasticInOut(float x)
         {
             return x <= 0.0f ? 0.0f : x >= 1.0f ? 1.0f : x < 0.5f ?
-                -(Mathf.Pow(2.0f, 20.0f * x - 10.0f) * Mathf.Sin((20.0f * x - 11.125f) * c5)) / 2.0f :
-                Mathf.Pow(2.0f, -20.0f * x + 10.0f) * Mathf.Sin((20.0f * x - 11.125f) * c5) / 2.0f + 1.0f;
+                -(Mathf.Pow(2.0f, 20.0f * x - 10.0f) * Mathf.Sin((20.0f * x - 11.125f) * ((2.0f * Mathf.PI) / 4.5f))) / 2.0f :
+                Mathf.Pow(2.0f, -20.0f * x + 10.0f) * Mathf.Sin((20.0f * x - 11.125f) * ((2.0f * Mathf.PI) / 4.5f)) / 2.0f + 1.0f;
         }
 
         public static float BounceIn(float x)
