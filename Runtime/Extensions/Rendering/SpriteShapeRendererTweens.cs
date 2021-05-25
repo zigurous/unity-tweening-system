@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.U2D;
 
-namespace Zigurous.TweenEngine
+namespace Zigurous.Tweening
 {
     public static class SpriteShapeRendererTweens
     {

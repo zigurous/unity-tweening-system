@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Animations;
 
-namespace Zigurous.TweenEngine
+namespace Zigurous.Tweening
 {
     public static class ScaleConstraintTweens
     {

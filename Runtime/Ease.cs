@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Zigurous.TweenEngine
+namespace Zigurous.Tweening
 {
     /// <summary>
     /// An easing function type. Easing functions specify the rate of change of

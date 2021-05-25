@@ -1,4 +1,4 @@
-﻿namespace Zigurous.TweenEngine
+﻿namespace Zigurous.Tweening
 {
     /// <summary>
     /// A tween object, an animation that changes a value over time using an

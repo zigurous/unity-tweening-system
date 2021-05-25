@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Zigurous.TweenEngine
+namespace Zigurous.Tweening
 {
     /// <summary>
     /// The primary interface to create, control, and manage tweens.

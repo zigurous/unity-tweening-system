@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Zigurous.TweenEngine
+namespace Zigurous.Tweening
 {
     /// <summary>
     /// Manages the lifecycle of all tween objects, including updating,

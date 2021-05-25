@@ -1,4 +1,4 @@
-﻿namespace Zigurous.TweenEngine
+﻿namespace Zigurous.Tweening
 {
     /// <summary>
     /// The default settings used for tweens and the tweening system.

@@ -1,4 +1,4 @@
-namespace Zigurous.TweenEngine
+namespace Zigurous.Tweening
 {
     /// <summary>
     /// Provides method chaining for tweens. This allows multiple properties to

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Zigurous.TweenEngine
+namespace Zigurous.Tweening
 {
     /// <summary>
     /// Plays a sequence of tweens in order. The sequence itself maintains its

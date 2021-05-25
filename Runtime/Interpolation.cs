@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Zigurous.TweenEngine
+namespace Zigurous.Tweening
 {
     /// <summary>
     /// Provides functions for interpolating values.

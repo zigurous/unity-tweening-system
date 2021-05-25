@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Zigurous.TweenEngine
+namespace Zigurous.Tweening
 {
     public static class CanvasGroupTweens
     {

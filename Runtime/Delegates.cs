@@ -1,4 +1,4 @@
-﻿namespace Zigurous.TweenEngine
+﻿namespace Zigurous.Tweening
 {
     /// <summary>
     /// A function type that gets the current value of a parameter.

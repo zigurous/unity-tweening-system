@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Zigurous.TweenEngine
+namespace Zigurous.Tweening
 {
     public static class TilemapTweens
     {

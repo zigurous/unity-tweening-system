@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UI;
 
-namespace Zigurous.TweenEngine
+namespace Zigurous.Tweening
 {
     public static class SliderTweens
     {
