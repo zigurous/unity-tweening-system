@@ -452,16 +452,17 @@ namespace Zigurous.TweenEngine
         }
 
         /// <summary>
-        /// Kills any alive tween that is animating the given target object.
+        /// Kills any alive tweens being animated on the target object.
         /// Optionally, the tweens can be completed before being killed.
         /// </summary>
-        public static void Kill<T>(T target, bool complete = false) where T: class
+        public static void KillTweens<T>(this T target, bool complete = false) where T: class
         {
             Kill(target.GetHashCode(), complete);
         }
 
         /// <summary>
-        /// Kills the given tween after optionally completing it.
+        /// Kills the given tween, preventing it from being further updated.
+        /// Optionally, the tween can be completed before being killed.
         /// </summary>
         private static void Kill(Tween tween, bool complete)
         {
