@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2021/05/25
+
+### Changed
+
+- Overhauled internal code to be more optimized and memory efficient
+- Sequences can now be controlled and managed the same way as any other tween
+
+### Added
+
+- Hundreds of pre-defined extension methods for tweening properties on common Unity objects
+- More generic types are now compatible with the tweening system
+
 ## [1.0.1] - 2021/04/13
 
 ### Changed
