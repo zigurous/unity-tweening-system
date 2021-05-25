@@ -195,8 +195,30 @@
         /// </summary>
         public void Play()
         {
-            if (this.state.CanTransition(TweenState.Playing)) {
-                TransitionToPlaying(this.state);
+            if (!this.state.CanTransition(TweenState.Playing)) {
+                return;
+            }
+
+            TweenState previousState = this.state;
+
+            this.state = TweenState.Playing;
+            this.internalState = InternalTweenState.Active;
+
+            if (previousState == TweenState.Stopped)
+            {
+                OnResume();
+            }
+            else
+            {
+                this.elapsed = 0.0f;
+                this.delayElapsed = 0.0f;
+
+                OnStart();
+                Animate();
+
+                if (this.onStart != null) {
+                    this.onStart.Invoke();
+                }
             }
         }
 
@@ -205,8 +227,16 @@
         /// </summary>
         public void Stop()
         {
-            if (this.state.CanTransition(TweenState.Stopped)) {
-                TransitionToStopped();
+            if (!this.state.CanTransition(TweenState.Stopped)) {
+                return;
+            }
+
+            this.state = TweenState.Stopped;
+
+            OnStop();
+
+            if (this.onStop != null) {
+                this.onStop.Invoke();
             }
         }
 
@@ -215,8 +245,23 @@
         /// </summary>
         public void Complete()
         {
-            if (this.state.CanTransition(TweenState.Complete)) {
-                TransitionToComplete();
+            if (!this.state.CanTransition(TweenState.Complete)) {
+                return;
+            }
+
+            this.state = TweenState.Complete;
+            this.elapsed = this.duration;
+            this.delayElapsed = this.delay;
+
+            Animate();
+            OnComplete();
+
+            if (this.onComplete != null) {
+                this.onComplete.Invoke();
+            }
+
+            if (this.autoKill) {
+                Kill();
             }
         }
 
@@ -226,9 +271,24 @@
         /// </summary>
         public void Kill()
         {
-            if (this.state.CanTransition(TweenState.Killed)) {
-                TransitionToKilled();
+            if (!this.state.CanTransition(TweenState.Killed)) {
+                return;
             }
+
+            this.state = TweenState.Killed;
+            this.internalState = InternalTweenState.Dequeued;
+
+            OnKill();
+
+            if (this.onKill != null) {
+                this.onKill.Invoke();
+            }
+
+            this.onKill = null;
+            this.onUpdate = null;
+            this.onStart = null;
+            this.onStop = null;
+            this.onComplete = null;
         }
 
         /// <summary>
@@ -265,76 +325,6 @@
             this.onKill = null;
 
             OnReset();
-        }
-
-        private void TransitionToPlaying(TweenState previousState)
-        {
-            this.state = TweenState.Playing;
-            this.internalState = InternalTweenState.Active;
-
-            if (previousState == TweenState.Stopped)
-            {
-                OnResume();
-            }
-            else
-            {
-                this.elapsed = 0.0f;
-                this.delayElapsed = 0.0f;
-
-                OnStart();
-                Animate();
-
-                if (this.onStart != null) {
-                    this.onStart.Invoke();
-                }
-            }
-        }
-
-        private void TransitionToStopped()
-        {
-            this.state = TweenState.Stopped;
-
-            OnStop();
-
-            if (this.onStop != null) {
-                this.onStop.Invoke();
-            }
-        }
-
-        private void TransitionToComplete()
-        {
-            this.state = TweenState.Complete;
-            this.elapsed = this.duration;
-            this.delayElapsed = this.delay;
-
-            Animate();
-            OnComplete();
-
-            if (this.onComplete != null) {
-                this.onComplete.Invoke();
-            }
-
-            if (this.autoKill) {
-                Kill();
-            }
-        }
-
-        private void TransitionToKilled()
-        {
-            this.state = TweenState.Killed;
-            this.internalState = InternalTweenState.Dequeued;
-
-            OnKill();
-
-            if (this.onKill != null) {
-                this.onKill.Invoke();
-            }
-
-            this.onKill = null;
-            this.onUpdate = null;
-            this.onStart = null;
-            this.onStop = null;
-            this.onComplete = null;
         }
 
         protected virtual void OnUpdate() {}
