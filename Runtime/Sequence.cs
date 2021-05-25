@@ -81,11 +81,21 @@ namespace Zigurous.Tweening
         {
             this.currentIndex++;
 
-            if (this.currentIndex >= this.tweens.Count) {
+            if (CanComplete()) {
                 Complete();
             } else {
                 this.tweens[this.currentIndex].Play();
             }
+        }
+
+        protected override void Animate()
+        {
+            // Do nothing. The individual tweens are animated on their own.
+        }
+
+        protected override bool CanComplete()
+        {
+            return this.currentIndex >= this.tweens.Count;
         }
 
         protected override void OnStart()
@@ -144,11 +154,6 @@ namespace Zigurous.Tweening
         {
             this.tweens.Clear();
             this.currentIndex = -1;
-        }
-
-        protected override void Animate()
-        {
-            // Do nothing. The individual tweens are animated on their own.
         }
 
     }

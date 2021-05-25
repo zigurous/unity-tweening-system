@@ -163,11 +163,7 @@
         {
             if (this.IsPlaying)
             {
-                if (this.elapsed >= this.duration)
-                {
-                    Complete();
-                }
-                else if (!this.IsDelayed)
+                if (!this.IsDelayed)
                 {
                     this.elapsed += deltaTime;
 
@@ -177,10 +173,21 @@
                     if (this.onUpdate != null) {
                         this.onUpdate.Invoke();
                     }
+
+                    if (CanComplete()) {
+                        Complete();
+                    }
                 }
                 else
                 {
                     this.delayElapsed += deltaTime;
+
+                    // Start the tween once the delay is complete and only if
+                    // the elapsed time is zero which indicates it has never
+                    // been updated yet
+                    if (this.elapsed == 0 && this.delayElapsed >= this.delay) {
+                        Start();
+                    }
                 }
             }
             else if (this.state == TweenState.Ready && this.autoStart)
@@ -213,12 +220,23 @@
                 this.elapsed = 0.0f;
                 this.delayElapsed = 0.0f;
 
-                OnStart();
-                Animate();
-
-                if (this.onStart != null) {
-                    this.onStart.Invoke();
+                // Start right away if there is no delay
+                if (!this.IsDelayed) {
+                    Start();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Starts the tween for the first time.
+        /// </summary>
+        private void Start()
+        {
+            OnStart();
+            Animate();
+
+            if (this.onStart != null) {
+                this.onStart.Invoke();
             }
         }
 
@@ -327,6 +345,7 @@
             OnReset();
         }
 
+        protected virtual bool CanComplete() => this.elapsed >= this.duration;
         protected virtual void OnUpdate() {}
         protected virtual void OnStart() {}
         protected virtual void OnStop() {}

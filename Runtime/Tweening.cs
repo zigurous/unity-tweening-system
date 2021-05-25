@@ -52,7 +52,17 @@ namespace Zigurous.Tweening
         /// <summary>
         /// The number of tweens currently alive (not necessarily active).
         /// </summary>
-        public static int Count => TweenManager.Instance.tweens.Count;
+        public static int Count
+        {
+            get
+            {
+                if (TweenManager.HasInstance) {
+                    return TweenManager.Instance.tweens.Count;
+                } else {
+                    return 0;
+                }
+            }
+        }
 
         /// <summary>
         /// The number of tweens that are currently alive and active.
@@ -61,6 +71,10 @@ namespace Zigurous.Tweening
         {
             get
             {
+                if (!TweenManager.HasInstance) {
+                    return 0;
+                }
+
                 int count = 0;
                 List<Tween> tweens = TweenManager.Instance.tweens;
 
