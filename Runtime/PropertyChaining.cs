@@ -54,6 +54,12 @@ namespace Zigurous.Tweening
             return tween;
         }
 
+        public static T SetSnapping<T>(this T tween, bool snapping = true) where T: Tween
+        {
+            tween.snapping = snapping;
+            return tween;
+        }
+
         public static T SetRecyclable<T>(this T tween, bool recyclable) where T: Tween
         {
             tween.recyclable = recyclable;

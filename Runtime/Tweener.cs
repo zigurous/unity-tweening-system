@@ -55,7 +55,7 @@
             }
 
             float time = EaseFunction.lookup[this.ease](percent);
-            setter(interpolater(this.startValue, this.endValue, time));
+            setter(interpolater(this.startValue, this.endValue, time, this.snapping));
         }
 
         protected override void OnStart()

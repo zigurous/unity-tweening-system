@@ -19,6 +19,6 @@
     /// <summary>
     /// A function type that interpolates the value between a and b by t.
     /// </summary>
-    public delegate T Interpolater<T>(T a, T b, float t);
+    public delegate T Interpolater<T>(T a, T b, float t, bool snapping);
 
 }

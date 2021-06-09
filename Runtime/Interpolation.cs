@@ -10,23 +10,25 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Linearly interpolates between a and b by t.
         /// </summary>
-        public static float Lerp(float a, float b, float t)
+        public static float Lerp(float a, float b, float t, bool snapping = false)
         {
-            return Mathf.Lerp(a, b, t);
+            float value = Mathf.Lerp(a, b, t);
+            return snapping ? (int)value : value;
         }
 
         /// <summary>
         /// Linearly interpolates between a and b by t.
         /// </summary>
-        public static double Lerp(double a, double b, float t)
+        public static double Lerp(double a, double b, float t, bool snapping = false)
         {
-            return Mathf.Lerp((float)a, (float)b, t);
+            double value = Mathf.Lerp((float)a, (float)b, t);
+            return snapping ? (int)value : value;
         }
 
         /// <summary>
         /// Linearly interpolates between a and b by t.
         /// </summary>
-        public static int Lerp(int a, int b, float t)
+        public static int Lerp(int a, int b, float t, bool snapping = false)
         {
             return (int)Mathf.Lerp(a, b, t);
         }
@@ -34,23 +36,25 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Linearly interpolates between a and b by t.
         /// </summary>
-        public static long Lerp(long a, long b, float t)
+        public static long Lerp(long a, long b, float t, bool snapping = false)
         {
-            return (long)Mathf.Lerp(a, b, t);
+            long value = (long)Mathf.Lerp(a, b, t);
+            return snapping ? (int)value : value;
         }
 
         /// <summary>
         /// Linearly interpolates between a and b by t.
         /// </summary>
-        public static Vector2 Lerp(Vector2 a, Vector2 b, float t)
+        public static Vector2 Lerp(Vector2 a, Vector2 b, float t, bool snapping = false)
         {
-            return Vector2.Lerp(a, b, t);
+            Vector2 value = Vector2.Lerp(a, b, t);
+            return snapping ? Snap(value) : value;
         }
 
         /// <summary>
         /// Linearly interpolates between a and b by t.
         /// </summary>
-        public static Vector2Int Lerp(Vector2Int a, Vector2Int b, float t)
+        public static Vector2Int Lerp(Vector2Int a, Vector2Int b, float t, bool snapping = false)
         {
             return new Vector2Int(
                 (int)Mathf.Lerp(a.x, b.x, t),
@@ -60,15 +64,16 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Linearly interpolates between a and b by t.
         /// </summary>
-        public static Vector3 Lerp(Vector3 a, Vector3 b, float t)
+        public static Vector3 Lerp(Vector3 a, Vector3 b, float t, bool snapping = false)
         {
-            return Vector3.Lerp(a, b, t);
+            Vector3 value = Vector3.Lerp(a, b, t);
+            return snapping ? Snap(value) : value;
         }
 
         /// <summary>
         /// Linearly interpolates between a and b by t.
         /// </summary>
-        public static Vector3Int Lerp(Vector3Int a, Vector3Int b, float t)
+        public static Vector3Int Lerp(Vector3Int a, Vector3Int b, float t, bool snapping = false)
         {
             return new Vector3Int(
                 (int)Mathf.Lerp(a.x, b.x, t),
@@ -79,25 +84,71 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Linearly interpolates between a and b by t.
         /// </summary>
-        public static Vector4 Lerp(Vector4 a, Vector4 b, float t)
+        public static Vector4 Lerp(Vector4 a, Vector4 b, float t, bool snapping = false)
         {
-            return Vector4.Lerp(a, b, t);
+            Vector4 value = Vector4.Lerp(a, b, t);
+            return snapping ? Snap(value) : value;
         }
 
         /// <summary>
         /// Linearly interpolates between a and b by t.
         /// </summary>
-        public static Quaternion Lerp(Quaternion a, Quaternion b, float t)
+        public static Quaternion Lerp(Quaternion a, Quaternion b, float t, bool snapping = false)
         {
-            return Quaternion.Lerp(a, b, t);
+            Quaternion value = Quaternion.Lerp(a, b, t);
+            return snapping ? Snap(value) : value;
         }
 
         /// <summary>
         /// Linearly interpolates between a and b by t.
         /// </summary>
-        public static Color Lerp(Color a, Color b, float t)
+        public static Color Lerp(Color a, Color b, float t, bool snapping = false)
         {
-            return Color.Lerp(a, b, t);
+            Color value = Color.Lerp(a, b, t);
+            return snapping ? Snap(value) : value;
+        }
+
+        /// <summary>
+        /// Smoothly snaps the values to integers.
+        /// </summary>
+        internal static Vector2 Snap(Vector2 value)
+        {
+            return new Vector2((int)value.x, (int)value.y);
+        }
+
+        /// <summary>
+        /// Smoothly snaps the values to integers.
+        /// </summary>
+        internal static Vector3 Snap(Vector3 value)
+        {
+            return new Vector3((int)value.x, (int)value.y, (int)value.z);
+        }
+
+        /// <summary>
+        /// Smoothly snaps the values to integers.
+        /// </summary>
+        internal static Vector4 Snap(Vector4 value)
+        {
+            return new Vector4((int)value.x, (int)value.y, (int)value.z, (int)value.w);
+        }
+
+        /// <summary>
+        /// Smoothly snaps the values to integers.
+        /// </summary>
+        internal static Quaternion Snap(Quaternion value)
+        {
+            return Quaternion.Euler(Snap(value.eulerAngles));
+        }
+
+        /// <summary>
+        /// Smoothly snaps the values to integers.
+        /// </summary>
+        internal static Color Snap(Color value)
+        {
+            int r = Mathf.RoundToInt(value.r * 255.0f);
+            int g = Mathf.RoundToInt(value.g * 255.0f);
+            int b = Mathf.RoundToInt(value.b * 255.0f);
+            return new Color(r / 255.0f, g / 255.0f, b / 255.0f, value.a);
         }
 
     }

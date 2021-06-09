@@ -118,6 +118,11 @@
         public bool reversed = false;
 
         /// <summary>
+        /// Smoothly snaps all interpolated values to integers.
+        /// </summary>
+        public bool snapping = false;
+
+        /// <summary>
         /// Keeps the tween in memory to be re-used after being killed.
         /// </summary>
         public bool recyclable = Tweening.defaultRecyclable;
@@ -408,6 +413,8 @@
             this.iterations = 0;
 
             this.reversed = false;
+            this.snapping = false;
+
             this.autoStart = Tweening.defaultAutoStart;
             this.autoKill = Tweening.defaultAutoKill;
             this.recyclable = Tweening.defaultRecyclable;
