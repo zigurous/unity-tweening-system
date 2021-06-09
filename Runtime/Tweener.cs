@@ -42,7 +42,7 @@
             this.template = typeof(T);
         }
 
-        protected override void Animate()
+        public override void Animate()
         {
             if (this.interpolater == null || this.setter == null) {
                 return;
@@ -60,7 +60,7 @@
 
         protected override void OnStart()
         {
-            if (this.getter != null) {
+            if (this.iterations == 0 && this.getter != null) {
                 this.startValue = getter();
             }
         }

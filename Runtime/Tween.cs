@@ -69,7 +69,7 @@
         /// <summary>
         /// The amount of seconds that have elapsed since the tween started.
         /// </summary>
-        public float elapsed { get; private set; } = 0.0f;
+        public float elapsed { get; internal set; }
 
         /// <summary>
         /// The tween's percentage of completion.
@@ -86,7 +86,7 @@
         /// The amount of seconds that have elapsed during the tween's delayed
         /// state, when applicable.
         /// </summary>
-        public float delayElapsed { get; private set; } = 0.0f;
+        public float delayElapsed { get; internal set; }
 
         /// <summary>
         /// Whether the tween is currently in a delayed state, i.e., the tween
@@ -94,6 +94,22 @@
         /// duration.
         /// </summary>
         public bool IsDelayed => this.delayElapsed < this.delay;
+
+        /// <summary>
+        /// The number of times the tween loops. A value of -1 will loop the
+        /// tween infinitely.
+        /// </summary>
+        public int loops;
+
+        /// <summary>
+        /// The style in which the tween loops.
+        /// </summary>
+        public LoopType loopType;
+
+        /// <summary>
+        /// The number of times the tween has completed.
+        /// </summary>
+        public int iterations { get; internal set; }
 
         /// <summary>
         /// Animates from the end value to the start value as opposed to
@@ -133,6 +149,11 @@
         public TweenCallback onStop;
 
         /// <summary>
+        /// The callback invoked when the tween is looped.
+        /// </summary>
+        public TweenCallback onLoop;
+
+        /// <summary>
         /// The callback invoked when the tween is completed.
         /// </summary>
         public TweenCallback onComplete;
@@ -151,9 +172,9 @@
         }
 
         /// <summary>
-        /// Animates the parameter being tweened to the latest state.
+        /// Animates the parameter being tweened to the current state.
         /// </summary>
-        protected abstract void Animate();
+        public abstract void Animate();
 
         /// <summary>
         /// Advances the tween's elapsed time by the given delta time causing
@@ -161,38 +182,41 @@
         /// </summary>
         internal void Update(float deltaTime)
         {
-            if (this.IsPlaying)
+            if (!this.IsPlaying)
             {
-                if (!this.IsDelayed)
-                {
-                    this.elapsed += deltaTime;
-
-                    Animate();
-                    OnUpdate();
-
-                    if (this.onUpdate != null) {
-                        this.onUpdate.Invoke();
-                    }
-
-                    if (CanComplete()) {
-                        Complete();
-                    }
+                if (this.state == TweenState.Ready && this.autoStart) {
+                    Play();
                 }
-                else
-                {
-                    this.delayElapsed += deltaTime;
+                return;
+            }
 
-                    // Start the tween once the delay is complete and only if
-                    // the elapsed time is zero which indicates it has never
-                    // been updated yet
-                    if (this.elapsed == 0 && this.delayElapsed >= this.delay) {
-                        Start();
-                    }
+            if (!this.IsDelayed)
+            {
+                this.elapsed += deltaTime;
+
+                Animate();
+                OnUpdate();
+
+                if (this.onUpdate != null) {
+                    this.onUpdate.Invoke();
+                }
+
+                // Once finished we check if the tween should loop before
+                // considering it complete
+                if (IsFinished() && !Loop()) {
+                    Complete();
                 }
             }
-            else if (this.state == TweenState.Ready && this.autoStart)
+            else
             {
-                Play();
+                this.delayElapsed += deltaTime;
+
+                // Start the tween once the delay is complete and only if the
+                // elapsed time is zero which indicates it has never been
+                // updated yet
+                if (this.delayElapsed >= this.delay && this.elapsed == 0) {
+                    Start();
+                }
             }
         }
 
@@ -220,7 +244,6 @@
                 this.elapsed = 0.0f;
                 this.delayElapsed = 0.0f;
 
-                // Start right away if there is no delay
                 if (!this.IsDelayed) {
                     Start();
                 }
@@ -232,10 +255,19 @@
         /// </summary>
         private void Start()
         {
+            if (this.iterations > 0)
+            {
+                OnLoop();
+
+                if (this.onLoop != null) {
+                    this.onLoop.Invoke();
+                }
+            }
+
             OnStart();
             Animate();
 
-            if (this.onStart != null) {
+            if (this.iterations == 0 && this.onStart != null) {
                 this.onStart.Invoke();
             }
         }
@@ -256,6 +288,42 @@
             if (this.onStop != null) {
                 this.onStop.Invoke();
             }
+        }
+
+        /// <summary>
+        /// Loops the tween on completion.
+        /// </summary>
+        private bool Loop()
+        {
+            this.iterations++;
+
+            if (this.iterations >= this.loops && this.loops != -1) {
+                return false;
+            }
+
+            this.elapsed = 0.0f;
+
+            switch (this.loopType)
+            {
+                case LoopType.RestartWithDelay:
+                    this.delayElapsed = 0.0f;
+                    break;
+
+                case LoopType.PingPong:
+                    this.reversed = !this.reversed;
+                    break;
+
+                case LoopType.PingPongWithDelay:
+                    this.reversed = !this.reversed;
+                    this.delayElapsed = 0.0f;
+                    break;
+            }
+
+            if (!this.IsDelayed) {
+                Start();
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -306,6 +374,7 @@
             this.onUpdate = null;
             this.onStart = null;
             this.onStop = null;
+            this.onLoop = null;
             this.onComplete = null;
         }
 
@@ -326,11 +395,18 @@
             this.id = -1;
             this.state = TweenState.Ready;
             this.internalState = InternalTweenState.Queued;
+
             this.ease = Tweening.defaultEase;
+
             this.duration = Tweening.defaultDuration;
             this.elapsed = 0.0f;
             this.delay = Tweening.defaultDelay;
             this.delayElapsed = 0.0f;
+
+            this.loops = 0;
+            this.loopType = LoopType.Restart;
+            this.iterations = 0;
+
             this.reversed = false;
             this.autoStart = Tweening.defaultAutoStart;
             this.autoKill = Tweening.defaultAutoKill;
@@ -339,17 +415,19 @@
             this.onUpdate = null;
             this.onStart = null;
             this.onStop = null;
+            this.onLoop = null;
             this.onComplete = null;
             this.onKill = null;
 
             OnReset();
         }
 
-        protected virtual bool CanComplete() => this.elapsed >= this.duration;
+        protected virtual bool IsFinished() => this.elapsed >= this.duration;
         protected virtual void OnUpdate() {}
         protected virtual void OnStart() {}
         protected virtual void OnStop() {}
         protected virtual void OnResume() {}
+        protected virtual void OnLoop() {}
         protected virtual void OnComplete() {}
         protected virtual void OnKill() {}
         protected virtual void OnReset() {}

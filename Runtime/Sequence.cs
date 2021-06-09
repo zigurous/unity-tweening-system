@@ -41,6 +41,11 @@ namespace Zigurous.Tweening
             this.type = TweenType.Sequence;
         }
 
+        public override void Animate()
+        {
+            // Do nothing. The individual tweens are animated on their own.
+        }
+
         /// <summary>
         /// Plays the tween sequence, whether starting for the first time or
         /// resuming from a stopped state.
@@ -79,28 +84,35 @@ namespace Zigurous.Tweening
 
         private void Next()
         {
-            this.currentIndex++;
-
-            if (CanComplete()) {
-                Complete();
+            if (this.reversed) {
+                this.currentIndex--;
             } else {
-                this.tweens[this.currentIndex].Play();
+                this.currentIndex++;
+            }
+
+            Tween tween = this.activeTween;
+
+            if (tween != null) {
+                tween.Play();
             }
         }
 
-        protected override void Animate()
+        protected override bool IsFinished()
         {
-            // Do nothing. The individual tweens are animated on their own.
-        }
-
-        protected override bool CanComplete()
-        {
-            return this.currentIndex >= this.tweens.Count;
+            if (this.reversed) {
+                return this.currentIndex < 0;
+            } else {
+                return this.currentIndex >= this.tweens.Count;
+            }
         }
 
         protected override void OnStart()
         {
-            this.currentIndex = 0;
+            if (this.reversed) {
+                this.currentIndex = this.tweens.Count - 1;
+            } else {
+                this.currentIndex = 0;
+            }
 
             Tween tween = this.activeTween;
 
@@ -124,6 +136,19 @@ namespace Zigurous.Tweening
 
             if (tween != null) {
                 tween.Play();
+            }
+        }
+
+        protected override void OnLoop()
+        {
+            foreach (Tween tween in this.tweens)
+            {
+                if (this.loopType == LoopType.PingPong || this.loopType == LoopType.PingPongWithDelay) {
+                    tween.reversed = !tween.reversed;
+                }
+
+                tween.elapsed = 0.0f;
+                tween.Animate();
             }
         }
 

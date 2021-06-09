@@ -41,6 +41,13 @@ namespace Zigurous.Tweening
             return tween;
         }
 
+        public static T SetLoops<T>(this T tween, int loops, LoopType loopType = LoopType.Restart) where T: Tween
+        {
+            tween.loops = loops;
+            tween.loopType = loopType;
+            return tween;
+        }
+
         public static T SetReversed<T>(this T tween, bool reversed = true) where T: Tween
         {
             tween.reversed = reversed;
@@ -80,6 +87,12 @@ namespace Zigurous.Tweening
         public static T OnStop<T>(this T tween, TweenCallback callback) where T: Tween
         {
             tween.onStop += callback;
+            return tween;
+        }
+
+        public static T OnLoop<T>(this T tween, TweenCallback callback) where T: Tween
+        {
+            tween.onLoop += callback;
             return tween;
         }
 
