@@ -4,7 +4,11 @@ The Tweening package provides a system for tweening object properties in Unity. 
 
 The system is lightweight, optimized, type-safe, and memory efficient. Hundreds of pre-defined tweening functions can be called on many common Unity objects, or you can animate anything using generic tweening functions. Tweens can be controlled with many different control methods and various callback functions.
 
-Import `Zigurous.Tweening` in your code to access everything the system offers.
+Import the package namespace in each class/script you want to use it. You may need to regenerate project files/assemblies first.
+
+```csharp
+using Zigurous.Tweening;
+```
 
 ## Installation
 
