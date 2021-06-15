@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Zigurous.Tweening
 {
@@ -39,8 +40,7 @@ namespace Zigurous.Tweening
                             GameObject singleton = new GameObject();
                             singleton.name = typeof(TweenManager).Name;
                             singleton.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
-
-                            _instance = singleton.AddComponent<TweenManager>();
+                            singleton.AddComponent<TweenManager>();
                             DontDestroyOnLoad(singleton);
                         }
                     }
@@ -54,9 +54,14 @@ namespace Zigurous.Tweening
         {
             _isUnloading = false;
 
-            if (_instance == null) {
+            if (_instance == null)
+            {
                 _instance = this;
-            } else {
+
+                SceneManager.sceneUnloaded += SceneUnloaded;
+            }
+            else
+            {
                 Destroy(this);
             }
         }
@@ -65,8 +70,11 @@ namespace Zigurous.Tweening
         {
             _isUnloading = true;
 
-            if (_instance == this) {
+            if (_instance == this)
+            {
                 _instance = null;
+
+                SceneManager.sceneUnloaded -= SceneUnloaded;
             }
 
             foreach (Tween tween in this.tweens) {
@@ -173,6 +181,16 @@ namespace Zigurous.Tweening
         {
             if (!this.tweens.Contains(tween)) {
                 this.tweens.Add(tween);
+            }
+        }
+
+        /// <summary>
+        /// Kills all tweens when the active scene is unloaded.
+        /// </summary>
+        private void SceneUnloaded(Scene scene)
+        {
+            if (Tweening.killTweensOnSceneUnload) {
+                Tweening.KillAll();
             }
         }
 

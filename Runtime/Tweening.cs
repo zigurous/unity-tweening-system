@@ -44,6 +44,11 @@ namespace Zigurous.Tweening
         public static float overshoot = 1.70158f;
 
         /// <summary>
+        /// Kills all tweens when the active scene is unloaded.
+        /// </summary>
+        public static bool killTweensOnSceneUnload = true;
+
+        /// <summary>
         /// The initial amount of tweens that memory is allocated for when the
         /// system starts. Additional memory will be allocated as needed.
         /// </summary>
