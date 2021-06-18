@@ -29,11 +29,6 @@ namespace Zigurous.Tweening
                         setter: range => light.range = range,
                         to, duration).SetTarget(light);
 
-        public static Tween TweenShadowRadius(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.shadowRadius,
-                        setter: shadowRadius => light.shadowRadius = shadowRadius,
-                        to, duration).SetTarget(light);
-
         public static Tween TweenShadowStrength(this Light light, float to, float duration) =>
             Tweening.To(getter: () => light.shadowStrength,
                         setter: shadowStrength => light.shadowStrength = shadowStrength,
@@ -54,11 +49,6 @@ namespace Zigurous.Tweening
                         setter: shadowNearPlane => light.shadowNearPlane = shadowNearPlane,
                         to, duration).SetTarget(light);
 
-        public static Tween TweenShadowAngle(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.shadowAngle,
-                        setter: shadowAngle => light.shadowAngle = shadowAngle,
-                        to, duration).SetTarget(light);
-
         public static Tween TweenSpotAngle(this Light light, float to, float duration) =>
             Tweening.To(getter: () => light.spotAngle,
                         setter: spotAngle => light.spotAngle = spotAngle,
@@ -67,11 +57,6 @@ namespace Zigurous.Tweening
         public static Tween TweenInnerSpotAngle(this Light light, float to, float duration) =>
             Tweening.To(getter: () => light.innerSpotAngle,
                         setter: innerSpotAngle => light.innerSpotAngle = innerSpotAngle,
-                        to, duration).SetTarget(light);
-
-        public static Tween TweenAreaSize(this Light light, Vector2 to, float duration) =>
-            Tweening.To(getter: () => light.areaSize,
-                        setter: areaSize => light.areaSize = areaSize,
                         to, duration).SetTarget(light);
 
         public static Tween TweenCookieSize(this Light light, float to, float duration) =>
