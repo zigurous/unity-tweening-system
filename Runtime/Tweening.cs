@@ -163,6 +163,13 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        public static Tween To(TweenGetter<Rect> getter, TweenSetter<Rect> setter, Rect endValue, float duration) =>
+            To(Interpolation.Lerp, getter, setter, endValue, duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
         public static Tween To(TweenGetter<Color> getter, TweenSetter<Color> setter, Color endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -250,6 +257,13 @@ namespace Zigurous.Tweening
         /// the current value over a set duration.
         /// </summary>
         public static Tween From(TweenGetter<Quaternion> getter, TweenSetter<Quaternion> setter, Quaternion endValue, float duration) =>
+            From(Interpolation.Lerp, getter, setter, endValue, duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
+        /// </summary>
+        public static Tween From(TweenGetter<Rect> getter, TweenSetter<Rect> setter, Rect endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
         /// <summary>

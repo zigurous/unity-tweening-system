@@ -102,6 +102,16 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Linearly interpolates between a and b by t.
         /// </summary>
+        public static Rect Lerp(Rect a, Rect b, float t, bool snapping = false)
+        {
+            Vector2 position = Lerp(a.position, b.position, t, snapping);
+            Vector2 size = Lerp(a.size, b.size, t, snapping);
+            return new Rect(position, size);
+        }
+
+        /// <summary>
+        /// Linearly interpolates between a and b by t.
+        /// </summary>
         public static Color Lerp(Color a, Color b, float t, bool snapping = false)
         {
             Color value = Color.Lerp(a, b, t);
