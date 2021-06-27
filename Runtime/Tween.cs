@@ -7,6 +7,20 @@
     public abstract class Tween
     {
         /// <summary>
+        /// A set of configuration flags available for a tween.
+        /// </summary>
+        [System.Flags]
+        internal enum Flag
+        {
+            None        = 0,
+            Reversed    = 1 << 0,
+            Snapping    = 1 << 1,
+            Recyclable  = 1 << 2,
+            AutoStart   = 1 << 3,
+            AutoKill    = 1 << 4,
+        }
+
+        /// <summary>
         /// An identifier that can be used to distinguish the tween from others.
         /// This is not explicitly required nor is it necessarily unique. The id
         /// is often used to identify which object the parameter being animated
@@ -21,15 +35,15 @@
         internal int sceneIndex = -1;
 
         /// <summary>
-        /// The template type used by the tween, if relevant.
-        /// </summary>
-        internal System.Type template;
-
-        /// <summary>
         /// The type of tween, used internally for managing and recycling
         /// tweens.
         /// </summary>
         internal TweenType type;
+
+        /// <summary>
+        /// The template type used by the tween, if relevant.
+        /// </summary>
+        internal System.Type template;
 
         /// <summary>
         /// The internal state of the tween as it relates to the lifeycle and
@@ -118,30 +132,55 @@
         public int iterations { get; internal set; }
 
         /// <summary>
+        /// The configuration flags set on the tween.
+        /// </summary>
+        internal Flag flags = 0;
+
+        /// <summary>
         /// Animates from the end value to the start value as opposed to
         /// animating from the start value to the end value like normal.
         /// </summary>
-        public bool reversed = false;
+        public bool reversed
+        {
+            get => GetFlag(Flag.Reversed);
+            set => SetFlag(Flag.Reversed, value);
+        }
 
         /// <summary>
         /// Smoothly snaps all interpolated values to integers.
         /// </summary>
-        public bool snapping = false;
+        public bool snapping
+        {
+            get => GetFlag(Flag.Snapping);
+            set => SetFlag(Flag.Snapping, value);
+        }
 
         /// <summary>
         /// Keeps the tween in memory to be re-used after being killed.
         /// </summary>
-        public bool recyclable = Tweening.defaultRecyclable;
+        public bool recyclable
+        {
+            get => GetFlag(Flag.Recyclable);
+            set => SetFlag(Flag.Recyclable, value);
+        }
 
         /// <summary>
         /// Automatically starts the tween after being created.
         /// </summary>
-        public bool autoStart = Tweening.defaultAutoStart;
+        public bool autoStart
+        {
+            get => GetFlag(Flag.AutoStart);
+            set => SetFlag(Flag.AutoStart, value);
+        }
 
         /// <summary>
         /// Automatically kills the tween after being completed.
         /// </summary>
-        public bool autoKill = Tweening.defaultAutoKill;
+        public bool autoKill
+        {
+            get => GetFlag(Flag.AutoKill);
+            set => SetFlag(Flag.AutoKill, value);
+        }
 
         /// <summary>
         /// The callback invoked every time the tween is updated, i.e., any time
@@ -179,6 +218,7 @@
         /// </summary>
         internal Tween()
         {
+            Reset();
             TweenManager.Instance.Track(this);
         }
 
@@ -410,7 +450,6 @@
             this.internalState = InternalTweenState.Queued;
 
             this.ease = Tweening.defaultEase;
-
             this.duration = Tweening.defaultDuration;
             this.elapsed = 0.0f;
             this.delay = Tweening.defaultDelay;
@@ -420,9 +459,9 @@
             this.loopType = LoopType.Restart;
             this.iterations = 0;
 
+            this.flags = 0;
             this.reversed = false;
             this.snapping = false;
-
             this.autoStart = Tweening.defaultAutoStart;
             this.autoKill = Tweening.defaultAutoKill;
             this.recyclable = Tweening.defaultRecyclable;
@@ -435,6 +474,20 @@
             this.onKill = null;
 
             OnReset();
+        }
+
+        internal bool GetFlag(Flag flag)
+        {
+            return this.flags.HasFlag(flag);
+        }
+
+        internal void SetFlag(Flag flag, bool on)
+        {
+            if (on) {
+                this.flags |= flag;
+            } else {
+                this.flags &= ~flag;
+            }
         }
 
         protected virtual bool IsFinished() => this.elapsed >= this.duration;
