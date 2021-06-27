@@ -15,6 +15,12 @@
         public int id;
 
         /// <summary>
+        /// The index of the scene that contains the object being animated by
+        /// the tween. The is used to kill the tween when the scene is unloaded.
+        /// </summary>
+        internal int sceneIndex = -1;
+
+        /// <summary>
         /// The template type used by the tween, if relevant.
         /// </summary>
         internal System.Type template;
@@ -398,6 +404,8 @@
         internal void Reset()
         {
             this.id = -1;
+            this.sceneIndex = -1;
+
             this.state = TweenState.Ready;
             this.internalState = InternalTweenState.Queued;
 

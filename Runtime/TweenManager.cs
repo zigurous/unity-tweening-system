@@ -185,12 +185,15 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Kills all tweens when the active scene is unloaded.
+        /// Kills all tweens that are animating objects on the unloaded scene.
         /// </summary>
         private void SceneUnloaded(Scene scene)
         {
-            if (Tweening.killTweensOnSceneUnload) {
-                Tweening.KillAll();
+            foreach (Tween tween in this.tweens)
+            {
+                if (tween.sceneIndex == -1 || tween.sceneIndex == scene.buildIndex) {
+                    tween.Kill();
+                }
             }
         }
 

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Zigurous.Tweening
 {
     /// <summary>
@@ -7,13 +9,23 @@ namespace Zigurous.Tweening
     /// </summary>
     public static class PropertyChaining
     {
-        /// <summary>
-        /// Sets the id of the tween such that it can be identified by the given
-        /// target object.
-        /// </summary>
-        public static T SetTarget<T, U>(this T tween, U target) where T: Tween
+        public static T SetTarget<T>(this T tween, Component target) where T: Tween
         {
-            tween.id = target.GetHashCode();
+            if (target != null)
+            {
+                tween.id = target.GetHashCode();
+                tween.sceneIndex = target.gameObject.scene.buildIndex;
+            }
+            return tween;
+        }
+
+        public static T SetTarget<T>(this T tween, GameObject target) where T: Tween
+        {
+            if (target != null)
+            {
+                tween.id = target.GetHashCode();
+                tween.sceneIndex = target.scene.buildIndex;
+            }
             return tween;
         }
 
