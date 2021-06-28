@@ -462,9 +462,9 @@
             this.flags = 0;
             this.reversed = false;
             this.snapping = false;
-            this.autoStart = Tweening.defaultAutoStart;
-            this.autoKill = Tweening.defaultAutoKill;
-            this.recyclable = Tweening.defaultRecyclable;
+            this.autoStart = Tweening.autoStart;
+            this.autoKill = Tweening.autoKill;
+            this.recyclable = Tweening.recyclable;
 
             this.onUpdate = null;
             this.onStart = null;
