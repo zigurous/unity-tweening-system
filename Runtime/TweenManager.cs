@@ -8,6 +8,7 @@ namespace Zigurous.Tweening
     /// Manages the lifecycle of all tween objects, including updating,
     /// creating, destroying, and recycling tweens.
     /// </summary>
+    [AddComponentMenu("")]
     internal sealed class TweenManager : MonoBehaviour
     {
         /// <summary>
