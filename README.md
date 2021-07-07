@@ -1,12 +1,12 @@
 # Tweening
 
-The **Tweening** package provides a system for tweening object properties in Unity. A tween is an animation of a value from a start position to an end position using an easing function, providing a natural sense of motion.
+The Tweening package provides a system for tweening object properties in Unity. A tween is an animation of a value from a start position to an end position using an easing function, providing a natural sense of motion.
 
 The system is lightweight, optimized, type-safe, and memory efficient. Hundreds of pre-defined tweening functions can be called on many common Unity objects, or you can animate anything using generic tweening functions. Tweens can be controlled with many different control methods and various callback functions.
 
 ## Installation
 
-Use the Unity [Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) to install the **Tweening** package.
+Use the Unity [Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) to install the Tweening package.
 
 1. Open the Package Manager in `Window > Package Manager`
 2. Click the add (`+`) button in the status bar

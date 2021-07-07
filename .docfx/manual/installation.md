@@ -1,6 +1,6 @@
 # Installation
 
-Use the Unity [Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) to install the **Tweening** package.
+Use the Unity [Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) to install the Tweening package.
 
 1. Open the Package Manager in `Window > Package Manager`
 2. Click the add (`+`) button in the status bar
@@ -24,6 +24,6 @@ using Zigurous.Tweening;
 
 ### Source Code
 
-The source code for the **Tweening** package is in the following repository:
+The source code for the Tweening package is in the following repository:
 
 - https://github.com/zigurous/unity-tweening-system
