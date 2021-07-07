@@ -11,7 +11,7 @@
     "tool"
   ],
   "repository": "https://github.com/zigurous/unity-tweening-system",
-  "documentationUrl": "https://docs.zigurous.com/com.zigurous.tweening/",
+  "documentationUrl": "https://docs.zigurous.com/com.zigurous.tweening",
   "changelogUrl": "https://docs.zigurous.com/com.zigurous.tweening/changelog/CHANGELOG.html",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@zigurous"
