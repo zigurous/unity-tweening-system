@@ -8,7 +8,7 @@ Use the Unity [Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) to 
 4. Enter the following Git URL in the text box and click Add:
 
 ```http
-https://github.com/zigurous/unity-tweening-package.git
+https://github.com/zigurous/unity-tweening-system.git
 ```
 
 For more information on the Package Manager and installing packages, see the following pages:
