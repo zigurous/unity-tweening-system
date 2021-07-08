@@ -24,7 +24,7 @@ For more information on the Package Manager and installing packages, see the fol
 
 ### Importing
 
-Import the package namespace in each script you want to use it. You may need to regenerate project files/assemblies first.
+Import the package namespace in each script or file you want to use it. You may need to regenerate project files/assemblies first.
 
 ```csharp
 using Zigurous.Tweening;
