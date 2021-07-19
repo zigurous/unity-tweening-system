@@ -1,8 +1,7 @@
-namespace Zigurous.Tweening
+﻿namespace Zigurous.Tweening
 {
     /// <summary>
-    /// A tween object, an animation that changes a value over time using an
-    /// easing function.
+    /// The base class of every tween.
     /// </summary>
     public abstract class Tween
     {
@@ -147,7 +146,7 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Smoothly snaps all interpolated values to integers.
+        /// Smoothly snaps all interpolated values to whole numbers.
         /// </summary>
         public bool snapping
         {
@@ -214,9 +213,9 @@ namespace Zigurous.Tweening
         public TweenCallback onKill;
 
         /// <summary>
-        /// Constructs a new tween object.
+        /// Creates a new tween object.
         /// </summary>
-        internal Tween()
+        public Tween()
         {
             Reset();
             TweenManager.Instance.Track(this);
@@ -490,14 +489,49 @@ namespace Zigurous.Tweening
             }
         }
 
+        /// <summary>
+        /// Determines if the tween has finished playing.
+        /// </summary>
         protected virtual bool IsFinished() => this.elapsed >= this.duration;
+
+        /// <summary>
+        /// Override to handle custom logic when the tween is updated.
+        /// </summary>
         protected virtual void OnUpdate() {}
+
+        /// <summary>
+        /// Override to handle custom logic when the tween is started.
+        /// </summary>
         protected virtual void OnStart() {}
+
+        /// <summary>
+        /// Override to handle custom logic when the tween is stopped.
+        /// </summary>
         protected virtual void OnStop() {}
+
+        /// <summary>
+        /// Override to handle custom logic when the tween is resumed.
+        /// </summary>
         protected virtual void OnResume() {}
+
+        /// <summary>
+        /// Override to handle custom logic when the tween is looped.
+        /// </summary>
         protected virtual void OnLoop() {}
+
+        /// <summary>
+        /// Override to handle custom logic when the tween is completed.
+        /// </summary>
         protected virtual void OnComplete() {}
+
+        /// <summary>
+        /// Override to handle custom logic when the tween is killed.
+        /// </summary>
         protected virtual void OnKill() {}
+
+        /// <summary>
+        /// Override to handle custom logic when the tween is reset.
+        /// </summary>
         protected virtual void OnReset() {}
 
     }

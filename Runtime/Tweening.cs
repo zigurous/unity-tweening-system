@@ -93,6 +93,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To(TweenGetter<float> getter, TweenSetter<float> setter, float endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -100,6 +105,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To(TweenGetter<double> getter, TweenSetter<double> setter, double endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -107,6 +117,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To(TweenGetter<long> getter, TweenSetter<long> setter, long endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -114,6 +129,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To(TweenGetter<int> getter, TweenSetter<int> setter, int endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -121,6 +141,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To(TweenGetter<Vector2> getter, TweenSetter<Vector2> setter, Vector2 endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -128,6 +153,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To(TweenGetter<Vector2Int> getter, TweenSetter<Vector2Int> setter, Vector2Int endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -135,6 +165,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To(TweenGetter<Vector3> getter, TweenSetter<Vector3> setter, Vector3 endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -142,6 +177,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To(TweenGetter<Vector3Int> getter, TweenSetter<Vector3Int> setter, Vector3Int endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -149,6 +189,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To(TweenGetter<Vector4> getter, TweenSetter<Vector4> setter, Vector4 endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -156,6 +201,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To(TweenGetter<Quaternion> getter, TweenSetter<Quaternion> setter, Quaternion endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -163,6 +213,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To(TweenGetter<Rect> getter, TweenSetter<Rect> setter, Rect endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -170,6 +225,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To(TweenGetter<Color> getter, TweenSetter<Color> setter, Color endValue, float duration) =>
             To(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -177,6 +237,13 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <param name="interpolater">The function that interpolates values between the start and end value.</param>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
+        /// <typeparam name="T">The type of the parameter.</typeparam>
         public static Tween To<T>(Interpolater<T> interpolater, TweenGetter<T> getter, TweenSetter<T> setter, T endValue, float duration)
         {
             Tweener<T> tween = TweenManager.Instance.BuildTweener<T>();
@@ -193,6 +260,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From(TweenGetter<float> getter, TweenSetter<float> setter, float endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -200,6 +272,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From(TweenGetter<double> getter, TweenSetter<double> setter, double endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -207,6 +284,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From(TweenGetter<long> getter, TweenSetter<long> setter, long endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -214,6 +296,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From(TweenGetter<int> getter, TweenSetter<int> setter, int endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -221,6 +308,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From(TweenGetter<Vector2> getter, TweenSetter<Vector2> setter, Vector2 endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -228,6 +320,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From(TweenGetter<Vector2Int> getter, TweenSetter<Vector2Int> setter, Vector2Int endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -235,6 +332,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From(TweenGetter<Vector3> getter, TweenSetter<Vector3> setter, Vector3 endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -242,6 +344,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From(TweenGetter<Vector3Int> getter, TweenSetter<Vector3Int> setter, Vector3Int endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -249,6 +356,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From(TweenGetter<Vector4> getter, TweenSetter<Vector4> setter, Vector4 endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -256,6 +368,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From(TweenGetter<Quaternion> getter, TweenSetter<Quaternion> setter, Quaternion endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -263,6 +380,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From(TweenGetter<Rect> getter, TweenSetter<Rect> setter, Rect endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -270,6 +392,11 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From(TweenGetter<Color> getter, TweenSetter<Color> setter, Color endValue, float duration) =>
             From(Interpolation.Lerp, getter, setter, endValue, duration);
 
@@ -277,6 +404,13 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <param name="interpolater">The function that interpolates values between the start and end value.</param>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
+        /// <typeparam name="T">The type of the parameter.</typeparam>
         public static Tween From<T>(Interpolater<T> interpolater, TweenGetter<T> getter, TweenSetter<T> setter, T endValue, float duration)
         {
             Tweener<T> tween = TweenManager.Instance.BuildTweener<T>();
@@ -292,6 +426,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Creates a new, empty tween sequence.
         /// </summary>
+        /// <returns>The new tween sequence.</returns>
         public static Sequence Sequence()
         {
             return TweenManager.Instance.BuildSequence();
@@ -300,6 +435,8 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Creates a new tween sequence of the given tweens.
         /// </summary>
+        /// <param name="tweens">The tweens to add to the sequence.</param>
+        /// <returns>The new tween sequence.</returns>
         public static Sequence Sequence(params Tween[] tweens)
         {
             Sequence sequence = TweenManager.Instance.BuildSequence();
@@ -330,6 +467,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Plays any alive tween that matches the given id.
         /// </summary>
+        /// <param name="id">The id of the tween(s) to play.</param>
         public static void Play(int id)
         {
             if (!TweenManager.HasInstance) {
@@ -349,6 +487,8 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Plays any alive tween that is animating the given target object.
         /// </summary>
+        /// <param name="target">The target object to play the tweens of.</param>
+        /// <typeparam name="T">The type of the target object.</typeparam>
         public static void Play<T>(T target) where T: class
         {
             Play(target.GetHashCode());
@@ -373,6 +513,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Stops any alive tween that matches the given id.
         /// </summary>
+        /// <param name="id">The id of the tween(s) to stop.</param>
         public static void Stop(int id)
         {
             if (!TweenManager.HasInstance) {
@@ -392,6 +533,8 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Stops any alive tween that is animating the given target object.
         /// </summary>
+        /// <param name="target">The target object to stop the tweens of.</param>
+        /// <typeparam name="T">The type of the target object.</typeparam>
         public static void Stop<T>(T target) where T: class
         {
             Stop(target.GetHashCode());
@@ -416,6 +559,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Restarts any alive tween that matches the given id.
         /// </summary>
+        /// <param name="id">The id of the tween(s) to restart.</param>
         public static void Restart(int id)
         {
             if (!TweenManager.HasInstance) {
@@ -435,6 +579,8 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Restarts any alive tween that is animating the given target object.
         /// </summary>
+        /// <param name="target">The target object to restart the tweens of.</param>
+        /// <typeparam name="T">The type of the target object.</typeparam>
         public static void Restart<T>(T target) where T: class
         {
             Restart(target.GetHashCode());
@@ -459,6 +605,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Completes any alive tween that matches the given id.
         /// </summary>
+        /// <param name="id">The id of the tween(s) to complete.</param>
         public static void Complete(int id)
         {
             if (!TweenManager.HasInstance) {
@@ -478,6 +625,8 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Completes any alive tween that is animating the given target object.
         /// </summary>
+        /// <param name="target">The target object to complete the tweens of.</param>
+        /// <typeparam name="T">The type of the target object.</typeparam>
         public static void Complete<T>(T target) where T: class
         {
             Complete(target.GetHashCode());
@@ -487,6 +636,7 @@ namespace Zigurous.Tweening
         /// Kills all active tweens. Optionally, the tweens can be completed
         /// before being killed.
         /// </summary>
+        /// <param name="complete">Whether to complete the tweens before being killed.</param>
         public static void KillAll(bool complete = false)
         {
             if (!TweenManager.HasInstance) {
@@ -504,6 +654,8 @@ namespace Zigurous.Tweening
         /// Kills any alive tween that matches the given id. Optionally, the
         /// tweens can be completed before being killed.
         /// </summary>
+        /// <param name="id">The id of the tween(s) to kill.</param>
+        /// <param name="complete">Whether to complete the tweens before being killed.</param>
         public static void Kill(int id, bool complete = false)
         {
             if (!TweenManager.HasInstance) {
@@ -524,6 +676,9 @@ namespace Zigurous.Tweening
         /// Kills any alive tweens being animated on the target object.
         /// Optionally, the tweens can be completed before being killed.
         /// </summary>
+        /// <param name="target">The target object to kill the tweens of.</param>
+        /// <param name="complete">Whether to complete the tweens before being killed.</param>
+        /// <typeparam name="T">The type of the target object.</typeparam>
         public static void KillTweens<T>(this T target, bool complete = false) where T: class
         {
             Kill(target.GetHashCode(), complete);
@@ -533,6 +688,8 @@ namespace Zigurous.Tweening
         /// Kills the given tween, preventing it from being further updated.
         /// Optionally, the tween can be completed before being killed.
         /// </summary>
+        /// <param name="tween">The tween to kill.</param>
+        /// <param name="complete">Whether to complete the tween before being killed.</param>
         private static void Kill(Tween tween, bool complete)
         {
             if (complete) {

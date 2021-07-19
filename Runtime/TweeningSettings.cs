@@ -3,7 +3,8 @@
 namespace Zigurous.Tweening
 {
     /// <summary>
-    /// A behavior that allows tweening settings to be changed in the editor.
+    /// A behavior that allows tweening settings to be changed in the editor or
+    /// at runtime.
     /// </summary>
     [AddComponentMenu("Zigurous/Tweening/Tweening Settings")]
     public sealed class TweeningSettings : MonoBehaviour

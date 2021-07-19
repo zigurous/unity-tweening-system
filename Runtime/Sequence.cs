@@ -4,7 +4,7 @@ namespace Zigurous.Tweening
 {
     /// <summary>
     /// Plays a sequence of tweens in order. The sequence itself maintains its
-    /// own state.
+    /// own state and can be controlled the same as any other tween.
     /// </summary>
     public sealed class Sequence : Tween
     {
@@ -34,7 +34,7 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Constructs a new tween sequence.
+        /// Creates a new tween sequence.
         /// </summary>
         public Sequence() : base()
         {
@@ -50,6 +50,7 @@ namespace Zigurous.Tweening
         /// Plays the tween sequence, whether starting for the first time or
         /// resuming from a stopped state.
         /// </summary>
+        /// <returns>The sequence itself to allow for chaining.</returns>
         public new Sequence Play()
         {
             base.Play();
@@ -59,6 +60,8 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Adds a new tween to the end of the sequence.
         /// </summary>
+        /// <param name="tween">The tween to add.</param>
+        /// <returns>The sequence itself to allow for chaining.</returns>
         public Sequence Append(Tween tween)
         {
             this.tweens.Add(Prepare(tween));
@@ -68,6 +71,8 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Adds a new tween to the beginning of the sequence.
         /// </summary>
+        /// <param name="tween">The tween to add.</param>
+        /// <returns>The sequence itself to allow for chaining.</returns>
         public Sequence Prepend(Tween tween)
         {
             this.tweens.Insert(0, Prepare(tween));
@@ -97,6 +102,7 @@ namespace Zigurous.Tweening
             }
         }
 
+        /// <inheritdoc />
         protected override bool IsFinished()
         {
             if (this.reversed) {
@@ -106,6 +112,7 @@ namespace Zigurous.Tweening
             }
         }
 
+        /// <inheritdoc />
         protected override void OnStart()
         {
             if (this.reversed) {
@@ -121,6 +128,7 @@ namespace Zigurous.Tweening
             }
         }
 
+        /// <inheritdoc />
         protected override void OnStop()
         {
             Tween tween = this.activeTween;
@@ -130,6 +138,7 @@ namespace Zigurous.Tweening
             }
         }
 
+        /// <inheritdoc />
         protected override void OnResume()
         {
             Tween tween = this.activeTween;
@@ -139,6 +148,7 @@ namespace Zigurous.Tweening
             }
         }
 
+        /// <inheritdoc />
         protected override void OnLoop()
         {
             foreach (Tween tween in this.tweens)
@@ -152,6 +162,7 @@ namespace Zigurous.Tweening
             }
         }
 
+        /// <inheritdoc />
         protected override void OnComplete()
         {
             foreach (Tween tween in this.tweens)
@@ -162,6 +173,7 @@ namespace Zigurous.Tweening
             }
         }
 
+        /// <inheritdoc />
         protected override void OnKill()
         {
             foreach (Tween tween in this.tweens)
@@ -175,6 +187,7 @@ namespace Zigurous.Tweening
             this.currentIndex = -1;
         }
 
+        /// <inheritdoc />
         protected override void OnReset()
         {
             this.tweens.Clear();

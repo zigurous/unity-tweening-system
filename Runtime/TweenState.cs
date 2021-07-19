@@ -63,12 +63,18 @@ namespace Zigurous.Tweening
         Killed
     }
 
-    public static class TweenStateExtensions
+    /// <summary>
+    /// Extension methods for <see cref="TweenState"/>.
+    /// </summary>
+    internal static class TweenStateExtensions
     {
         /// <summary>
         /// Determines if the current state can transition to a new state.
         /// </summary>
-        public static bool CanTransition(this TweenState state, TweenState transition)
+        /// <param name="state">The current state.</param>
+        /// <param name="transition">The state to transition to.</param>
+        /// <returns>Ture if the current state can transition to the new state.</returns>
+        internal static bool CanTransition(this TweenState state, TweenState transition)
         {
             // Cannot transition to self
             if (state == transition) {

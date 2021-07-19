@@ -3,13 +3,19 @@
 namespace Zigurous.Tweening
 {
     /// <summary>
-    /// Provides functions for interpolating values.
+    /// Functions for interpolating values.
     /// </summary>
     public static class Interpolation
     {
         /// <summary>
-        /// Linearly interpolates between a and b by t.
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
         /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
         public static float Lerp(float a, float b, float t, bool snapping = false)
         {
             float value = Mathf.Lerp(a, b, t);
@@ -17,8 +23,14 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Linearly interpolates between a and b by t.
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
         /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
         public static double Lerp(double a, double b, float t, bool snapping = false)
         {
             double value = Mathf.Lerp((float)a, (float)b, t);
@@ -26,16 +38,28 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Linearly interpolates between a and b by t.
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
         /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
         public static int Lerp(int a, int b, float t, bool snapping = false)
         {
             return (int)Mathf.Lerp(a, b, t);
         }
 
         /// <summary>
-        /// Linearly interpolates between a and b by t.
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
         /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
         public static long Lerp(long a, long b, float t, bool snapping = false)
         {
             long value = (long)Mathf.Lerp(a, b, t);
@@ -43,8 +67,14 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Linearly interpolates between a and b by t.
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
         /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
         public static Vector2 Lerp(Vector2 a, Vector2 b, float t, bool snapping = false)
         {
             Vector2 value = Vector2.Lerp(a, b, t);
@@ -52,8 +82,14 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Linearly interpolates between a and b by t.
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
         /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
         public static Vector2Int Lerp(Vector2Int a, Vector2Int b, float t, bool snapping = false)
         {
             return new Vector2Int(
@@ -62,8 +98,14 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Linearly interpolates between a and b by t.
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
         /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
         public static Vector3 Lerp(Vector3 a, Vector3 b, float t, bool snapping = false)
         {
             Vector3 value = Vector3.Lerp(a, b, t);
@@ -71,8 +113,14 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Linearly interpolates between a and b by t.
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
         /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
         public static Vector3Int Lerp(Vector3Int a, Vector3Int b, float t, bool snapping = false)
         {
             return new Vector3Int(
@@ -82,8 +130,14 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Linearly interpolates between a and b by t.
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
         /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
         public static Vector4 Lerp(Vector4 a, Vector4 b, float t, bool snapping = false)
         {
             Vector4 value = Vector4.Lerp(a, b, t);
@@ -91,8 +145,14 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Linearly interpolates between a and b by t.
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
         /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
         public static Quaternion Lerp(Quaternion a, Quaternion b, float t, bool snapping = false)
         {
             Quaternion value = Quaternion.Lerp(a, b, t);
@@ -100,8 +160,14 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Linearly interpolates between a and b by t.
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
         /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
         public static Rect Lerp(Rect a, Rect b, float t, bool snapping = false)
         {
             Vector2 position = Lerp(a.position, b.position, t, snapping);
@@ -110,8 +176,14 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Linearly interpolates between a and b by t.
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
         /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
         public static Color Lerp(Color a, Color b, float t, bool snapping = false)
         {
             Color value = Color.Lerp(a, b, t);
@@ -119,40 +191,50 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// Smoothly snaps the values to integers.
+        /// Smoothly snaps the value to the nearest whole number.
         /// </summary>
+        /// <param name="value">The value to snap.</param>
+        /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Vector2 Snap(Vector2 value)
         {
-            return new Vector2((int)value.x, (int)value.y);
+            return new Vector2(Mathf.RoundToInt(value.x), Mathf.RoundToInt(value.y));
         }
 
         /// <summary>
-        /// Smoothly snaps the values to integers.
+        /// Smoothly snaps the value to the nearest whole number.
         /// </summary>
+        /// <param name="value">The value to snap.</param>
+        /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Vector3 Snap(Vector3 value)
         {
-            return new Vector3((int)value.x, (int)value.y, (int)value.z);
+            return new Vector3(Mathf.RoundToInt(value.x), Mathf.RoundToInt(value.y), Mathf.RoundToInt(value.z));
         }
 
         /// <summary>
-        /// Smoothly snaps the values to integers.
+        /// Smoothly snaps the value to the nearest whole number.
         /// </summary>
+        /// <param name="value">The value to snap.</param>
+        /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Vector4 Snap(Vector4 value)
         {
-            return new Vector4((int)value.x, (int)value.y, (int)value.z, (int)value.w);
+            return new Vector4(Mathf.RoundToInt(value.x), Mathf.RoundToInt(value.y), Mathf.RoundToInt(value.z), Mathf.RoundToInt(value.w));
         }
 
         /// <summary>
-        /// Smoothly snaps the values to integers.
+        /// Smoothly snaps the value to the nearest whole number.
         /// </summary>
+        /// <param name="value">The value to snap.</param>
+        /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Quaternion Snap(Quaternion value)
         {
             return Quaternion.Euler(Snap(value.eulerAngles));
         }
 
         /// <summary>
-        /// Smoothly snaps the values to integers.
+        /// Smoothly snaps the value to the nearest whole number.
         /// </summary>
+        /// <param name="value">The value to snap.</param>
+        /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Color Snap(Color value)
         {
             int r = Mathf.RoundToInt(value.r * 255.0f);
