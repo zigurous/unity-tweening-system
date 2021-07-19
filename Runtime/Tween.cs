@@ -1,4 +1,4 @@
-﻿namespace Zigurous.Tweening
+namespace Zigurous.Tweening
 {
     /// <summary>
     /// A tween object, an animation that changes a value over time using an
@@ -478,7 +478,7 @@
 
         internal bool GetFlag(Flag flag)
         {
-            return this.flags.HasFlag(flag);
+            return this.flags.Has(flag);
         }
 
         internal void SetFlag(Flag flag, bool on)
