@@ -59,6 +59,19 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
+        /// Sets the scene index of the tween to the given value.
+        /// </summary>
+        /// <param name="tween">The tween to assign the value to.</param>
+        /// <param name="index">The scene index to set.</param>
+        /// <returns>The tween itself to allow for chaining.</returns>
+        /// <typeparam name="T">The type of the tween.</typeparam>
+        public static T SetSceneIndex<T>(this T tween, int index) where T: Tween
+        {
+            tween.sceneIndex = index;
+            return tween;
+        }
+
+        /// <summary>
         /// Sets the ease of the tween to the given value.
         /// </summary>
         /// <param name="tween">The tween to assign the value to.</param>
