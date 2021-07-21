@@ -14,7 +14,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// A list of all alive tween objects.
         /// </summary>
-        internal List<Tween> tweens = new List<Tween>(Tweening.initialCapacity);
+        internal List<Tween> tweens = new List<Tween>(Settings.initialCapacity);
 
         private static bool _isUnloading = false;
         private static object _lock = new object();

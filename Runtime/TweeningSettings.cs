@@ -22,7 +22,7 @@ namespace Zigurous.Tweening
             set
             {
                 _defaultEase = value;
-                Tweening.defaultEase = value;
+                Settings.defaultEase = value;
             }
         }
 
@@ -39,7 +39,7 @@ namespace Zigurous.Tweening
             set
             {
                 _defaultDuration = value;
-                Tweening.defaultDuration = value;
+                Settings.defaultDuration = value;
             }
         }
 
@@ -56,11 +56,11 @@ namespace Zigurous.Tweening
             set
             {
                 _defaultDelay = value;
-                Tweening.defaultDelay = value;
+                Settings.defaultDelay = value;
             }
         }
 
-        [Tooltip("The default overshoot value used in easing functions.")]
+        [Tooltip("The overshoot value used in easing functions.")]
         [SerializeField]
         private float _overshoot = 1.70158f;
 
@@ -73,17 +73,17 @@ namespace Zigurous.Tweening
             set
             {
                 _overshoot = value;
-                Tweening.overshoot = value;
+                Settings.overshoot = value;
             }
         }
 
-        [Tooltip("The initial amount of tweens that memory is allocated for when the system starts. Additional memory will be allocated as needed.")]
+        [Tooltip("The initial amount of tweens memory is allocated for when the system starts. Additional memory will be allocated as needed.")]
         [SerializeField]
         private int _initialCapacity = 16;
 
         /// <summary>
-        /// The initial amount of tweens that memory is allocated for when the
-        /// system starts. Additional memory will be allocated as needed.
+        /// The initial amount of tweens memory is allocated for when the system
+        /// starts. Additional memory will be allocated as needed.
         /// </summary>
         public int initialCapacity
         {
@@ -91,7 +91,7 @@ namespace Zigurous.Tweening
             set
             {
                 _initialCapacity = value;
-                Tweening.initialCapacity = value;
+                Settings.initialCapacity = value;
             }
         }
 
@@ -108,7 +108,7 @@ namespace Zigurous.Tweening
             set
             {
                 _autoStart = value;
-                Tweening.autoStart = value;
+                Settings.autoStart = value;
             }
         }
 
@@ -125,7 +125,7 @@ namespace Zigurous.Tweening
             set
             {
                 _autoKill = value;
-                Tweening.autoKill = value;
+                Settings.autoKill = value;
             }
         }
 
@@ -142,7 +142,7 @@ namespace Zigurous.Tweening
             set
             {
                 _recyclable = value;
-                Tweening.recyclable = value;
+                Settings.recyclable = value;
             }
         }
 
@@ -158,14 +158,14 @@ namespace Zigurous.Tweening
 
         private void UpdateSettings()
         {
-            Tweening.defaultEase = this.defaultEase;
-            Tweening.defaultDuration = this.defaultDuration;
-            Tweening.defaultDelay = this.defaultDelay;
-            Tweening.overshoot = this.overshoot;
-            Tweening.initialCapacity = this.initialCapacity;
-            Tweening.autoStart = this.autoStart;
-            Tweening.autoKill = this.autoKill;
-            Tweening.recyclable = this.recyclable;
+            Settings.defaultEase = this.defaultEase;
+            Settings.defaultDuration = this.defaultDuration;
+            Settings.defaultDelay = this.defaultDelay;
+            Settings.overshoot = this.overshoot;
+            Settings.initialCapacity = this.initialCapacity;
+            Settings.autoStart = this.autoStart;
+            Settings.autoKill = this.autoKill;
+            Settings.recyclable = this.recyclable;
         }
 
     }

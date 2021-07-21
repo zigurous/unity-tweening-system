@@ -281,7 +281,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float BackIn(float x)
         {
-            return (Tweening.overshoot + 1.0f) * x * x * x - Tweening.overshoot * x * x;
+            return (Settings.overshoot + 1.0f) * x * x * x - Settings.overshoot * x * x;
         }
 
         /// <summary>
@@ -290,7 +290,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float BackOut(float x)
         {
-            return 1.0f + (Tweening.overshoot + 1.0f) * Mathf.Pow(x - 1.0f, 3.0f) + Tweening.overshoot * Mathf.Pow(x - 1.0f, 2.0f);
+            return 1.0f + (Settings.overshoot + 1.0f) * Mathf.Pow(x - 1.0f, 3.0f) + Settings.overshoot * Mathf.Pow(x - 1.0f, 2.0f);
         }
 
         /// <summary>
@@ -299,7 +299,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float BackInOut(float x)
         {
-            float c2 = Tweening.overshoot * 1.525f;
+            float c2 = Settings.overshoot * 1.525f;
             return x < 0.5f ?
                 (Mathf.Pow(2.0f * x, 2.0f) * ((c2 + 1.0f) * 2.0f * x - c2)) / 2.0f :
                 (Mathf.Pow(2.0f * x - 2.0f, 2.0f) * ((c2 + 1.0f) * (x * 2.0f - 2.0f) + c2) + 2.0f) / 2.0f;

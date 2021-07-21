@@ -78,12 +78,12 @@
         /// <summary>
         /// The easing function type used by the tween to animate values.
         /// </summary>
-        public Ease ease = Tweening.defaultEase;
+        public Ease ease = Settings.defaultEase;
 
         /// <summary>
         /// The amount of seconds the tween takes to complete.
         /// </summary>
-        public float duration = Tweening.defaultDuration;
+        public float duration = Settings.defaultDuration;
 
         /// <summary>
         /// The amount of seconds that have elapsed since the tween started.
@@ -99,7 +99,7 @@
         /// The amount of seconds the tween waits before playing after being
         /// started.
         /// </summary>
-        public float delay = Tweening.defaultDelay;
+        public float delay = Settings.defaultDelay;
 
         /// <summary>
         /// The amount of seconds that have elapsed during the tween's delayed
@@ -448,10 +448,10 @@
             this.state = TweenState.Ready;
             this.internalState = InternalTweenState.Queued;
 
-            this.ease = Tweening.defaultEase;
-            this.duration = Tweening.defaultDuration;
+            this.ease = Settings.defaultEase;
+            this.duration = Settings.defaultDuration;
             this.elapsed = 0.0f;
-            this.delay = Tweening.defaultDelay;
+            this.delay = Settings.defaultDelay;
             this.delayElapsed = 0.0f;
 
             this.loops = 0;
@@ -461,9 +461,9 @@
             this.flags = 0;
             this.reversed = false;
             this.snapping = false;
-            this.autoStart = Tweening.autoStart;
-            this.autoKill = Tweening.autoKill;
-            this.recyclable = Tweening.recyclable;
+            this.autoStart = Settings.autoStart;
+            this.autoKill = Settings.autoKill;
+            this.recyclable = Settings.recyclable;
 
             this.onUpdate = null;
             this.onStart = null;
