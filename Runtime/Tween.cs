@@ -1,3 +1,5 @@
+﻿using UnityEngine.SceneManagement;
+
 namespace Zigurous.Tweening
 {
     /// <summary>
@@ -443,7 +445,7 @@ namespace Zigurous.Tweening
         internal void Reset()
         {
             this.id = -1;
-            this.sceneIndex = -1;
+            this.sceneIndex = SceneManager.GetActiveScene().buildIndex;
 
             this.state = TweenState.Ready;
             this.internalState = InternalTweenState.Queued;
