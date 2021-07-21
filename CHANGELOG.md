@@ -5,24 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.0] - 2021/07/21
+
+### Changed
+
+- Global settings defined in `Tweening` have been moved to new static class `Settings`
+- Scene indexes default to the current active scene
+- Tween `sceneIndex` is now a publicly exposed field
+- Shortcut tweens that are not apart of components still have an id set automatically
+
 ## [2.4.0] - 2021/06/28
 
 ### Added
 
-- New TweeningSettings component that can be used to change settings in the editor
+- New `TweeningSettings` component that can be used to change settings in the editor
 
 ### Changed
 
-- Hide TweenManager in component menu
+- Hide `TweenManager` in component menu
 - Settings properties have been renamed
 
 ## [2.3.0] - 2021/06/27
 
 ### Added
 
-- Support for tweening Rect values
-- New Material tween extensions
-- New Camera tween extensions
+- Support for tweening `Rect` values
+- New `Material` tween extensions
+- New `Camera` tween extensions
 
 ### Changed
 
@@ -30,7 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Removed Tweening.killTweensOnSceneUnload setting. Each tween now tracks the scene index and is automatically killed when that scene is unloaded.
+- Removed `Tweening.killTweensOnSceneUnload` setting. Each tween now tracks the scene index and is automatically killed when that scene is unloaded.
 
 ## [2.2.1] - 2021/06/18
 
@@ -67,7 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Hundreds of pre-defined extension methods for tweening properties on common Unity objects
+- Hundreds of predefined extension methods for tweening properties on common Unity objects
 - More generic types are now compatible with the tweening system
 
 ## [1.0.1] - 2021/04/13
