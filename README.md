@@ -1,9 +1,6 @@
 # Tweening
 
-[![](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/zigurous/unity-tweening-system)
-[![](https://img.shields.io/github/package-json/v/zigurous/unity-tweening-system)](https://github.com/zigurous/unity-tweening-system/releases)
-[![](https://img.shields.io/badge/docs-link-success)](https://docs.zigurous.com/com.zigurous.tweening)
-[![](https://img.shields.io/github/license/zigurous/unity-tweening-system)](https://github.com/zigurous/unity-tweening-system/blob/main/LICENSE.md)
+[![](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/zigurous/unity-tweening-system) [![](https://img.shields.io/github/package-json/v/zigurous/unity-tweening-system)](https://github.com/zigurous/unity-tweening-system/releases) [![](https://img.shields.io/badge/docs-link-success)](https://docs.zigurous.com/com.zigurous.tweening) [![](https://img.shields.io/github/license/zigurous/unity-tweening-system)](https://github.com/zigurous/unity-tweening-system/blob/main/LICENSE.md)
 
 The Tweening package provides a system for tweening object properties in Unity. A tween is an animation of a value from a start position to an end position using an easing function, providing a natural sense of motion.
 
