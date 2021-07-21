@@ -7,7 +7,18 @@
 
 The Tweening package provides a system for tweening object properties in Unity. A tween is an animation of a value from a start position to an end position using an easing function, providing a natural sense of motion.
 
-The system is lightweight, optimized, type-safe, and memory efficient. Hundreds of pre-defined tweening functions can be called on many common Unity objects, or you can animate anything using generic tweening functions. Tweens can be controlled with many different control methods and various callback functions.
+The system is lightweight, optimized, type-safe, and memory efficient. Hundreds of predefined tweening functions can be called on many common Unity objects, or you can animate anything using generic tweening functions. Tweens can be controlled with many different control methods and various callback functions.
+
+## Reference
+
+- [Tweens](https://docs.zigurous.com/com.zigurous.tweening/manual/tweens.html)
+- [Sequences](https://docs.zigurous.com/com.zigurous.tweening/manual/sequences.html)
+- [Easing](https://docs.zigurous.com/com.zigurous.tweening/manual/easing.html)
+- [Callbacks](https://docs.zigurous.com/com.zigurous.tweening/manual/callbacks.html)
+- [Property Chaining](https://docs.zigurous.com/com.zigurous.tweening/manual/property-chaining.html)
+- [Managing Tweens](https://docs.zigurous.com/com.zigurous.tweening/manual/managing-tweens.html)
+- [Supported Types](https://docs.zigurous.com/com.zigurous.tweening/manual/supported-types.html)
+- [Settings](https://docs.zigurous.com/com.zigurous.tweening/manual/settings.html)
 
 ## Installation
 

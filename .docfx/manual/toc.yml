@@ -2,3 +2,21 @@
   href: index.md
 - name: Installation
   href: installation.md
+- name: Reference
+  items:
+  - name: Tweens
+    href: tweens.md
+  - name: Sequences
+    href: sequences.md
+  - name: Easing
+    href: easing.md
+  - name: Callbacks
+    href: callbacks.md
+  - name: Property Chaining
+    href: property-chaining.md
+  - name: Managing Tweens
+    href: managing-tweens.md
+  - name: Supported Types
+    href: supported-types.md
+  - name: Settings
+    href: settings.md
