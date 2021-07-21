@@ -1,4 +1,4 @@
-﻿namespace Zigurous.Tweening
+namespace Zigurous.Tweening
 {
     /// <summary>
     /// The base class of every tween.
@@ -31,7 +31,7 @@
         /// The index of the scene that contains the object being animated by
         /// the tween. The is used to kill the tween when the scene is unloaded.
         /// </summary>
-        internal int sceneIndex = -1;
+        public int sceneIndex = -1;
 
         /// <summary>
         /// The type of tween, used internally for managing and recycling
