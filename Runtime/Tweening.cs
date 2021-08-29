@@ -196,13 +196,13 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter to a given end value over
         /// a set duration.
         /// </summary>
+        /// <typeparam name="T">The type of the parameter.</typeparam>
         /// <param name="interpolater">The function that interpolates values between the start and end value.</param>
         /// <param name="getter">The function that gets the current value of the parameter.</param>
         /// <param name="setter">The function that sets a new value of the parameter.</param>
         /// <param name="endValue">The end value of the parameter.</param>
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
-        /// <typeparam name="T">The type of the parameter.</typeparam>
         public static Tween To<T>(Interpolater<T> interpolater, TweenGetter<T> getter, TweenSetter<T> setter, T endValue, float duration)
         {
             Tweener<T> tween = TweenManager.Instance.BuildTweener<T>();
@@ -363,13 +363,13 @@ namespace Zigurous.Tweening
         /// Creates a tween that animates a parameter from a given end value to
         /// the current value over a set duration.
         /// </summary>
+        /// <typeparam name="T">The type of the parameter.</typeparam>
         /// <param name="interpolater">The function that interpolates values between the start and end value.</param>
         /// <param name="getter">The function that gets the current value of the parameter.</param>
         /// <param name="setter">The function that sets a new value of the parameter.</param>
         /// <param name="endValue">The end value of the parameter.</param>
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
-        /// <typeparam name="T">The type of the parameter.</typeparam>
         public static Tween From<T>(Interpolater<T> interpolater, TweenGetter<T> getter, TweenSetter<T> setter, T endValue, float duration)
         {
             Tweener<T> tween = TweenManager.Instance.BuildTweener<T>();
@@ -446,8 +446,8 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Plays any alive tween that is animating the given target object.
         /// </summary>
-        /// <param name="target">The target object to play the tweens of.</param>
         /// <typeparam name="T">The type of the target object.</typeparam>
+        /// <param name="target">The target object to play the tweens of.</param>
         public static void Play<T>(T target) where T: class
         {
             Play(target.GetHashCode());
@@ -492,8 +492,8 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Stops any alive tween that is animating the given target object.
         /// </summary>
-        /// <param name="target">The target object to stop the tweens of.</param>
         /// <typeparam name="T">The type of the target object.</typeparam>
+        /// <param name="target">The target object to stop the tweens of.</param>
         public static void Stop<T>(T target) where T: class
         {
             Stop(target.GetHashCode());
@@ -538,8 +538,8 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Restarts any alive tween that is animating the given target object.
         /// </summary>
-        /// <param name="target">The target object to restart the tweens of.</param>
         /// <typeparam name="T">The type of the target object.</typeparam>
+        /// <param name="target">The target object to restart the tweens of.</param>
         public static void Restart<T>(T target) where T: class
         {
             Restart(target.GetHashCode());
@@ -584,8 +584,8 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Completes any alive tween that is animating the given target object.
         /// </summary>
-        /// <param name="target">The target object to complete the tweens of.</param>
         /// <typeparam name="T">The type of the target object.</typeparam>
+        /// <param name="target">The target object to complete the tweens of.</param>
         public static void Complete<T>(T target) where T: class
         {
             Complete(target.GetHashCode());
@@ -635,9 +635,9 @@ namespace Zigurous.Tweening
         /// Kills any alive tweens being animated on the target object.
         /// Optionally, the tweens can be completed before being killed.
         /// </summary>
+        /// <typeparam name="T">The type of the target object.</typeparam>
         /// <param name="target">The target object to kill the tweens of.</param>
         /// <param name="complete">Whether to complete the tweens before being killed.</param>
-        /// <typeparam name="T">The type of the target object.</typeparam>
         public static void KillTweens<T>(this T target, bool complete = false) where T: class
         {
             Kill(target.GetHashCode(), complete);
