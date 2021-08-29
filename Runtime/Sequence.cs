@@ -9,17 +9,17 @@ namespace Zigurous.Tweening
     public sealed class Sequence : Tween
     {
         /// <summary>
-        /// The index of the current tween in the sequence being played.
+        /// The index of the current tween in the sequence being played (Read only).
         /// </summary>
         public int currentIndex { get; private set; } = -1;
 
         /// <summary>
-        /// The tweens contained in the sequence.
+        /// The tweens contained in the sequence (Read only).
         /// </summary>
         public List<Tween> tweens { get; internal set; } = new List<Tween>();
 
         /// <summary>
-        /// The tween in the sequence currently being played.
+        /// The tween in the sequence currently being played (Read only).
         /// </summary>
         public Tween activeTween
         {

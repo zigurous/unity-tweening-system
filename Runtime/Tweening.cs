@@ -9,7 +9,8 @@ namespace Zigurous.Tweening
     public static class Tweening
     {
         /// <summary>
-        /// The number of tweens currently alive (not necessarily active).
+        /// The number of tweens currently alive. This includes tweens that have
+        /// been recycled and are not currently active (Read only).
         /// </summary>
         public static int count
         {
@@ -24,7 +25,7 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
-        /// The number of tweens that are currently alive and active.
+        /// The number of tweens that are currently alive and active (Read only).
         /// </summary>
         public static int activeCount
         {
