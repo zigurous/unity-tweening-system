@@ -1,4 +1,4 @@
-name: Generate docs
+name: Docs
 
 on:
   push:
@@ -9,14 +9,15 @@ on:
       - main
 
 jobs:
-  generate-docs:
-    name: Generate docs
+  docs:
+    name: Docs
     runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           submodules: true
+          token: ${{ secrets.DOCS_TOKEN }}
 
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
@@ -28,10 +29,29 @@ jobs:
         with:
           args: install docfx
 
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        working-directory: docs~
+        run: npm install
+        env:
+          NPM_TOKEN: ${{ secrets.DOCS_TOKEN }}
+
+      - name: Generate metadata
+        working-directory: docs~
+        run: npm run-script docfx
+        env:
+          NPM_TOKEN: ${{ secrets.DOCS_TOKEN }}
+
       - name: Build docs
-        working-directory: .docfx
-        run: docfx docfx.json
+        working-directory: docs~
         continue-on-error: false
+        run: npm run-script build
+        env:
+          NPM_TOKEN: ${{ secrets.DOCS_TOKEN }}
 
       - name: Publish
         if: github.event_name == 'push'
@@ -40,5 +60,5 @@ jobs:
           personal_token: ${{ secrets.DOCS_TOKEN }}
           external_repository: zigurous/docs
           destination_dir: com.zigurous.tweening
-          publish_dir: .docfx/dist
+          publish_dir: docs~/public
           publish_branch: main
