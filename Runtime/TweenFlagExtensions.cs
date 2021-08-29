@@ -6,8 +6,7 @@
     internal static class TweenFlagExtensions
     {
         /// <summary>
-        /// Checks if the flags contains the specified flag
-        /// <paramref name="other"/>.
+        /// Checks if the flags contains a specified flag.
         /// </summary>
         /// <param name="flags">The flags to check.</param>
         /// <param name="other">The other flag to check for.</param>
@@ -16,7 +15,7 @@
         }
 
         /// <summary>
-        /// Checks if the flags contains any flag of <paramref name="other"/>.
+        /// Checks if the flags contains any of the other specified flags.
         /// </summary>
         /// <param name="flags">The flags to check.</param>
         /// <param name="other">The other flags to check for.</param>

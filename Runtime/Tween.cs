@@ -232,6 +232,7 @@ namespace Zigurous.Tweening
         /// Advances the tween's elapsed time by the given delta time causing
         /// the tween to be animated and any lifecycle events to be triggered.
         /// </summary>
+        /// <param name="deltaTime">The amount of time to advance the tween by.</param>
         internal void Update(float deltaTime)
         {
             if (!this.IsPlaying)
@@ -345,6 +346,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Loops the tween on completion.
         /// </summary>
+        /// <returns>True if the tween is looped.</returns>
         private bool Loop()
         {
             this.iterations++;
@@ -494,6 +496,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Determines if the tween has finished playing.
         /// </summary>
+        /// <returns>True if the tween has finished playing.</returns>
         protected virtual bool IsFinished() => this.elapsed >= this.duration;
 
         /// <summary>
