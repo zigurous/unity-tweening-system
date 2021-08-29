@@ -293,8 +293,8 @@ namespace Zigurous.Tweening
             }
             else
             {
-                this.elapsed = 0.0f;
-                this.delayElapsed = 0.0f;
+                this.elapsed = 0f;
+                this.delayElapsed = 0f;
 
                 if (!this.IsDelayed) {
                     Start();
@@ -353,12 +353,12 @@ namespace Zigurous.Tweening
                 return false;
             }
 
-            this.elapsed = 0.0f;
+            this.elapsed = 0f;
 
             switch (this.loopType)
             {
                 case LoopType.RestartWithDelay:
-                    this.delayElapsed = 0.0f;
+                    this.delayElapsed = 0f;
                     break;
 
                 case LoopType.PingPong:
@@ -367,7 +367,7 @@ namespace Zigurous.Tweening
 
                 case LoopType.PingPongWithDelay:
                     this.reversed = !this.reversed;
-                    this.delayElapsed = 0.0f;
+                    this.delayElapsed = 0f;
                     break;
             }
 
@@ -452,9 +452,9 @@ namespace Zigurous.Tweening
 
             this.ease = Settings.defaultEase;
             this.duration = Settings.defaultDuration;
-            this.elapsed = 0.0f;
+            this.elapsed = 0f;
             this.delay = Settings.defaultDelay;
-            this.delayElapsed = 0.0f;
+            this.delayElapsed = 0f;
 
             this.loops = 0;
             this.loopType = LoopType.Restart;

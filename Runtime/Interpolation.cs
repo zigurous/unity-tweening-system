@@ -237,10 +237,10 @@ namespace Zigurous.Tweening
         /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Color Snap(Color value)
         {
-            int r = Mathf.RoundToInt(value.r * 255.0f);
-            int g = Mathf.RoundToInt(value.g * 255.0f);
-            int b = Mathf.RoundToInt(value.b * 255.0f);
-            return new Color(r / 255.0f, g / 255.0f, b / 255.0f, value.a);
+            int r = Mathf.RoundToInt(value.r * 255f);
+            int g = Mathf.RoundToInt(value.g * 255f);
+            int b = Mathf.RoundToInt(value.b * 255f);
+            return new Color(r / 255f, g / 255f, b / 255f, value.a);
         }
 
     }

@@ -53,7 +53,7 @@
             float percent = this.PercentComplete;
 
             if (this.reversed) {
-                percent = 1.0f - percent;
+                percent = 1f - percent;
             }
 
             float time = EaseFunction.lookup[this.ease](percent);

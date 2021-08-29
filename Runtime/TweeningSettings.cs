@@ -45,7 +45,7 @@ namespace Zigurous.Tweening
 
         [Tooltip("The default amount of seconds before every tween starts.")]
         [SerializeField]
-        private float _defaultDelay = 0.0f;
+        private float _defaultDelay = 0f;
 
         /// <summary>
         /// The default amount of seconds before every tween starts.

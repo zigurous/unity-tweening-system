@@ -79,7 +79,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float SineIn(float x)
         {
-            return 1.0f - Mathf.Cos(x * Mathf.PI / 2.0f);
+            return 1f - Mathf.Cos(x * Mathf.PI / 2f);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float SineOut(float x)
         {
-            return Mathf.Sin(x * Mathf.PI / 2.0f);
+            return Mathf.Sin(x * Mathf.PI / 2f);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float SineInOut(float x)
         {
-            return -(Mathf.Cos(Mathf.PI * x) - 1.0f) / 2.0f;
+            return -(Mathf.Cos(Mathf.PI * x) - 1f) / 2f;
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float CubicOut(float x)
         {
-            return 1.0f - Mathf.Pow(1.0f - x, 3.0f);
+            return 1f - Mathf.Pow(1f - x, 3f);
         }
 
         /// <summary>
@@ -125,8 +125,8 @@ namespace Zigurous.Tweening
         public static float CubicInOut(float x)
         {
             return x < 0.5f ?
-                4.0f * x * x * x :
-                1.0f - Mathf.Pow(-2.0f * x + 2.0f, 3.0f) / 2.0f;
+                4f * x * x * x :
+                1f - Mathf.Pow(-2f * x + 2f, 3f) / 2f;
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float QuadOut(float x)
         {
-            return 1.0f - (1.0f - x) * (1.0f - x);
+            return 1f - (1f - x) * (1f - x);
         }
 
         /// <summary>
@@ -154,8 +154,8 @@ namespace Zigurous.Tweening
         public static float QuadInOut(float x)
         {
             return x < 0.5f ?
-                2.0f * x * x :
-                1.0f - Mathf.Pow(-2.0f * x + 2.0f, 2.0f) / 2.0f;
+                2f * x * x :
+                1f - Mathf.Pow(-2f * x + 2f, 2f) / 2f;
 
         }
 
@@ -174,7 +174,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float QuartOut(float x)
         {
-            return 1.0f - Mathf.Pow(1.0f - x, 4.0f);
+            return 1f - Mathf.Pow(1f - x, 4f);
         }
 
         /// <summary>
@@ -184,8 +184,8 @@ namespace Zigurous.Tweening
         public static float QuartInOut(float x)
         {
             return x < 0.5f ?
-                8.0f * x * x * x * x :
-                1.0f - Mathf.Pow(-2.0f * x + 2.0f, 4.0f) / 2.0f;
+                8f * x * x * x * x :
+                1f - Mathf.Pow(-2f * x + 2f, 4f) / 2f;
         }
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float QuintOut(float x)
         {
-            return 1.0f - Mathf.Pow(1.0f - x, 5.0f);
+            return 1f - Mathf.Pow(1f - x, 5f);
         }
 
         /// <summary>
@@ -213,8 +213,8 @@ namespace Zigurous.Tweening
         public static float QuintInOut(float x)
         {
             return x < 0.5f ?
-                16.0f * x * x * x * x * x :
-                1.0f - Mathf.Pow(-2.0f * x + 2.0f, 5.0f) / 2.0f;
+                16f * x * x * x * x * x :
+                1f - Mathf.Pow(-2f * x + 2f, 5f) / 2f;
         }
 
         /// <summary>
@@ -223,7 +223,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float ExpoIn(float x)
         {
-            return x <= 0.0f ? 0.0f : Mathf.Pow(2.0f, 10.0f * x - 10.0f);
+            return x <= 0f ? 0f : Mathf.Pow(2f, 10f * x - 10f);
         }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float ExpoOut(float x)
         {
-            return x >= 1.0f ? 1.0f : 1.0f - Mathf.Pow(2.0f, -10.0f * x);
+            return x >= 1f ? 1f : 1f - Mathf.Pow(2f, -10f * x);
         }
 
         /// <summary>
@@ -241,9 +241,9 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float ExpoInOut(float x)
         {
-            return x <= 0.0f ? 0.0f : x >= 1.0f ? 1.0f : x < 0.5f ?
-                Mathf.Pow(2.0f, 20.0f * x - 10.0f) / 2.0f :
-                (2.0f - Mathf.Pow(2.0f, -20.0f * x + 10.0f)) / 2.0f;
+            return x <= 0f ? 0f : x >= 1f ? 1f : x < 0.5f ?
+                Mathf.Pow(2f, 20f * x - 10f) / 2f :
+                (2f - Mathf.Pow(2f, -20f * x + 10f)) / 2f;
         }
 
         /// <summary>
@@ -252,7 +252,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float CircIn(float x)
         {
-            return 1.0f - Mathf.Sqrt(1.0f - Mathf.Pow(x, 2.0f));
+            return 1f - Mathf.Sqrt(1f - Mathf.Pow(x, 2f));
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float CircOut(float x)
         {
-            return Mathf.Sqrt(1.0f - Mathf.Pow(x - 1.0f, 2.0f));
+            return Mathf.Sqrt(1f - Mathf.Pow(x - 1f, 2f));
         }
 
         /// <summary>
@@ -271,8 +271,8 @@ namespace Zigurous.Tweening
         public static float CircInOut(float x)
         {
             return x < 0.5f ?
-                (1.0f - Mathf.Sqrt(1.0f - Mathf.Pow(2.0f * x, 2.0f))) / 2.0f :
-                (Mathf.Sqrt(1.0f - Mathf.Pow(-2.0f * x + 2.0f, 2.0f)) + 1.0f) / 2.0f;
+                (1f - Mathf.Sqrt(1f - Mathf.Pow(2f * x, 2f))) / 2f :
+                (Mathf.Sqrt(1f - Mathf.Pow(-2f * x + 2f, 2f)) + 1f) / 2f;
         }
 
         /// <summary>
@@ -281,7 +281,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float BackIn(float x)
         {
-            return (Settings.overshoot + 1.0f) * x * x * x - Settings.overshoot * x * x;
+            return (Settings.overshoot + 1f) * x * x * x - Settings.overshoot * x * x;
         }
 
         /// <summary>
@@ -290,7 +290,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float BackOut(float x)
         {
-            return 1.0f + (Settings.overshoot + 1.0f) * Mathf.Pow(x - 1.0f, 3.0f) + Settings.overshoot * Mathf.Pow(x - 1.0f, 2.0f);
+            return 1f + (Settings.overshoot + 1f) * Mathf.Pow(x - 1f, 3f) + Settings.overshoot * Mathf.Pow(x - 1f, 2f);
         }
 
         /// <summary>
@@ -301,8 +301,8 @@ namespace Zigurous.Tweening
         {
             float c2 = Settings.overshoot * 1.525f;
             return x < 0.5f ?
-                (Mathf.Pow(2.0f * x, 2.0f) * ((c2 + 1.0f) * 2.0f * x - c2)) / 2.0f :
-                (Mathf.Pow(2.0f * x - 2.0f, 2.0f) * ((c2 + 1.0f) * (x * 2.0f - 2.0f) + c2) + 2.0f) / 2.0f;
+                (Mathf.Pow(2f * x, 2f) * ((c2 + 1f) * 2f * x - c2)) / 2f :
+                (Mathf.Pow(2f * x - 2f, 2f) * ((c2 + 1f) * (x * 2f - 2f) + c2) + 2f) / 2f;
         }
 
         /// <summary>
@@ -311,8 +311,8 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float ElasticIn(float x)
         {
-            return x <= 0.0f ? 0.0f : x >= 1.0f ? 1.0f :
-                -Mathf.Pow(2.0f, 10.0f * x - 10.0f) * Mathf.Sin((x * 10.0f - 10.75f) * ((2.0f * Mathf.PI) / 3.0f));
+            return x <= 0f ? 0f : x >= 1f ? 1f :
+                -Mathf.Pow(2f, 10f * x - 10f) * Mathf.Sin((x * 10f - 10.75f) * ((2f * Mathf.PI) / 3f));
         }
 
         /// <summary>
@@ -321,8 +321,8 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float ElasticOut(float x)
         {
-            return x <= 0.0f ? 0.0f : x >= 1.0f ? 1.0f :
-                Mathf.Pow(2.0f, -10.0f * x) * Mathf.Sin((x * 10.0f - 0.75f) * ((2.0f * Mathf.PI) / 3.0f)) + 1.0f;
+            return x <= 0f ? 0f : x >= 1f ? 1f :
+                Mathf.Pow(2f, -10f * x) * Mathf.Sin((x * 10f - 0.75f) * ((2f * Mathf.PI) / 3f)) + 1f;
         }
 
         /// <summary>
@@ -331,9 +331,9 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float ElasticInOut(float x)
         {
-            return x <= 0.0f ? 0.0f : x >= 1.0f ? 1.0f : x < 0.5f ?
-                -(Mathf.Pow(2.0f, 20.0f * x - 10.0f) * Mathf.Sin((20.0f * x - 11.125f) * ((2.0f * Mathf.PI) / 4.5f))) / 2.0f :
-                Mathf.Pow(2.0f, -20.0f * x + 10.0f) * Mathf.Sin((20.0f * x - 11.125f) * ((2.0f * Mathf.PI) / 4.5f)) / 2.0f + 1.0f;
+            return x <= 0f ? 0f : x >= 1f ? 1f : x < 0.5f ?
+                -(Mathf.Pow(2f, 20f * x - 10f) * Mathf.Sin((20f * x - 11.125f) * ((2f * Mathf.PI) / 4.5f))) / 2f :
+                Mathf.Pow(2f, -20f * x + 10f) * Mathf.Sin((20f * x - 11.125f) * ((2f * Mathf.PI) / 4.5f)) / 2f + 1f;
         }
 
         /// <summary>
@@ -342,7 +342,7 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float BounceIn(float x)
         {
-            return 1.0f - BounceOut(1.0f - x);
+            return 1f - BounceOut(1f - x);
         }
 
         /// <summary>
@@ -351,9 +351,9 @@ namespace Zigurous.Tweening
         /// <param name="x">The x-axis number to evaluate.</param>
         public static float BounceOut(float x)
         {
-            if (x < 1.0f / 2.75f) {
+            if (x < 1f / 2.75f) {
                 return 7.5625f * x * x;
-            } else if (x < 2.0f / 2.75f) {
+            } else if (x < 2f / 2.75f) {
                 x -= (1.5f / 2.75f);
                 return 7.5625f * x * x + 0.75f;
             } else if (x < 2.5f / 2.75f) {
@@ -372,8 +372,8 @@ namespace Zigurous.Tweening
         public static float BounceInOut(float x)
         {
             return x < 0.5f ?
-                (1.0f - BounceOut(1.0f - 2.0f * x)) / 2.0f :
-                (1.0f + BounceOut(2.0f * x - 1.0f)) / 2.0f;
+                (1f - BounceOut(1f - 2f * x)) / 2f :
+                (1f + BounceOut(2f * x - 1f)) / 2f;
         }
 
     }

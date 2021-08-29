@@ -18,7 +18,7 @@
         /// <summary>
         /// The default amount of seconds before every tween starts.
         /// </summary>
-        public static float defaultDelay = 0.0f;
+        public static float defaultDelay = 0f;
 
         /// <summary>
         /// The overshoot value used in easing functions.

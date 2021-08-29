@@ -157,7 +157,7 @@ namespace Zigurous.Tweening
                     tween.reversed = !tween.reversed;
                 }
 
-                tween.elapsed = 0.0f;
+                tween.elapsed = 0f;
                 tween.Animate();
             }
         }
