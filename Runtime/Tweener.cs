@@ -43,7 +43,7 @@
             this.template = typeof(T);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public override void Animate()
         {
             if (this.interpolater == null || this.setter == null) {
@@ -60,7 +60,7 @@
             setter(interpolater(this.startValue, this.endValue, time, this.snapping));
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void OnStart()
         {
             if (this.iterations == 0 && this.getter != null) {
@@ -68,7 +68,7 @@
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void OnKill()
         {
             this.interpolater = null;
@@ -76,7 +76,7 @@
             this.setter = null;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void OnReset()
         {
             this.interpolater = null;

@@ -102,7 +102,7 @@ namespace Zigurous.Tweening
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override bool IsFinished()
         {
             if (this.reversed) {
@@ -112,7 +112,7 @@ namespace Zigurous.Tweening
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void OnStart()
         {
             if (this.reversed) {
@@ -128,7 +128,7 @@ namespace Zigurous.Tweening
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void OnStop()
         {
             Tween tween = this.activeTween;
@@ -138,7 +138,7 @@ namespace Zigurous.Tweening
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void OnResume()
         {
             Tween tween = this.activeTween;
@@ -148,7 +148,7 @@ namespace Zigurous.Tweening
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void OnLoop()
         {
             foreach (Tween tween in this.tweens)
@@ -162,7 +162,7 @@ namespace Zigurous.Tweening
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void OnComplete()
         {
             foreach (Tween tween in this.tweens)
@@ -173,7 +173,7 @@ namespace Zigurous.Tweening
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void OnKill()
         {
             foreach (Tween tween in this.tweens)
@@ -187,7 +187,7 @@ namespace Zigurous.Tweening
             this.currentIndex = -1;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void OnReset()
         {
             this.tweens.Clear();
