@@ -52,36 +52,36 @@ namespace Zigurous.Tweening
         /// </summary>
         public static bool recyclable = true;
 
-        [Tooltip("The default Ease assigned to every tween.")]
         [SerializeField]
+        [Tooltip("The default Ease assigned to every tween.")]
         private Ease _defaultEase = Ease.QuadOut;
 
-        [Tooltip("The default amount of seconds a tween takes to complete.")]
         [SerializeField]
+        [Tooltip("The default amount of seconds a tween takes to complete.")]
         private float _defaultDuration = 0.3f;
 
-        [Tooltip("The default amount of seconds before every tween starts.")]
         [SerializeField]
+        [Tooltip("The default amount of seconds before every tween starts.")]
         private float _defaultDelay = 0f;
 
-        [Tooltip("The overshoot value used in easing functions.")]
         [SerializeField]
+        [Tooltip("The overshoot value used in easing functions.")]
         private float _overshoot = 1.70158f;
 
-        [Tooltip("The initial amount of tweens memory is allocated for when the system starts. Additional memory will be allocated as needed.")]
         [SerializeField]
+        [Tooltip("The initial amount of tweens memory is allocated for when the system starts. Additional memory will be allocated as needed.")]
         private int _initialCapacity = 16;
 
-        [Tooltip("Automatically starts tweens after being created, by default. This setting can be overridden by individual tweens.")]
         [SerializeField]
+        [Tooltip("Automatically starts tweens after being created, by default. This setting can be overridden by individual tweens.")]
         private bool _autoStart = true;
 
-        [Tooltip("Automatically kills tweens after being completed, by default. This setting can be overridden by individual tweens.")]
         [SerializeField]
+        [Tooltip("Automatically kills tweens after being completed, by default. This setting can be overridden by individual tweens.")]
         private bool _autoKill = true;
 
-        [Tooltip("Keeps tweens in memory to be re-used after being killed, by default. This setting can be overridden by individual tweens.")]
         [SerializeField]
+        [Tooltip("Keeps tweens in memory to be re-used after being killed, by default. This setting can be overridden by individual tweens.")]
         private bool _recyclable = true;
 
         private void OnValidate()
