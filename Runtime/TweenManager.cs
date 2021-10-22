@@ -78,20 +78,20 @@ namespace Zigurous.Tweening
                 SceneManager.sceneUnloaded -= SceneUnloaded;
             }
 
-            foreach (Tween tween in this.tweens) {
+            foreach (Tween tween in tweens) {
                 tween.Kill();
             }
 
-            this.tweens.Clear();
+            tweens.Clear();
         }
 
         private void Update()
         {
             float deltaTime = Time.deltaTime;
 
-            for (int i = this.tweens.Count - 1; i >= 0; i--)
+            for (int i = tweens.Count - 1; i >= 0; i--)
             {
-                Tween tween = this.tweens[i];
+                Tween tween = tweens[i];
 
                 switch (tween.internalState)
                 {
@@ -108,7 +108,7 @@ namespace Zigurous.Tweening
                             tween.internalState = InternalTweenState.Recycled;
                         } else {
                             tween.internalState = InternalTweenState.Killed;
-                            this.tweens.RemoveAt(i);
+                            tweens.RemoveAt(i);
                         }
                         break;
                 }
@@ -122,7 +122,7 @@ namespace Zigurous.Tweening
         {
             Tweener<T> tweener = null;
 
-            foreach (Tween tween in this.tweens)
+            foreach (Tween tween in tweens)
             {
                 if (tween.internalState == InternalTweenState.Recycled &&
                     tween.type == TweenType.Tweener &&
@@ -152,7 +152,7 @@ namespace Zigurous.Tweening
         {
             Sequence sequence = null;
 
-            foreach (Tween tween in this.tweens)
+            foreach (Tween tween in tweens)
             {
                 if (tween.internalState == InternalTweenState.Recycled &&
                     tween.type == TweenType.Sequence)
@@ -180,8 +180,8 @@ namespace Zigurous.Tweening
         /// </summary>
         internal void Track(Tween tween)
         {
-            if (!this.tweens.Contains(tween)) {
-                this.tweens.Add(tween);
+            if (!tweens.Contains(tween)) {
+                tweens.Add(tween);
             }
         }
 
@@ -190,7 +190,7 @@ namespace Zigurous.Tweening
         /// </summary>
         private void SceneUnloaded(Scene scene)
         {
-            foreach (Tween tween in this.tweens)
+            foreach (Tween tween in tweens)
             {
                 if (tween.sceneIndex == -1 || tween.sceneIndex == scene.buildIndex) {
                     tween.Kill();

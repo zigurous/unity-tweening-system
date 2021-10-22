@@ -39,49 +39,49 @@
         /// </summary>
         public Tweener() : base()
         {
-            this.type = TweenType.Tweener;
-            this.template = typeof(T);
+            type = TweenType.Tweener;
+            template = typeof(T);
         }
 
         /// <inheritdoc/>
         public override void Animate()
         {
-            if (this.interpolater == null || this.setter == null) {
+            if (interpolater == null || setter == null) {
                 return;
             }
 
-            float percent = this.PercentComplete;
+            float percent = PercentComplete;
 
-            if (this.reversed) {
+            if (reversed) {
                 percent = 1f - percent;
             }
 
-            float time = EaseFunction.lookup[this.ease](percent);
-            setter(interpolater(this.startValue, this.endValue, time, this.snapping));
+            float time = EaseFunction.lookup[ease](percent);
+            setter(interpolater(startValue, endValue, time, snapping));
         }
 
         /// <inheritdoc/>
         protected override void OnStart()
         {
-            if (this.iterations == 0 && this.getter != null) {
-                this.startValue = getter();
+            if (iterations == 0 && getter != null) {
+                startValue = getter();
             }
         }
 
         /// <inheritdoc/>
         protected override void OnKill()
         {
-            this.interpolater = null;
-            this.getter = null;
-            this.setter = null;
+            interpolater = null;
+            getter = null;
+            setter = null;
         }
 
         /// <inheritdoc/>
         protected override void OnReset()
         {
-            this.interpolater = null;
-            this.getter = null;
-            this.setter = null;
+            interpolater = null;
+            getter = null;
+            setter = null;
         }
 
     }

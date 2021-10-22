@@ -60,22 +60,22 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Whether the tween is playing.
         /// </summary>
-        public bool IsPlaying => this.state == TweenState.Playing;
+        public bool IsPlaying => state == TweenState.Playing;
 
         /// <summary>
         /// Whether the tween is stopped.
         /// </summary>
-        public bool IsStopped => this.state == TweenState.Stopped;
+        public bool IsStopped => state == TweenState.Stopped;
 
         /// <summary>
         /// Whether the tween is complete.
         /// </summary>
-        public bool IsComplete => this.state == TweenState.Complete;
+        public bool IsComplete => state == TweenState.Complete;
 
         /// <summary>
         /// Whether the tween is killed.
         /// </summary>
-        public bool IsKilled => this.state == TweenState.Killed;
+        public bool IsKilled => state == TweenState.Killed;
 
         /// <summary>
         /// The easing function type used by the tween to animate values.
@@ -95,7 +95,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// The tween's percentage of completion.
         /// </summary>
-        public float PercentComplete => UnityEngine.Mathf.Clamp01(this.elapsed / this.duration);
+        public float PercentComplete => UnityEngine.Mathf.Clamp01(elapsed / duration);
 
         /// <summary>
         /// The amount of seconds the tween waits before playing after being
@@ -114,7 +114,7 @@ namespace Zigurous.Tweening
         /// has been started but the elapsed time has not exceeded the delay
         /// duration.
         /// </summary>
-        public bool IsDelayed => this.delayElapsed < this.delay;
+        public bool IsDelayed => delayElapsed < delay;
 
         /// <summary>
         /// The number of times the tween loops. A value of -1 will loop the
@@ -235,23 +235,23 @@ namespace Zigurous.Tweening
         /// <param name="deltaTime">The amount of time to advance the tween by.</param>
         internal void Update(float deltaTime)
         {
-            if (!this.IsPlaying)
+            if (!IsPlaying)
             {
-                if (this.state == TweenState.Ready && this.autoStart) {
+                if (state == TweenState.Ready && autoStart) {
                     Play();
                 }
                 return;
             }
 
-            if (!this.IsDelayed)
+            if (!IsDelayed)
             {
-                this.elapsed += deltaTime;
+                elapsed += deltaTime;
 
                 Animate();
                 OnUpdate();
 
-                if (this.onUpdate != null) {
-                    this.onUpdate.Invoke();
+                if (onUpdate != null) {
+                    onUpdate.Invoke();
                 }
 
                 // Once finished we check if the tween should loop before
@@ -262,12 +262,12 @@ namespace Zigurous.Tweening
             }
             else
             {
-                this.delayElapsed += deltaTime;
+                delayElapsed += deltaTime;
 
                 // Start the tween once the delay is complete and only if the
                 // elapsed time is zero which indicates it has never been
                 // updated yet
-                if (this.delayElapsed >= this.delay && this.elapsed == 0) {
+                if (delayElapsed >= delay && elapsed == 0) {
                     Start();
                 }
             }
@@ -279,14 +279,14 @@ namespace Zigurous.Tweening
         /// </summary>
         public void Play()
         {
-            if (!this.state.CanTransition(TweenState.Playing)) {
+            if (!state.CanTransition(TweenState.Playing)) {
                 return;
             }
 
-            TweenState previousState = this.state;
+            TweenState previousState = state;
 
-            this.state = TweenState.Playing;
-            this.internalState = InternalTweenState.Active;
+            state = TweenState.Playing;
+            internalState = InternalTweenState.Active;
 
             if (previousState == TweenState.Stopped)
             {
@@ -294,10 +294,10 @@ namespace Zigurous.Tweening
             }
             else
             {
-                this.elapsed = 0f;
-                this.delayElapsed = 0f;
+                elapsed = 0f;
+                delayElapsed = 0f;
 
-                if (!this.IsDelayed) {
+                if (!IsDelayed) {
                     Start();
                 }
             }
@@ -308,20 +308,20 @@ namespace Zigurous.Tweening
         /// </summary>
         private void Start()
         {
-            if (this.iterations > 0)
+            if (iterations > 0)
             {
                 OnLoop();
 
-                if (this.onLoop != null) {
-                    this.onLoop.Invoke();
+                if (onLoop != null) {
+                    onLoop.Invoke();
                 }
             }
 
             OnStart();
             Animate();
 
-            if (this.iterations == 0 && this.onStart != null) {
-                this.onStart.Invoke();
+            if (iterations == 0 && onStart != null) {
+                onStart.Invoke();
             }
         }
 
@@ -330,16 +330,16 @@ namespace Zigurous.Tweening
         /// </summary>
         public void Stop()
         {
-            if (!this.state.CanTransition(TweenState.Stopped)) {
+            if (!state.CanTransition(TweenState.Stopped)) {
                 return;
             }
 
-            this.state = TweenState.Stopped;
+            state = TweenState.Stopped;
 
             OnStop();
 
-            if (this.onStop != null) {
-                this.onStop.Invoke();
+            if (onStop != null) {
+                onStop.Invoke();
             }
         }
 
@@ -349,31 +349,31 @@ namespace Zigurous.Tweening
         /// <returns>True if the tween is looped.</returns>
         private bool Loop()
         {
-            this.iterations++;
+            iterations++;
 
-            if (this.iterations >= this.loops && this.loops != -1) {
+            if (iterations >= loops && loops != -1) {
                 return false;
             }
 
-            this.elapsed = 0f;
+            elapsed = 0f;
 
-            switch (this.loopType)
+            switch (loopType)
             {
                 case LoopType.RestartWithDelay:
-                    this.delayElapsed = 0f;
+                    delayElapsed = 0f;
                     break;
 
                 case LoopType.PingPong:
-                    this.reversed = !this.reversed;
+                    reversed = !reversed;
                     break;
 
                 case LoopType.PingPongWithDelay:
-                    this.reversed = !this.reversed;
-                    this.delayElapsed = 0f;
+                    reversed = !reversed;
+                    delayElapsed = 0f;
                     break;
             }
 
-            if (!this.IsDelayed) {
+            if (!IsDelayed) {
                 Start();
             }
 
@@ -385,22 +385,22 @@ namespace Zigurous.Tweening
         /// </summary>
         public void Complete()
         {
-            if (!this.state.CanTransition(TweenState.Complete)) {
+            if (!state.CanTransition(TweenState.Complete)) {
                 return;
             }
 
-            this.state = TweenState.Complete;
-            this.elapsed = this.duration;
-            this.delayElapsed = this.delay;
+            state = TweenState.Complete;
+            elapsed = duration;
+            delayElapsed = delay;
 
             Animate();
             OnComplete();
 
-            if (this.onComplete != null) {
-                this.onComplete.Invoke();
+            if (onComplete != null) {
+                onComplete.Invoke();
             }
 
-            if (this.autoKill) {
+            if (autoKill) {
                 Kill();
             }
         }
@@ -411,25 +411,25 @@ namespace Zigurous.Tweening
         /// </summary>
         public void Kill()
         {
-            if (!this.state.CanTransition(TweenState.Killed)) {
+            if (!state.CanTransition(TweenState.Killed)) {
                 return;
             }
 
-            this.state = TweenState.Killed;
-            this.internalState = InternalTweenState.Dequeued;
+            state = TweenState.Killed;
+            internalState = InternalTweenState.Dequeued;
 
             OnKill();
 
-            if (this.onKill != null) {
-                this.onKill.Invoke();
+            if (onKill != null) {
+                onKill.Invoke();
             }
 
-            this.onKill = null;
-            this.onUpdate = null;
-            this.onStart = null;
-            this.onStop = null;
-            this.onLoop = null;
-            this.onComplete = null;
+            onKill = null;
+            onUpdate = null;
+            onStart = null;
+            onStop = null;
+            onLoop = null;
+            onComplete = null;
         }
 
         /// <summary>
@@ -446,50 +446,50 @@ namespace Zigurous.Tweening
         /// </summary>
         internal void Reset()
         {
-            this.id = -1;
-            this.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            id = -1;
+            sceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-            this.state = TweenState.Ready;
-            this.internalState = InternalTweenState.Queued;
+            state = TweenState.Ready;
+            internalState = InternalTweenState.Queued;
 
-            this.ease = Settings.defaultEase;
-            this.duration = Settings.defaultDuration;
-            this.elapsed = 0f;
-            this.delay = Settings.defaultDelay;
-            this.delayElapsed = 0f;
+            ease = Settings.defaultEase;
+            duration = Settings.defaultDuration;
+            elapsed = 0f;
+            delay = Settings.defaultDelay;
+            delayElapsed = 0f;
 
-            this.loops = 0;
-            this.loopType = LoopType.Restart;
-            this.iterations = 0;
+            loops = 0;
+            loopType = LoopType.Restart;
+            iterations = 0;
 
-            this.flags = 0;
-            this.reversed = false;
-            this.snapping = false;
-            this.autoStart = Settings.autoStart;
-            this.autoKill = Settings.autoKill;
-            this.recyclable = Settings.recyclable;
+            flags = 0;
+            reversed = false;
+            snapping = false;
+            autoStart = Settings.autoStart;
+            autoKill = Settings.autoKill;
+            recyclable = Settings.recyclable;
 
-            this.onUpdate = null;
-            this.onStart = null;
-            this.onStop = null;
-            this.onLoop = null;
-            this.onComplete = null;
-            this.onKill = null;
+            onUpdate = null;
+            onStart = null;
+            onStop = null;
+            onLoop = null;
+            onComplete = null;
+            onKill = null;
 
             OnReset();
         }
 
         internal bool GetFlag(Flag flag)
         {
-            return this.flags.Has(flag);
+            return flags.Has(flag);
         }
 
         internal void SetFlag(Flag flag, bool on)
         {
             if (on) {
-                this.flags |= flag;
+                flags |= flag;
             } else {
-                this.flags &= ~flag;
+                flags &= ~flag;
             }
         }
 
@@ -497,7 +497,7 @@ namespace Zigurous.Tweening
         /// Determines if the tween has finished playing.
         /// </summary>
         /// <returns>True if the tween has finished playing.</returns>
-        protected virtual bool IsFinished() => this.elapsed >= this.duration;
+        protected virtual bool IsFinished() => elapsed >= duration;
 
         /// <summary>
         /// Override to handle custom logic when the tween is updated.
