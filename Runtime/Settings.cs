@@ -54,35 +54,35 @@ namespace Zigurous.Tweening
 
         [SerializeField]
         [Tooltip("The default Ease assigned to every tween.")]
-        private Ease _defaultEase = Ease.QuadOut;
+        private Ease m_DefaultEase = Ease.QuadOut;
 
         [SerializeField]
         [Tooltip("The default amount of seconds a tween takes to complete.")]
-        private float _defaultDuration = 0.3f;
+        private float m_DefaultDuration = 0.3f;
 
         [SerializeField]
         [Tooltip("The default amount of seconds before every tween starts.")]
-        private float _defaultDelay = 0f;
+        private float m_DefaultDelay = 0f;
 
         [SerializeField]
         [Tooltip("The overshoot value used in easing functions.")]
-        private float _overshoot = 1.70158f;
+        private float m_Overshoot = 1.70158f;
 
         [SerializeField]
         [Tooltip("The initial amount of tweens memory is allocated for when the system starts. Additional memory will be allocated as needed.")]
-        private int _initialCapacity = 16;
+        private int m_InitialCapacity = 16;
 
         [SerializeField]
         [Tooltip("Automatically starts tweens after being created, by default. This setting can be overridden by individual tweens.")]
-        private bool _autoStart = true;
+        private bool m_AutoStart = true;
 
         [SerializeField]
         [Tooltip("Automatically kills tweens after being completed, by default. This setting can be overridden by individual tweens.")]
-        private bool _autoKill = true;
+        private bool m_AutoKill = true;
 
         [SerializeField]
         [Tooltip("Keeps tweens in memory to be re-used after being killed, by default. This setting can be overridden by individual tweens.")]
-        private bool _recyclable = true;
+        private bool m_Recyclable = true;
 
         private void OnValidate()
         {
@@ -96,14 +96,14 @@ namespace Zigurous.Tweening
 
         private void UpdateSettings()
         {
-            Settings.defaultEase = _defaultEase;
-            Settings.defaultDuration = _defaultDuration;
-            Settings.defaultDelay = _defaultDelay;
-            Settings.overshoot = _overshoot;
-            Settings.initialCapacity = _initialCapacity;
-            Settings.autoStart = _autoStart;
-            Settings.autoKill = _autoKill;
-            Settings.recyclable = _recyclable;
+            Settings.defaultEase = m_DefaultEase;
+            Settings.defaultDuration = m_DefaultDuration;
+            Settings.defaultDelay = m_DefaultDelay;
+            Settings.overshoot = m_Overshoot;
+            Settings.initialCapacity = m_InitialCapacity;
+            Settings.autoStart = m_AutoStart;
+            Settings.autoKill = m_AutoKill;
+            Settings.recyclable = m_Recyclable;
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Zigurous.Tweening
         /// <param name="ease">The Ease to set as the default.</param>
         public void SetDefaultEase(Ease ease)
         {
-            _defaultEase = ease;
+            m_DefaultEase = ease;
             Settings.defaultEase = ease;
         }
 
@@ -122,7 +122,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The amount of seconds to set as the default.</param>
         public void SetDefaultDuration(float duration)
         {
-            _defaultDuration = duration;
+            m_DefaultDuration = duration;
             Settings.defaultDuration = duration;
         }
 
@@ -132,7 +132,7 @@ namespace Zigurous.Tweening
         /// <param name="delay">The amount of seconds to set as the default.</param>
         public void SetDefaultDelay(float delay)
         {
-            _defaultDelay = delay;
+            m_DefaultDelay = delay;
             Settings.defaultDelay = delay;
         }
 
@@ -142,7 +142,7 @@ namespace Zigurous.Tweening
         /// <param name="overshoot">The overshoot value to set.</param>
         public void SetOvershoot(float overshoot)
         {
-            _overshoot = overshoot;
+            m_Overshoot = overshoot;
             Settings.overshoot = overshoot;
         }
 
@@ -153,7 +153,7 @@ namespace Zigurous.Tweening
         /// <param name="initialCapacity">The initial capacity to set.</param>
         public void SetInitialCapacity(int initialCapacity)
         {
-            _initialCapacity = initialCapacity;
+            m_InitialCapacity = initialCapacity;
             Settings.initialCapacity = initialCapacity;
         }
 
@@ -164,7 +164,7 @@ namespace Zigurous.Tweening
         /// <param name="autoStart">Whether to automatically start tweens after being created.</param>
         public void SetAutoStart(bool autoStart)
         {
-            _autoStart = autoStart;
+            m_AutoStart = autoStart;
             Settings.autoStart = autoStart;
         }
 
@@ -175,7 +175,7 @@ namespace Zigurous.Tweening
         /// <param name="autoKill">Whether to automatically kill tweens after being completed.</param>
         public void SetAutoKill(bool autoKill)
         {
-            _autoKill = autoKill;
+            m_AutoKill = autoKill;
             Settings.autoKill = autoKill;
         }
 
@@ -186,7 +186,7 @@ namespace Zigurous.Tweening
         /// <param name="recyclable">Whether to allow tweens to be recycled.</param>
         public void SetRecyclable(bool recyclable)
         {
-            _recyclable = recyclable;
+            m_Recyclable = recyclable;
             Settings.recyclable = recyclable;
         }
 

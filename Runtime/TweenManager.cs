@@ -16,27 +16,27 @@ namespace Zigurous.Tweening
         /// </summary>
         internal List<Tween> tweens = new List<Tween>(Settings.initialCapacity);
 
-        private static bool _isUnloading = false;
-        private static object _lock = new object();
+        private static bool isUnloading = false;
+        private static object lockObject = new object();
 
-        public static bool HasInstance => _instance != null;
+        public static bool HasInstance => instance != null;
 
-        private static volatile TweenManager _instance;
+        private static volatile TweenManager instance;
         internal static TweenManager Instance
         {
             get
             {
-                if (_isUnloading) {
+                if (isUnloading) {
                     return null;
                 }
 
-                if (_instance == null)
+                if (instance == null)
                 {
-                    lock (_lock)
+                    lock (lockObject)
                     {
-                        _instance = FindObjectOfType<TweenManager>();
+                        instance = FindObjectOfType<TweenManager>();
 
-                        if (_instance == null)
+                        if (instance == null)
                         {
                             GameObject singleton = new GameObject();
                             singleton.name = typeof(TweenManager).Name;
@@ -47,18 +47,17 @@ namespace Zigurous.Tweening
                     }
                 }
 
-                return _instance;
+                return instance;
             }
         }
 
         private void Awake()
         {
-            _isUnloading = false;
+            isUnloading = false;
 
-            if (_instance == null)
+            if (instance == null)
             {
-                _instance = this;
-
+                instance = this;
                 SceneManager.sceneUnloaded += SceneUnloaded;
             }
             else
@@ -69,12 +68,11 @@ namespace Zigurous.Tweening
 
         private void OnDestroy()
         {
-            _isUnloading = true;
+            isUnloading = true;
 
-            if (_instance == this)
+            if (instance == this)
             {
-                _instance = null;
-
+                instance = null;
                 SceneManager.sceneUnloaded -= SceneUnloaded;
             }
 
