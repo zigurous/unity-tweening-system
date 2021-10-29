@@ -11,15 +11,8 @@ namespace Zigurous.Tweening
     [AddComponentMenu("")]
     internal sealed class TweenManager : MonoBehaviour
     {
-        /// <summary>
-        /// A list of all alive tween objects.
-        /// </summary>
-        internal List<Tween> tweens = new List<Tween>(Settings.initialCapacity);
-
         private static bool isUnloading = false;
         private static object lockObject = new object();
-
-        public static bool HasInstance => instance != null;
 
         private static volatile TweenManager instance;
         internal static TweenManager Instance
@@ -50,6 +43,10 @@ namespace Zigurous.Tweening
                 return instance;
             }
         }
+
+        public static bool HasInstance => instance != null;
+
+        internal List<Tween> tweens = new List<Tween>(Settings.initialCapacity);
 
         private void Awake()
         {
