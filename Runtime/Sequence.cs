@@ -41,6 +41,7 @@ namespace Zigurous.Tweening
             type = TweenType.Sequence;
         }
 
+        /// <inheritdoc/>
         public override void Animate()
         {
             // Do nothing. The individual tweens are animated on their own.
