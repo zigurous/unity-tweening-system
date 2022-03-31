@@ -1,0 +1,25 @@
+apiRules:
+- exclude:
+    uidRegex: ^System
+- exclude:
+    uidRegex: ^UnityEngine
+- exclude:
+    uidRegex: ^UnityEditor
+- exclude:
+    uidRegex: ^Zigurous.Tweening.Sequence.Animate
+- exclude:
+    uidRegex: ^Zigurous.Tweening.Sequence.IsFinished
+- exclude:
+    uidRegex: ^Zigurous.Tweening.Sequence.On*
+- exclude:
+    uidRegex: ^Zigurous.Tweening.Tween.IsFinished
+- exclude:
+    uidRegex: ^Zigurous.Tweening.Tween.On*
+- exclude:
+    uidRegex: ^Zigurous.Tweening.Tweener`1.Animate
+- exclude:
+    uidRegex: ^Zigurous.Tweening.Tweener`1.IsFinished
+- exclude:
+    uidRegex: ^Zigurous.Tweening.Tweener`1.On*
+- exclude:
+    uidRegex: ^Zigurous.Tweening.*.Tweens
