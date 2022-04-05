@@ -41,8 +41,8 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
-          cache: 'yarn'
+          node-version: 14
+          cache: yarn
           cache-dependency-path: docs~/yarn.lock
 
       - name: Install dependencies
@@ -75,17 +75,20 @@ jobs:
     needs: build
     runs-on: windows-latest
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
+      - name: Dispatch workflow
+        uses: actions/github-script@v6
         with:
-          name: docs
-          path: docs
-
-      - name: Publish
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.DOCS_TOKEN }}
-          external_repository: zigurous/docs
-          destination_dir: ${{ env.BASE_PATH }}
-          publish_dir: docs
-          publish_branch: main
+          github-token: ${{ secrets.DOCS_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'zigurous',
+              repo: 'docs',
+              ref: 'main',
+              workflow_id: 'publish.yml',
+              inputs: {
+                path: process.env.BASE_PATH,
+                repo: process.env.GITHUB_REPOSITORY,
+                commit: context.sha,
+                workflow: 'generate_docs.yml'
+              }
+            })
