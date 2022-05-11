@@ -45,6 +45,7 @@ namespace Zigurous.Tweening
         }
 
         public static bool HasInstance => instance != null;
+        internal static bool Unloading => isUnloading;
 
         internal List<Tween> tweens = new List<Tween>(Settings.initialCapacity);
 

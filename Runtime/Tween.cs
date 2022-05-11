@@ -220,7 +220,10 @@ namespace Zigurous.Tweening
         public Tween()
         {
             Reset();
-            TweenManager.Instance.Track(this);
+
+            if (!TweenManager.Unloading) {
+                TweenManager.Instance.Track(this);
+            }
         }
 
         /// <summary>

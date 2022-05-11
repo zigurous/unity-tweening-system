@@ -206,6 +206,10 @@ namespace Zigurous.Tweening
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(Interpolater<T> interpolater, TweenGetter<T> getter, TweenSetter<T> setter, T endValue, float duration)
         {
+            if (TweenManager.Unloading) {
+                return null;
+            }
+
             Tweener<T> tween = TweenManager.Instance.BuildTweener<T>();
             tween.interpolater = interpolater;
             tween.getter = getter;
@@ -213,6 +217,7 @@ namespace Zigurous.Tweening
             tween.endValue = endValue;
             tween.duration = duration;
             tween.reversed = false;
+
             return tween;
         }
 
@@ -373,6 +378,10 @@ namespace Zigurous.Tweening
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From<T>(Interpolater<T> interpolater, TweenGetter<T> getter, TweenSetter<T> setter, T endValue, float duration)
         {
+            if (TweenManager.Unloading) {
+                return null;
+            }
+
             Tweener<T> tween = TweenManager.Instance.BuildTweener<T>();
             tween.interpolater = interpolater;
             tween.getter = getter;
@@ -380,6 +389,7 @@ namespace Zigurous.Tweening
             tween.endValue = endValue;
             tween.duration = duration;
             tween.reversed = true;
+
             return tween;
         }
 
@@ -389,7 +399,11 @@ namespace Zigurous.Tweening
         /// <returns>The new tween sequence.</returns>
         public static Sequence Sequence()
         {
-            return TweenManager.Instance.BuildSequence();
+            if (!TweenManager.Unloading) {
+                return TweenManager.Instance.BuildSequence();
+            } else {
+                return null;
+            }
         }
 
         /// <summary>
@@ -399,6 +413,10 @@ namespace Zigurous.Tweening
         /// <returns>The new tween sequence.</returns>
         public static Sequence Sequence(params Tween[] tweens)
         {
+            if (TweenManager.Unloading) {
+                return null;
+            }
+
             Sequence sequence = TweenManager.Instance.BuildSequence();
 
             if (tweens != null && tweens.Length > 0) {
