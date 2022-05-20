@@ -10,22 +10,32 @@ The system is lightweight, optimized, type-safe, and memory efficient. Hundreds 
 
 <hr/>
 
-## 📌 Overview
+## Overview
 
-- [Scripting API](/api/Zigurous.Tweening)
-- [Installation](/manual/installation)
-- [Changelog](/changelog)
-- [License](/license)
+#### ⚙️ [Installation](/installation)
+
+#### 🧰 [Scripting API](/api/Zigurous.Tweening)
+
+#### 📋 [Changelog](/changelog)
+
+#### ⚖️ [License](/license)
 
 <hr/>
 
-## 📖 Reference
+## Reference
 
-- [Tweens](/manual/tweens)
-- [Sequences](/manual/sequences)
-- [Easing](/manual/easing)
-- [Callbacks](/manual/callbacks)
-- [Property Chaining](/manual/property-chaining)
-- [Managing Tweens](/manual/managing-tweens)
-- [Supported Types](/manual/supported-types)
-- [Settings](/manual/settings)
+#### 🚀 [Tweens](/manual/tweens)
+
+#### 🧬 [Sequences](/manual/sequences)
+
+#### 〽️ [Easing](/manual/easing)
+
+#### 🗣️ [Callbacks](/manual/callbacks)
+
+#### ⛓️ [Property Chaining](/manual/property-chaining)
+
+#### 🏷️ [Managing Tweens](/manual/managing-tweens)
+
+#### 💠 [Supported Types](/manual/supported-types)
+
+#### 🎛️ [Settings](/manual/settings)

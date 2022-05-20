@@ -35,7 +35,7 @@ Settings.recyclable = true;
 
 <hr/>
 
-## 🖥️ Changing settings in the editor
+## 🎛️ Changing settings in the editor
 
 The [Settings](/api/Zigurous.Tweening/Settings) class can also be used as a MonoBehaviour added to your scene. This is generally used to provide a simple interface for changing settings in the Unity editor rather than with code. You can, of course, still use this behavior to change settings at runtime if desired, in which case there is a function to set each respective setting.
 
