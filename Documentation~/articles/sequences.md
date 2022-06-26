@@ -43,6 +43,6 @@ Sequences can be controlled the same way as any other tween, meaning you can pla
 ```csharp
 Sequence sequence = Tweening.Sequence();
 sequence.SetLoops(-1, LoopType.PingPong);
-sequence.OnComplete(() => Debug.Log("sucess!"));
+sequence.OnComplete(() => Debug.Log("success!"));
 sequence.Play();
 ```
