@@ -95,7 +95,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// The tween's percentage of completion.
         /// </summary>
-        public float PercentComplete => UnityEngine.Mathf.Clamp01(elapsed / duration);
+        public float PercentComplete => duration > 0f ? UnityEngine.Mathf.Clamp01(elapsed / duration) : 1f;
 
         /// <summary>
         /// The amount of seconds the tween waits before playing after being
