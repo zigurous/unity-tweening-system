@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.2] - 2022/10/16
+
+### Fixed
+
+- Fixed tweens not updating when the duration is set to zero
+
+### Added
+
+- New extension method `ShadowTweens.TweenAlpha`
+
+### Changed
+
+- Renamed `ShadowTweens.TweenEffectColor` to `ShadowTweens.TweenColor`
+- Renamed `ShadowTweens.TweenEffectDistance` to `ShadowTweens.TweenDistance`
+
 ## [2.6.1] - 2022/05/11
 
 ### Fixed
