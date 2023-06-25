@@ -17,7 +17,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="target">The target component.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetTarget<T>(this T tween, Component target) where T: Tween
+        public static T SetTarget<T>(this T tween, Component target) where T : Tween
         {
             if (tween != null && target != null)
             {
@@ -36,7 +36,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="target">The target component.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetTarget<T>(this T tween, GameObject target) where T: Tween
+        public static T SetTarget<T>(this T tween, GameObject target) where T : Tween
         {
             if (tween != null && target != null)
             {
@@ -54,7 +54,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="id">The id to set.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetId<T>(this T tween, int id) where T: Tween
+        public static T SetId<T>(this T tween, int id) where T : Tween
         {
             if (tween != null) {
                 tween.id = id;
@@ -70,7 +70,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="index">The scene index to set.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetSceneIndex<T>(this T tween, int index) where T: Tween
+        public static T SetSceneIndex<T>(this T tween, int index) where T : Tween
         {
             if (tween != null) {
                 tween.sceneIndex = index;
@@ -86,7 +86,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="ease">The ease to set.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetEase<T>(this T tween, Ease ease) where T: Tween
+        public static T SetEase<T>(this T tween, Ease ease) where T : Tween
         {
             if (tween != null) {
                 tween.ease = ease;
@@ -102,7 +102,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="duration">The duration to set.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetDuration<T>(this T tween, float duration) where T: Tween
+        public static T SetDuration<T>(this T tween, float duration) where T : Tween
         {
             if (tween != null) {
                 tween.duration = duration;
@@ -118,7 +118,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="delay">The delay to set.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetDelay<T>(this T tween, float delay) where T: Tween
+        public static T SetDelay<T>(this T tween, float delay) where T : Tween
         {
             if (tween != null) {
                 tween.delay = delay;
@@ -135,7 +135,7 @@ namespace Zigurous.Tweening
         /// <param name="loops">The number of loops to set.</param>
         /// <param name="loopType">The type of loop style to set.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetLoops<T>(this T tween, int loops, LoopType loopType = LoopType.Restart) where T: Tween
+        public static T SetLoops<T>(this T tween, int loops, LoopType loopType = LoopType.Restart) where T : Tween
         {
             if (tween != null)
             {
@@ -153,7 +153,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="reversed">True if the tween is to be played in reverse.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetReversed<T>(this T tween, bool reversed = true) where T: Tween
+        public static T SetReversed<T>(this T tween, bool reversed = true) where T : Tween
         {
             if (tween != null) {
                 tween.reversed = reversed;
@@ -169,7 +169,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="snapping">True if interpolated values should be snapped to whole numbers.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetSnapping<T>(this T tween, bool snapping = true) where T: Tween
+        public static T SetSnapping<T>(this T tween, bool snapping = true) where T : Tween
         {
             if (tween != null) {
                 tween.snapping = snapping;
@@ -185,7 +185,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="recyclable">True if the tween is to be recycled.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetRecyclable<T>(this T tween, bool recyclable) where T: Tween
+        public static T SetRecyclable<T>(this T tween, bool recyclable) where T : Tween
         {
             if (tween != null) {
                 tween.recyclable = recyclable;
@@ -201,7 +201,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="autoStart">True if the tween is to be started automatically.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetAutoStart<T>(this T tween, bool autoStart) where T: Tween
+        public static T SetAutoStart<T>(this T tween, bool autoStart) where T : Tween
         {
             if (tween != null) {
                 tween.autoStart = autoStart;
@@ -217,7 +217,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="autoKill">True if the tween is to be killed automatically.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T SetAutoKill<T>(this T tween, bool autoKill) where T: Tween
+        public static T SetAutoKill<T>(this T tween, bool autoKill) where T : Tween
         {
             if (tween != null) {
                 tween.autoKill = autoKill;
@@ -233,7 +233,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="callback">The callback to invoke.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T OnUpdate<T>(this T tween, TweenCallback callback) where T: Tween
+        public static T OnUpdate<T>(this T tween, TweenCallback callback) where T : Tween
         {
             if (tween != null) {
                 tween.onUpdate += callback;
@@ -249,7 +249,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="callback">The callback to invoke.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T OnStart<T>(this T tween, TweenCallback callback) where T: Tween
+        public static T OnStart<T>(this T tween, TweenCallback callback) where T : Tween
         {
             if (tween != null) {
                 tween.onStart += callback;
@@ -265,7 +265,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="callback">The callback to invoke.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T OnStop<T>(this T tween, TweenCallback callback) where T: Tween
+        public static T OnStop<T>(this T tween, TweenCallback callback) where T : Tween
         {
             if (tween != null) {
                 tween.onStop += callback;
@@ -281,7 +281,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="callback">The callback to invoke.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T OnLoop<T>(this T tween, TweenCallback callback) where T: Tween
+        public static T OnLoop<T>(this T tween, TweenCallback callback) where T : Tween
         {
             if (tween != null) {
                 tween.onLoop += callback;
@@ -297,7 +297,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="callback">The callback to invoke.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T OnComplete<T>(this T tween, TweenCallback callback) where T: Tween
+        public static T OnComplete<T>(this T tween, TweenCallback callback) where T : Tween
         {
             if (tween != null) {
                 tween.onComplete += callback;
@@ -313,7 +313,7 @@ namespace Zigurous.Tweening
         /// <param name="tween">The tween to assign the value to.</param>
         /// <param name="callback">The callback to invoke.</param>
         /// <returns>The tween itself to allow for chaining.</returns>
-        public static T OnKill<T>(this T tween, TweenCallback callback) where T: Tween
+        public static T OnKill<T>(this T tween, TweenCallback callback) where T : Tween
         {
             if (tween != null) {
                 tween.onKill += callback;

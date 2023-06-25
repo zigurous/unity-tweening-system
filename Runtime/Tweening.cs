@@ -467,7 +467,7 @@ namespace Zigurous.Tweening
         /// </summary>
         /// <typeparam name="T">The type of the target object.</typeparam>
         /// <param name="target">The target object to play the tweens of.</param>
-        public static void Play<T>(T target) where T: class
+        public static void Play<T>(T target) where T : class
         {
             Play(target.GetHashCode());
         }
@@ -513,7 +513,7 @@ namespace Zigurous.Tweening
         /// </summary>
         /// <typeparam name="T">The type of the target object.</typeparam>
         /// <param name="target">The target object to stop the tweens of.</param>
-        public static void Stop<T>(T target) where T: class
+        public static void Stop<T>(T target) where T : class
         {
             Stop(target.GetHashCode());
         }
@@ -559,7 +559,7 @@ namespace Zigurous.Tweening
         /// </summary>
         /// <typeparam name="T">The type of the target object.</typeparam>
         /// <param name="target">The target object to restart the tweens of.</param>
-        public static void Restart<T>(T target) where T: class
+        public static void Restart<T>(T target) where T : class
         {
             Restart(target.GetHashCode());
         }
@@ -605,7 +605,7 @@ namespace Zigurous.Tweening
         /// </summary>
         /// <typeparam name="T">The type of the target object.</typeparam>
         /// <param name="target">The target object to complete the tweens of.</param>
-        public static void Complete<T>(T target) where T: class
+        public static void Complete<T>(T target) where T : class
         {
             Complete(target.GetHashCode());
         }
@@ -657,7 +657,7 @@ namespace Zigurous.Tweening
         /// <typeparam name="T">The type of the target object.</typeparam>
         /// <param name="target">The target object to kill the tweens of.</param>
         /// <param name="complete">Whether to complete the tweens before being killed.</param>
-        public static void KillTweens<T>(this T target, bool complete = false) where T: class
+        public static void KillTweens<T>(this T target, bool complete = false) where T : class
         {
             Kill(target.GetHashCode(), complete);
         }
