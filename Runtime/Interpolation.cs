@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Zigurous.Tweening
 {
@@ -7,6 +7,20 @@ namespace Zigurous.Tweening
     /// </summary>
     public static class Interpolation
     {
+        internal static readonly Interpolater<float> _float = Lerp;
+        internal static readonly Interpolater<double> _double = Lerp;
+        internal static readonly Interpolater<int> _int = Lerp;
+        internal static readonly Interpolater<long> _long = Lerp;
+        internal static readonly Interpolater<short> _short = Lerp;
+        internal static readonly Interpolater<Vector2> _Vector2 = Lerp;
+        internal static readonly Interpolater<Vector2Int> _Vector2Int = Lerp;
+        internal static readonly Interpolater<Vector3> _Vector3 = Lerp;
+        internal static readonly Interpolater<Vector3Int> _Vector3Int = Lerp;
+        internal static readonly Interpolater<Vector4> _Vector4 = Lerp;
+        internal static readonly Interpolater<Quaternion> _Quaternion = Lerp;
+        internal static readonly Interpolater<Rect> _Rect = Lerp;
+        internal static readonly Interpolater<Color> _Color = Lerp;
+
         /// <summary>
         /// Linearly interpolates between <paramref name="a"/> and
         /// <paramref name="b"/> by <paramref name="t"/>.
@@ -197,7 +211,7 @@ namespace Zigurous.Tweening
         /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Vector2 Snap(Vector2 value)
         {
-            return new Vector2(Mathf.RoundToInt(value.x), Mathf.RoundToInt(value.y));
+            return new Vector2(Mathf.Round(value.x), Mathf.Round(value.y));
         }
 
         /// <summary>
@@ -207,7 +221,7 @@ namespace Zigurous.Tweening
         /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Vector3 Snap(Vector3 value)
         {
-            return new Vector3(Mathf.RoundToInt(value.x), Mathf.RoundToInt(value.y), Mathf.RoundToInt(value.z));
+            return new Vector3(Mathf.Round(value.x), Mathf.Round(value.y), Mathf.Round(value.z));
         }
 
         /// <summary>
@@ -217,7 +231,7 @@ namespace Zigurous.Tweening
         /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Vector4 Snap(Vector4 value)
         {
-            return new Vector4(Mathf.RoundToInt(value.x), Mathf.RoundToInt(value.y), Mathf.RoundToInt(value.z), Mathf.RoundToInt(value.w));
+            return new Vector4(Mathf.Round(value.x), Mathf.Round(value.y), Mathf.Round(value.z), Mathf.Round(value.w));
         }
 
         /// <summary>

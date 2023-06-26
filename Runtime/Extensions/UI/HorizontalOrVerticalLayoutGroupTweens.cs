@@ -5,10 +5,8 @@ namespace Zigurous.Tweening
     public static class HorizontalOrVerticalLayoutGroupTweens
     {
         public static Tween TweenSpacing(this HorizontalOrVerticalLayoutGroup layoutGroup, float to, float duration) =>
-            Tweening.To(getter: () => layoutGroup.spacing,
-                        setter: spacing => layoutGroup.spacing = spacing,
-                        to, duration).SetTarget(layoutGroup);
-
+            Tweening.To(layoutGroup, (source) => source.spacing, (source, value) => source.spacing = value, to, duration)
+                    .SetTarget(layoutGroup);
     }
 
 }

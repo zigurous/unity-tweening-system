@@ -114,23 +114,23 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Recycles or creates a new tween object.
         /// </summary>
-        internal Tweener<T> BuildTweener<T>()
+        internal Tweener<S,T> BuildTweener<S,T>()
         {
-            Tweener<T> tweener = null;
+            Tweener<S,T> tweener = null;
 
             foreach (Tween tween in tweens)
             {
                 if (tween.internalState == InternalTweenState.Recycled &&
                     tween.type == TweenType.Tweener &&
-                    tween.template == typeof(T))
+                    tween.template == typeof(Tweener<S,T>))
                 {
-                    tweener = (Tweener<T>)tween;
+                    tweener = (Tweener<S,T>)tween;
                     break;
                 }
             }
 
             if (tweener == null) {
-                tweener = new Tweener<T>();
+                tweener = new Tweener<S,T>();
             } else {
                 tweener.Reset();
             }

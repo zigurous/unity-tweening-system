@@ -1,12 +1,18 @@
 ﻿namespace Zigurous.Tweening
 {
     /// <summary>
-    /// A tween that animates a parameter over time from a start value to an end
-    /// value.
+    /// A tween that animates a parameter over time on a source object from a
+    /// start value to an end value.
     /// </summary>
-    /// <typeparam name="T">The type of the parameter to tween.</typeparam>
-    public class Tweener<T> : Tween
+    /// <typeparam name="S">The type of object to tween.</typeparam>
+    /// <typeparam name="T">The type of parameter to tween.</typeparam>
+    public class Tweener<S,T> : Tween
     {
+        /// <summary>
+        /// The source object being tweened.
+        /// </summary>
+        public S source;
+
         /// <summary>
         /// The function that interpolates values between the tween's start and
         /// end value.
@@ -17,12 +23,12 @@
         /// The function that gets the current value of the parameter being
         /// tweened.
         /// </summary>
-        public TweenGetter<T> getter;
+        public TweenGetter<S,T> getter;
 
         /// <summary>
         /// The function that sets a new value of the parameter being tweened.
         /// </summary>
-        public TweenSetter<T> setter;
+        public TweenSetter<S,T> setter;
 
         /// <summary>
         /// The initial value of the parameter at the start of the tween.
@@ -40,7 +46,7 @@
         public Tweener() : base()
         {
             type = TweenType.Tweener;
-            template = typeof(T);
+            template = typeof(Tweener<S,T>);
         }
 
         /// <inheritdoc/>
@@ -57,20 +63,21 @@
             }
 
             float time = EaseFunction.lookup[ease](percent);
-            setter(interpolater(startValue, endValue, time, snapping));
+            setter(source, interpolater(startValue, endValue, time, snapping));
         }
 
         /// <inheritdoc/>
         protected override void OnStart()
         {
             if (iterations == 0 && getter != null) {
-                startValue = getter();
+                startValue = getter(source);
             }
         }
 
         /// <inheritdoc/>
         protected override void OnKill()
         {
+            source = default(S);
             interpolater = null;
             getter = null;
             setter = null;
@@ -79,6 +86,7 @@
         /// <inheritdoc/>
         protected override void OnReset()
         {
+            source = default(S);
             interpolater = null;
             getter = null;
             setter = null;

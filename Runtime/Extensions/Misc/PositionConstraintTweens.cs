@@ -6,20 +6,16 @@ namespace Zigurous.Tweening
     public static class PositionConstraintTweens
     {
         public static Tween TweenWeight(this PositionConstraint constraint, float to, float duration) =>
-            Tweening.To(getter: () => constraint.weight,
-                        setter: weight => constraint.weight = weight,
-                        to, duration).SetTarget(constraint);
+            Tweening.To(constraint, (source) => source.weight, (source, value) => source.weight = value, to, duration)
+                    .SetTarget(constraint);
 
         public static Tween TweenTranslationAtRest(this PositionConstraint constraint, Vector3 to, float duration) =>
-            Tweening.To(getter: () => constraint.translationAtRest,
-                        setter: translationAtRest => constraint.translationAtRest = translationAtRest,
-                        to, duration).SetTarget(constraint);
+            Tweening.To(constraint, (source) => source.translationAtRest, (source, value) => source.translationAtRest = value, to, duration)
+                    .SetTarget(constraint);
 
         public static Tween TweenTranslationOffset(this PositionConstraint constraint, Vector3 to, float duration) =>
-            Tweening.To(getter: () => constraint.translationOffset,
-                        setter: translationOffset => constraint.translationOffset = translationOffset,
-                        to, duration).SetTarget(constraint);
-
+            Tweening.To(constraint, (source) => source.translationOffset, (source, value) => source.translationOffset = value, to, duration)
+                    .SetTarget(constraint);
     }
 
 }
