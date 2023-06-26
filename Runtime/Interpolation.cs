@@ -76,8 +76,19 @@ namespace Zigurous.Tweening
         /// <returns>The interpolated value between the start and end value.</returns>
         public static long Lerp(long a, long b, float t, bool snapping = false)
         {
-            long value = (long)Mathf.Lerp(a, b, t);
-            return snapping ? (int)value : value;
+
+        /// <summary>
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
+        /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
+        public static short Lerp(short a, short b, float t, bool snapping = false)
+        {
+            return (short)Mathf.Lerp(a, b, t);
         }
 
         /// <summary>

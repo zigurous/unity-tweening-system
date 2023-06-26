@@ -116,6 +116,20 @@ namespace Zigurous.Tweening
         /// <param name="endValue">The end value of the parameter.</param>
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
+        public static Tween To<S>(S source, TweenGetter<S, short> getter, TweenSetter<S, short> setter, short endValue, float duration) =>
+            To(Interpolation._short, source, getter, setter, endValue, duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter to a given end value over
+        /// a set duration.
+        /// </summary>
+        /// <typeparam name="S">The type of object to tween.</typeparam>
+        /// <param name="source">The source object to tween.</param>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<S>(S source, TweenGetter<S, Vector2> getter, TweenSetter<S, Vector2> setter, Vector2 endValue, float duration) =>
             To(Interpolation._Vector2, source, getter, setter, endValue, duration);
 
@@ -302,6 +316,20 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From<S>(S source, TweenGetter<S, long> getter, TweenSetter<S, long> setter, long endValue, float duration) =>
+            From(Interpolation.Lerp, source, getter, setter, endValue, duration);
+
+        /// <summary>
+        /// Creates a tween that animates a parameter from a given end value to
+        /// the current value over a set duration.
+        /// </summary>
+        /// <typeparam name="S">The type of object to tween.</typeparam>
+        /// <param name="source">The source object to tween.</param>
+        /// <param name="getter">The function that gets the current value of the parameter.</param>
+        /// <param name="setter">The function that sets a new value of the parameter.</param>
+        /// <param name="endValue">The end value of the parameter.</param>
+        /// <param name="duration">The duration of the tween.</param>
+        /// <returns>A new tween that animates the parameter.</returns>
+        public static Tween From<S>(S source, TweenGetter<S, short> getter, TweenSetter<S, short> setter, short endValue, float duration) =>
             From(Interpolation.Lerp, source, getter, setter, endValue, duration);
 
         /// <summary>
