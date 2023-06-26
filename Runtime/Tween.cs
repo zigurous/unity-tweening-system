@@ -1,6 +1,4 @@
-﻿using UnityEngine.SceneManagement;
-
-namespace Zigurous.Tweening
+﻿namespace Zigurous.Tweening
 {
     /// <summary>
     /// The base class of every tween.
@@ -450,7 +448,7 @@ namespace Zigurous.Tweening
         internal void Reset()
         {
             id = -1;
-            sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            sceneIndex = -1;
 
             state = TweenState.Ready;
             internalState = InternalTweenState.Queued;
