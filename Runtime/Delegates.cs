@@ -20,10 +20,16 @@
     public delegate void TweenSetter<T,U>(T target, U value);
 
     /// <summary>
-    /// A function delegate that can be invoked during various tween events
-    /// and/or state changes, such as on complete.
+    /// A function delegate invoked during tween lifecycle events.
     /// </summary>
     public delegate void TweenCallback();
+
+    /// <summary>
+    /// A function delegate invoked during tween lifecycle events with a
+    /// provided reference to the tween that invoked the event.
+    /// </summary>
+    /// <param name="tween">The tween that invoked the event.</param>
+    public delegate void TweenReferenceCallback(Tween tween);
 
     /// <summary>
     /// A function delegate that interpolates the value between

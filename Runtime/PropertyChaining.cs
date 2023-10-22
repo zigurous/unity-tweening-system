@@ -320,6 +320,22 @@ namespace Zigurous.Tweening
         }
 
         /// <summary>
+        /// Sets the event handler on the tween.
+        /// </summary>
+        /// <typeparam name="T">The type of the tween.</typeparam>
+        /// <param name="tween">The tween to assign the event handler to.</param>
+        /// <param name="eventHandler">The event handler to assign.</param>
+        /// <returns>The tween itself to allow for chaining.</returns>
+        public static T SetEventHandler<T>(this T tween, ITweenEventHandler eventHandler) where T : Tween
+        {
+            if (tween != null) {
+                tween.eventHandler = eventHandler;
+            }
+
+            return tween;
+        }
+
+        /// <summary>
         /// Sets the callback to invoke when the tween is updated.
         /// </summary>
         /// <typeparam name="T">The type of the tween.</typeparam>

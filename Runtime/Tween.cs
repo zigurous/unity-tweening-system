@@ -182,35 +182,40 @@
         }
 
         /// <summary>
-        /// The callback invoked every time the tween is updated, i.e., any time
-        /// the parameter being animated is changed.
+        /// An event handler that responds to lifecycle events of the tween.
         /// </summary>
-        public TweenCallback onUpdate;
+        public ITweenEventHandler eventHandler;
 
         /// <summary>
-        /// The callback invoked when the tween is started.
+        /// An event invoked every time the tween is updated, i.e., any time the
+        /// parameter being animated is changed.
         /// </summary>
-        public TweenCallback onStart;
+        public event TweenCallback onUpdate;
 
         /// <summary>
-        /// The callback invoked when the tween is stopped.
+        /// An event invoked when the tween is started.
         /// </summary>
-        public TweenCallback onStop;
+        public event TweenCallback onStart;
 
         /// <summary>
-        /// The callback invoked when the tween is looped.
+        /// An event invoked when the tween is stopped.
         /// </summary>
-        public TweenCallback onLoop;
+        public event TweenCallback onStop;
 
         /// <summary>
-        /// The callback invoked when the tween is completed.
+        /// An event invoked when the tween is looped.
         /// </summary>
-        public TweenCallback onComplete;
+        public event TweenCallback onLoop;
 
         /// <summary>
-        /// The callback invoked when the tween is killed.
+        /// An event invoked when the tween is completed.
         /// </summary>
-        public TweenCallback onKill;
+        public event TweenCallback onComplete;
+
+        /// <summary>
+        /// An event invoked when the tween is killed.
+        /// </summary>
+        public event TweenCallback onKill;
 
         /// <summary>
         /// Creates a new tween object.
@@ -250,6 +255,10 @@
 
                 Animate();
                 OnUpdate();
+
+                if (eventHandler != null) {
+                    eventHandler.OnTweenUpdate(this);
+                }
 
                 if (onUpdate != null) {
                     onUpdate.Invoke();
@@ -313,6 +322,10 @@
             {
                 OnLoop();
 
+                if (eventHandler != null) {
+                    eventHandler.OnTweenLoop(this);
+                }
+
                 if (onLoop != null) {
                     onLoop.Invoke();
                 }
@@ -321,8 +334,15 @@
             OnStart();
             Animate();
 
-            if (iterations == 0 && onStart != null) {
-                onStart.Invoke();
+            if (iterations == 0)
+            {
+                if (eventHandler != null) {
+                    eventHandler.OnTweenStart(this);
+                }
+
+                if (onStart != null) {
+                    onStart.Invoke();
+                }
             }
         }
 
@@ -338,6 +358,10 @@
             state = TweenState.Stopped;
 
             OnStop();
+
+            if (eventHandler != null) {
+                eventHandler.OnTweenStop(this);
+            }
 
             if (onStop != null) {
                 onStop.Invoke();
@@ -397,6 +421,10 @@
             Animate();
             OnComplete();
 
+            if (eventHandler != null) {
+                eventHandler.OnTweenComplete(this);
+            }
+
             if (onComplete != null) {
                 onComplete.Invoke();
             }
@@ -421,10 +449,15 @@
 
             OnKill();
 
+            if (eventHandler != null) {
+                eventHandler.OnTweenKill(this);
+            }
+
             if (onKill != null) {
                 onKill.Invoke();
             }
 
+            eventHandler = null;
             onKill = null;
             onUpdate = null;
             onStart = null;
@@ -470,6 +503,7 @@
             autoKill = Settings.autoKill;
             recyclable = Settings.recyclable;
 
+            eventHandler = null;
             onUpdate = null;
             onStart = null;
             onStop = null;
