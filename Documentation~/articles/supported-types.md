@@ -10,8 +10,9 @@ When creating tweens using the generic functions, the following types of values 
 
 - `float`
 - `double`
-- `long`
 - `int`
+- `long`
+- `short`
 - `Vector2`
 - `Vector2Int`
 - `Vector3`
@@ -75,6 +76,7 @@ All of the following types offer shortcut functions for creating tweens:
 - `LineRenderer`
 - `LookAtConstraint`
 - `Material`
+- `MaterialPropertyBlock`
 - `NavMeshAgent`
 - `NavMeshObstacle`
 - `OcclusionArea`

@@ -5,25 +5,20 @@ namespace Zigurous.Tweening
     public static class SliderTweens
     {
         public static Tween TweenValue(this Slider slider, float to, float duration) =>
-            Tweening.To(getter: () => slider.value,
-                        setter: value => slider.value = value,
-                        to, duration).SetTarget(slider);
+            Tweening.To(slider, (target) => target.value, (target, value) => target.value = value, to, duration)
+                    .SetReference(slider);
 
         public static Tween TweenNormalizedValue(this Slider slider, float to, float duration) =>
-            Tweening.To(getter: () => slider.normalizedValue,
-                        setter: normalizedValue => slider.normalizedValue = normalizedValue,
-                        to, duration).SetTarget(slider);
+            Tweening.To(slider, (target) => target.normalizedValue, (target, value) => target.normalizedValue = value, to, duration)
+                    .SetReference(slider);
 
         public static Tween TweenMinValue(this Slider slider, float to, float duration) =>
-            Tweening.To(getter: () => slider.minValue,
-                        setter: minValue => slider.minValue = minValue,
-                        to, duration).SetTarget(slider);
+            Tweening.To(slider, (target) => target.minValue, (target, value) => target.minValue = value, to, duration)
+                    .SetReference(slider);
 
         public static Tween TweenMaxValue(this Slider slider, float to, float duration) =>
-            Tweening.To(getter: () => slider.maxValue,
-                        setter: maxValue => slider.maxValue = maxValue,
-                        to, duration).SetTarget(slider);
-
+            Tweening.To(slider, (target) => target.maxValue, (target, value) => target.maxValue = value, to, duration)
+                    .SetReference(slider);
     }
 
 }

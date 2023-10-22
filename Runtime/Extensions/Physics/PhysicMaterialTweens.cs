@@ -5,20 +5,16 @@ namespace Zigurous.Tweening
     public static class PhysicMaterialTweens
     {
         public static Tween TweenBounciness(this PhysicMaterial material, float to, float duration) =>
-            Tweening.To(getter: () => material.bounciness,
-                        setter: bounciness => material.bounciness = bounciness,
-                        to, duration).SetId(material.GetHashCode());
+            Tweening.To(material, (target) => target.bounciness, (target, value) => target.bounciness = value, to, duration)
+                    .SetReference(material);
 
         public static Tween TweenDynamicFriction(this PhysicMaterial material, float to, float duration) =>
-            Tweening.To(getter: () => material.dynamicFriction,
-                        setter: friction => material.dynamicFriction = friction,
-                        to, duration).SetId(material.GetHashCode());
+            Tweening.To(material, (target) => target.dynamicFriction, (target, value) => target.dynamicFriction = value, to, duration)
+                    .SetReference(material);
 
         public static Tween TweenStaticFriction(this PhysicMaterial material, float to, float duration) =>
-            Tweening.To(getter: () => material.staticFriction,
-                        setter: friction => material.staticFriction = friction,
-                        to, duration).SetId(material.GetHashCode());
-
+            Tweening.To(material, (target) => target.staticFriction, (target, value) => target.staticFriction = value, to, duration)
+                    .SetReference(material);
     }
 
 }

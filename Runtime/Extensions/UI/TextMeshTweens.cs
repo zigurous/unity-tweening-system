@@ -5,40 +5,32 @@ namespace Zigurous.Tweening
     public static class TextMeshTweens
     {
         public static Tween TweenColor(this TextMesh textMesh, Color to, float duration) =>
-            Tweening.To(getter: () => textMesh.color,
-                        setter: color => textMesh.color = color,
-                        to, duration).SetTarget(textMesh);
+            Tweening.To(textMesh, (target) => target.color, (target, value) => target.color = value, to, duration)
+                    .SetReference(textMesh);
 
         public static Tween TweenAlpha(this TextMesh textMesh, float to, float duration) =>
-            Tweening.To(getter: () => textMesh.color.a,
-                        setter: alpha => textMesh.color = new Color(textMesh.color.r, textMesh.color.g, textMesh.color.b, alpha),
-                        to, duration).SetTarget(textMesh);
+            Tweening.To(textMesh, (target) => target.color.a, (target, value) => target.color = new Color(target.color.r, target.color.g, target.color.b, value), to, duration)
+                    .SetReference(textMesh);
 
         public static Tween TweenFontSize(this TextMesh textMesh, int to, float duration) =>
-            Tweening.To(getter: () => textMesh.fontSize,
-                        setter: fontSize => textMesh.fontSize = fontSize,
-                        to, duration).SetTarget(textMesh);
+            Tweening.To(textMesh, (target) => target.fontSize, (target, value) => target.fontSize = value, to, duration)
+                    .SetReference(textMesh);
 
         public static Tween TweenOffsetZ(this TextMesh textMesh, float to, float duration) =>
-            Tweening.To(getter: () => textMesh.offsetZ,
-                        setter: offsetZ => textMesh.offsetZ = offsetZ,
-                        to, duration).SetTarget(textMesh);
+            Tweening.To(textMesh, (target) => target.offsetZ, (target, value) => target.offsetZ = value, to, duration)
+                    .SetReference(textMesh);
 
         public static Tween TweenCharacterSize(this TextMesh textMesh, float to, float duration) =>
-            Tweening.To(getter: () => textMesh.characterSize,
-                        setter: characterSize => textMesh.characterSize = characterSize,
-                        to, duration).SetTarget(textMesh);
+            Tweening.To(textMesh, (target) => target.characterSize, (target, value) => target.characterSize = value, to, duration)
+                    .SetReference(textMesh);
 
         public static Tween TweenLineSpacing(this TextMesh textMesh, float to, float duration) =>
-            Tweening.To(getter: () => textMesh.lineSpacing,
-                        setter: lineSpacing => textMesh.lineSpacing = lineSpacing,
-                        to, duration).SetTarget(textMesh);
+            Tweening.To(textMesh, (target) => target.lineSpacing, (target, value) => target.lineSpacing = value, to, duration)
+                    .SetReference(textMesh);
 
         public static Tween TweenTabSize(this TextMesh textMesh, float to, float duration) =>
-            Tweening.To(getter: () => textMesh.tabSize,
-                        setter: tabSize => textMesh.tabSize = tabSize,
-                        to, duration).SetTarget(textMesh);
-
+            Tweening.To(textMesh, (target) => target.tabSize, (target, value) => target.tabSize = value, to, duration)
+                    .SetReference(textMesh);
     }
 
 }

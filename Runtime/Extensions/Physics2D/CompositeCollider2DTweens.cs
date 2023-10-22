@@ -5,20 +5,16 @@ namespace Zigurous.Tweening
     public static class CompositeCollider2DTweens
     {
         public static Tween TweenVertexDistance(this CompositeCollider2D collider, float to, float duration) =>
-            Tweening.To(getter: () => collider.vertexDistance,
-                        setter: vertexDistance => collider.vertexDistance = vertexDistance,
-                        to, duration).SetTarget(collider);
+            Tweening.To(collider, (target) => target.vertexDistance, (target, value) => target.vertexDistance = value, to, duration)
+                    .SetReference(collider);
 
         public static Tween TweenEdgeRadius(this CompositeCollider2D collider, float to, float duration) =>
-            Tweening.To(getter: () => collider.edgeRadius,
-                        setter: edgeRadius => collider.edgeRadius = edgeRadius,
-                        to, duration).SetTarget(collider);
+            Tweening.To(collider, (target) => target.edgeRadius, (target, value) => target.edgeRadius = value, to, duration)
+                    .SetReference(collider);
 
         public static Tween TweenOffsetDistance(this CompositeCollider2D collider, float to, float duration) =>
-            Tweening.To(getter: () => collider.offsetDistance,
-                        setter: offsetDistance => collider.offsetDistance = offsetDistance,
-                        to, duration).SetTarget(collider);
-
+            Tweening.To(collider, (target) => target.offsetDistance, (target, value) => target.offsetDistance = value, to, duration)
+                    .SetReference(collider);
     }
 
 }

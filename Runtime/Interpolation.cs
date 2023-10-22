@@ -7,6 +7,20 @@ namespace Zigurous.Tweening
     /// </summary>
     public static class Interpolation
     {
+        internal static readonly Interpolater<float> _float = Lerp;
+        internal static readonly Interpolater<double> _double = Lerp;
+        internal static readonly Interpolater<int> _int = Lerp;
+        internal static readonly Interpolater<long> _long = Lerp;
+        internal static readonly Interpolater<short> _short = Lerp;
+        internal static readonly Interpolater<Vector2> _Vector2 = Lerp;
+        internal static readonly Interpolater<Vector2Int> _Vector2Int = Lerp;
+        internal static readonly Interpolater<Vector3> _Vector3 = Lerp;
+        internal static readonly Interpolater<Vector3Int> _Vector3Int = Lerp;
+        internal static readonly Interpolater<Vector4> _Vector4 = Lerp;
+        internal static readonly Interpolater<Quaternion> _Quaternion = Lerp;
+        internal static readonly Interpolater<Rect> _Rect = Lerp;
+        internal static readonly Interpolater<Color> _Color = Lerp;
+
         /// <summary>
         /// Linearly interpolates between <paramref name="a"/> and
         /// <paramref name="b"/> by <paramref name="t"/>.
@@ -18,8 +32,8 @@ namespace Zigurous.Tweening
         /// <returns>The interpolated value between the start and end value.</returns>
         public static float Lerp(float a, float b, float t, bool snapping = false)
         {
-            float value = Mathf.Lerp(a, b, t);
-            return snapping ? (int)value : value;
+            float value = a + (b - a) * t;
+            return snapping ? Mathf.Round(value) : value;
         }
 
         /// <summary>
@@ -33,8 +47,8 @@ namespace Zigurous.Tweening
         /// <returns>The interpolated value between the start and end value.</returns>
         public static double Lerp(double a, double b, float t, bool snapping = false)
         {
-            double value = Mathf.Lerp((float)a, (float)b, t);
-            return snapping ? (int)value : value;
+            double value = a + (b - a) * t;
+            return snapping ? System.Math.Round(value) : value;
         }
 
         /// <summary>
@@ -48,7 +62,7 @@ namespace Zigurous.Tweening
         /// <returns>The interpolated value between the start and end value.</returns>
         public static int Lerp(int a, int b, float t, bool snapping = false)
         {
-            return (int)Mathf.Lerp(a, b, t);
+            return (int)Lerp((float)a, (float)b, t, snapping);
         }
 
         /// <summary>
@@ -62,8 +76,21 @@ namespace Zigurous.Tweening
         /// <returns>The interpolated value between the start and end value.</returns>
         public static long Lerp(long a, long b, float t, bool snapping = false)
         {
-            long value = (long)Mathf.Lerp(a, b, t);
-            return snapping ? (int)value : value;
+            return (long)Lerp((double)a, (double)b, t, snapping);
+        }
+
+        /// <summary>
+        /// Linearly interpolates between <paramref name="a"/> and
+        /// <paramref name="b"/> by <paramref name="t"/>.
+        /// </summary>
+        /// <param name="a">The start value.</param>
+        /// <param name="b">The end value.</param>
+        /// <param name="t">The interpolation value between the start and end value.</param>
+        /// <param name="snapping">Snaps the interpolated value to the nearest whole number.</param>
+        /// <returns>The interpolated value between the start and end value.</returns>
+        public static short Lerp(short a, short b, float t, bool snapping = false)
+        {
+            return (short)Lerp((float)a, (float)b, t, snapping);
         }
 
         /// <summary>
@@ -93,8 +120,8 @@ namespace Zigurous.Tweening
         public static Vector2Int Lerp(Vector2Int a, Vector2Int b, float t, bool snapping = false)
         {
             return new Vector2Int(
-                (int)Mathf.Lerp(a.x, b.x, t),
-                (int)Mathf.Lerp(a.y, b.y, t));
+                Lerp(a.x, b.x, t, snapping),
+                Lerp(a.y, b.y, t, snapping));
         }
 
         /// <summary>
@@ -124,9 +151,9 @@ namespace Zigurous.Tweening
         public static Vector3Int Lerp(Vector3Int a, Vector3Int b, float t, bool snapping = false)
         {
             return new Vector3Int(
-                (int)Mathf.Lerp(a.x, b.x, t),
-                (int)Mathf.Lerp(a.y, b.y, t),
-                (int)Mathf.Lerp(a.z, b.z, t));
+                Lerp(a.x, b.x, t, snapping),
+                Lerp(a.y, b.y, t, snapping),
+                Lerp(a.z, b.z, t, snapping));
         }
 
         /// <summary>
@@ -197,7 +224,7 @@ namespace Zigurous.Tweening
         /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Vector2 Snap(Vector2 value)
         {
-            return new Vector2(Mathf.RoundToInt(value.x), Mathf.RoundToInt(value.y));
+            return new Vector2(Mathf.Round(value.x), Mathf.Round(value.y));
         }
 
         /// <summary>
@@ -207,7 +234,7 @@ namespace Zigurous.Tweening
         /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Vector3 Snap(Vector3 value)
         {
-            return new Vector3(Mathf.RoundToInt(value.x), Mathf.RoundToInt(value.y), Mathf.RoundToInt(value.z));
+            return new Vector3(Mathf.Round(value.x), Mathf.Round(value.y), Mathf.Round(value.z));
         }
 
         /// <summary>
@@ -217,7 +244,7 @@ namespace Zigurous.Tweening
         /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Vector4 Snap(Vector4 value)
         {
-            return new Vector4(Mathf.RoundToInt(value.x), Mathf.RoundToInt(value.y), Mathf.RoundToInt(value.z), Mathf.RoundToInt(value.w));
+            return new Vector4(Mathf.Round(value.x), Mathf.Round(value.y), Mathf.Round(value.z), Mathf.Round(value.w));
         }
 
         /// <summary>

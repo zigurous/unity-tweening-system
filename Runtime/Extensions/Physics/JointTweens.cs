@@ -5,40 +5,32 @@ namespace Zigurous.Tweening
     public static class JointTweens
     {
         public static Tween TweenAxis(this Joint joint, Vector3 to, float duration) =>
-            Tweening.To(getter: () => joint.axis,
-                        setter: axis => joint.axis = axis,
-                        to, duration).SetTarget(joint);
+            Tweening.To(joint, (target) => target.axis, (target, value) => target.axis = value, to, duration)
+                    .SetReference(joint);
 
         public static Tween TweenAnchor(this Joint joint, Vector3 to, float duration) =>
-            Tweening.To(getter: () => joint.anchor,
-                        setter: anchor => joint.anchor = anchor,
-                        to, duration).SetTarget(joint);
+            Tweening.To(joint, (target) => target.anchor, (target, value) => target.anchor = value, to, duration)
+                    .SetReference(joint);
 
         public static Tween TweenConnectedAnchor(this Joint joint, Vector3 to, float duration) =>
-            Tweening.To(getter: () => joint.connectedAnchor,
-                        setter: connectedAnchor => joint.connectedAnchor = connectedAnchor,
-                        to, duration).SetTarget(joint);
+            Tweening.To(joint, (target) => target.connectedAnchor, (target, value) => target.connectedAnchor = value, to, duration)
+                    .SetReference(joint);
 
         public static Tween TweenBreakForce(this Joint joint, float to, float duration) =>
-            Tweening.To(getter: () => joint.breakForce,
-                        setter: breakForce => joint.breakForce = breakForce,
-                        to, duration).SetTarget(joint);
+            Tweening.To(joint, (target) => target.breakForce, (target, value) => target.breakForce = value, to, duration)
+                    .SetReference(joint);
 
         public static Tween TweenBreakTorque(this Joint joint, float to, float duration) =>
-            Tweening.To(getter: () => joint.breakTorque,
-                        setter: breakTorque => joint.breakTorque = breakTorque,
-                        to, duration).SetTarget(joint);
+            Tweening.To(joint, (target) => target.breakTorque, (target, value) => target.breakTorque = value, to, duration)
+                    .SetReference(joint);
 
         public static Tween TweenMassScale(this Joint joint, float to, float duration) =>
-            Tweening.To(getter: () => joint.massScale,
-                        setter: massScale => joint.massScale = massScale,
-                        to, duration).SetTarget(joint);
+            Tweening.To(joint, (target) => target.massScale, (target, value) => target.massScale = value, to, duration)
+                    .SetReference(joint);
 
         public static Tween TweenConnectedMassScale(this Joint joint, float to, float duration) =>
-            Tweening.To(getter: () => joint.connectedMassScale,
-                        setter: connectedMassScale => joint.connectedMassScale = connectedMassScale,
-                        to, duration).SetTarget(joint);
-
+            Tweening.To(joint, (target) => target.connectedMassScale, (target, value) => target.connectedMassScale = value, to, duration)
+                    .SetReference(joint);
     }
 
 }

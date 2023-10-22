@@ -5,85 +5,104 @@ namespace Zigurous.Tweening
     public static class MaterialTweens
     {
         public static Tween TweenColor(this Material material, Color to, float duration) =>
-            Tweening.To(getter: () => material.color,
-                        setter: color => material.color = color,
-                        to, duration).SetId(material.GetHashCode());
+            Tweening.To(material, (target) => target.color, (target, value) => target.color = value, to, duration)
+                    .SetReference(material);
 
-        public static Tween TweenColor(this Material material, int nameId, Color to, float duration) =>
-            Tweening.To(getter: () => material.GetColor(nameId),
-                        setter: color => material.SetColor(nameId, color),
-                        to, duration).SetId(material.GetHashCode());
+        public static Tween TweenColor(this Material material, int nameID, Color to, float duration) =>
+            Tweening.To(material, (target) => target.GetColor(nameID), (target, value) => target.SetColor(nameID, value), to, duration)
+                    .SetReference(material);
 
         public static Tween TweenColor(this Material material, string name, Color to, float duration) =>
-            Tweening.To(getter: () => material.GetColor(name),
-                        setter: color => material.SetColor(name, color),
-                        to, duration).SetId(material.GetHashCode());
+            Tweening.To(material, (target) => target.GetColor(name), (target, value) => target.SetColor(name, value), to, duration)
+                    .SetReference(material);
+
+        public static Tween TweenRed(this Material material, float to, float duration) =>
+            Tweening.To(material, (target) => target.color.r, (target, value) => target.color = target.color.WithRed(value), to, duration)
+                    .SetReference(material);
+
+        public static Tween TweenRed(this Material material, int nameID, float to, float duration) =>
+            Tweening.To(material, (target) => target.GetColor(nameID).r, (target, value) => target.SetColor(nameID, target.GetColor(nameID).WithRed(value)), to, duration)
+                    .SetReference(material);
+
+        public static Tween TweenRed(this Material material, string name, float to, float duration) =>
+            Tweening.To(material, (target) => target.GetColor(name).r, (target, value) => target.SetColor(name, target.GetColor(name).WithRed(value)), to, duration)
+                    .SetReference(material);
+
+        public static Tween TweenGreen(this Material material, float to, float duration) =>
+            Tweening.To(material, (target) => target.color.g, (target, value) => target.color = target.color.WithGreen(value), to, duration)
+                    .SetReference(material);
+
+        public static Tween TweenGreen(this Material material, int nameID, float to, float duration) =>
+            Tweening.To(material, (target) => target.GetColor(nameID).g, (target, value) => target.SetColor(nameID, target.GetColor(nameID).WithGreen(value)), to, duration)
+                    .SetReference(material);
+
+        public static Tween TweenGreen(this Material material, string name, float to, float duration) =>
+            Tweening.To(material, (target) => target.GetColor(name).g, (target, value) => target.SetColor(name, target.GetColor(name).WithGreen(value)), to, duration)
+                    .SetReference(material);
+
+        public static Tween TweenBlue(this Material material, float to, float duration) =>
+            Tweening.To(material, (target) => target.color.b, (target, value) => target.color = target.color.WithBlue(value), to, duration)
+                    .SetReference(material);
+
+        public static Tween TweenBlue(this Material material, int nameID, float to, float duration) =>
+            Tweening.To(material, (target) => target.GetColor(nameID).b, (target, value) => target.SetColor(nameID, target.GetColor(nameID).WithBlue(value)), to, duration)
+                    .SetReference(material);
+
+        public static Tween TweenBlue(this Material material, string name, float to, float duration) =>
+            Tweening.To(material, (target) => target.GetColor(name).b, (target, value) => target.SetColor(name, target.GetColor(name).WithBlue(value)), to, duration)
+                    .SetReference(material);
 
         public static Tween TweenAlpha(this Material material, float to, float duration) =>
-            Tweening.To(getter: () => material.color.a,
-                        setter: alpha => material.color = new Color(material.color.r, material.color.g, material.color.b, alpha),
-                        to, duration).SetId(material.GetHashCode());
+            Tweening.To(material, (target) => target.color.a, (target, value) => target.color = target.color.WithAlpha(value), to, duration)
+                    .SetReference(material);
 
-        public static Tween TweenAlpha(this Material material, int nameId, float to, float duration) =>
-            Tweening.To(getter: () => material.GetColor(nameId).a,
-                        setter: alpha => material.SetColor(nameId, new Color(material.color.r, material.color.g, material.color.b, alpha)),
-                        to, duration).SetId(material.GetHashCode());
+        public static Tween TweenAlpha(this Material material, int nameID, float to, float duration) =>
+            Tweening.To(material, (target) => target.GetColor(nameID).a, (target, value) => target.SetColor(nameID, target.GetColor(nameID).WithAlpha(value)), to, duration)
+                    .SetReference(material);
 
         public static Tween TweenAlpha(this Material material, string name, float to, float duration) =>
-            Tweening.To(getter: () => material.GetColor(name).a,
-                        setter: alpha => material.SetColor(name, new Color(material.color.r, material.color.g, material.color.b, alpha)),
-                        to, duration).SetId(material.GetHashCode());
+            Tweening.To(material, (target) => target.GetColor(name).a, (target, value) => target.SetColor(name, target.GetColor(name).WithAlpha(value)), to, duration)
+                    .SetReference(material);
 
-        public static Tween TweenFloat(this Material material, int nameId, float to, float duration) =>
-            Tweening.To(getter: () => material.GetFloat(nameId),
-                        setter: value => material.SetFloat(nameId, value),
-                        to, duration).SetId(material.GetHashCode());
+        public static Tween TweenFloat(this Material material, int nameID, float to, float duration) =>
+            Tweening.To(material, (target) => target.GetFloat(nameID), (target, value) => target.SetFloat(nameID, value), to, duration)
+                    .SetReference(material);
 
         public static Tween TweenFloat(this Material material, string name, float to, float duration) =>
-            Tweening.To(getter: () => material.GetFloat(name),
-                        setter: value => material.SetFloat(name, value),
-                        to, duration).SetId(material.GetHashCode());
+            Tweening.To(material, (target) => target.GetFloat(name), (target, value) => target.SetFloat(name, value), to, duration)
+                    .SetReference(material);
 
-        public static Tween TweenInt(this Material material, int nameId, int to, float duration) =>
-            Tweening.To(getter: () => material.GetInt(nameId),
-                        setter: value => material.SetInt(nameId, value),
-                        to, duration).SetId(material.GetHashCode());
+        public static Tween TweenInt(this Material material, int nameID, int to, float duration) =>
+            Tweening.To(material, (target) => target.GetInt(nameID), (target, value) => target.SetInt(nameID, value), to, duration)
+                    .SetReference(material);
 
         public static Tween TweenInt(this Material material, string name, int to, float duration) =>
-            Tweening.To(getter: () => material.GetInt(name),
-                        setter: value => material.SetInt(name, value),
-                        to, duration).SetId(material.GetHashCode());
+            Tweening.To(material, (target) => target.GetInt(name), (target, value) => target.SetInt(name, value), to, duration)
+                    .SetReference(material);
 
         public static Tween TweenMainTextureOffset(this Material material, Vector2 to, float duration) =>
-            Tweening.To(getter: () => material.mainTextureOffset,
-                        setter: mainTextureOffset => material.mainTextureOffset = mainTextureOffset,
-                        to, duration).SetId(material.GetHashCode());
+            Tweening.To(material, (target) => target.mainTextureOffset, (target, value) => target.mainTextureOffset = value, to, duration)
+                    .SetReference(material);
 
         public static Tween TweenMainTextureScale(this Material material, Vector2 to, float duration) =>
-            Tweening.To(getter: () => material.mainTextureScale,
-                        setter: mainTextureScale => material.mainTextureScale = mainTextureScale,
-                        to, duration).SetId(material.GetHashCode());
+            Tweening.To(material, (target) => target.mainTextureScale, (target, value) => target.mainTextureScale = value, to, duration)
+                    .SetReference(material);
 
-        public static Tween TweenTextureOffset(this Material material, int nameId, Vector2 to, float duration) =>
-            Tweening.To(getter: () => material.GetTextureOffset(nameId),
-                        setter: value => material.SetTextureOffset(nameId, value),
-                        to, duration).SetId(material.GetHashCode());
+        public static Tween TweenTextureOffset(this Material material, int nameID, Vector2 to, float duration) =>
+            Tweening.To(material, (target) => target.GetTextureOffset(nameID), (target, value) => target.SetTextureOffset(nameID, value), to, duration)
+                    .SetReference(material);
 
         public static Tween TweenTextureOffset(this Material material, string name, Vector2 to, float duration) =>
-            Tweening.To(getter: () => material.GetTextureOffset(name),
-                        setter: value => material.SetTextureOffset(name, value),
-                        to, duration).SetId(material.GetHashCode());
+            Tweening.To(material, (target) => target.GetTextureOffset(name), (target, value) => target.SetTextureOffset(name, value), to, duration)
+                    .SetReference(material);
 
-        public static Tween TweenTextureScale(this Material material, int nameId, Vector2 to, float duration) =>
-            Tweening.To(getter: () => material.GetTextureScale(nameId),
-                        setter: value => material.SetTextureScale(nameId, value),
-                        to, duration).SetId(material.GetHashCode());
+        public static Tween TweenTextureScale(this Material material, int nameID, Vector2 to, float duration) =>
+            Tweening.To(material, (target) => target.GetTextureScale(nameID), (target, value) => target.SetTextureScale(nameID, value), to, duration)
+                    .SetReference(material);
 
         public static Tween TweenTextureScale(this Material material, string name, Vector2 to, float duration) =>
-            Tweening.To(getter: () => material.GetTextureScale(name),
-                        setter: value => material.SetTextureScale(name, value),
-                        to, duration).SetId(material.GetHashCode());
-
+            Tweening.To(material, (target) => target.GetTextureScale(name), (target, value) => target.SetTextureScale(name, value), to, duration)
+                    .SetReference(material);
     }
 
 }

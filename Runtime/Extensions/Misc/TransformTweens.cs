@@ -5,74 +5,60 @@ namespace Zigurous.Tweening
     public static class TransformTweens
     {
         public static Tween TweenPosition(this Transform transform, Vector3 to, float duration) =>
-            Tweening.To(getter: () => transform.position,
-                        setter: position => transform.position = position,
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.position, (target, value) => target.position = value, to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenPositionX(this Transform transform, float to, float duration) =>
-            Tweening.To(getter: () => transform.position.x,
-                        setter: x => transform.position = new Vector3(x, transform.position.y, transform.position.z),
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.position.x, (target, value) => target.position = new Vector3(value, target.position.y, target.position.z), to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenPositionY(this Transform transform, float to, float duration) =>
-            Tweening.To(getter: () => transform.position.y,
-                        setter: y => transform.position = new Vector3(transform.position.x, y, transform.position.z),
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.position.y, (target, value) => target.position = new Vector3(target.position.x, value, target.position.z), to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenPositionZ(this Transform transform, float to, float duration) =>
-            Tweening.To(getter: () => transform.position.z,
-                        setter: z => transform.position = new Vector3(transform.position.x, transform.position.y, z),
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.position.z, (target, value) => target.position = new Vector3(target.position.x, target.position.y, value), to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenLocalPosition(this Transform transform, Vector3 to, float duration) =>
-            Tweening.To(getter: () => transform.localPosition,
-                        setter: position => transform.localPosition = position,
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.localPosition, (target, value) => target.localPosition = value, to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenLocalPositionX(this Transform transform, float to, float duration) =>
-            Tweening.To(getter: () => transform.localPosition.x,
-                        setter: x => transform.localPosition = new Vector3(x, transform.localPosition.y, transform.localPosition.z),
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.localPosition.x, (target, value) => target.localPosition = new Vector3(value, target.localPosition.y, target.localPosition.z), to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenLocalPositionY(this Transform transform, float to, float duration) =>
-            Tweening.To(getter: () => transform.localPosition.y,
-                        setter: y => transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z),
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.localPosition.y, (target, value) => target.localPosition = new Vector3(target.localPosition.x, value, target.localPosition.z), to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenLocalPositionZ(this Transform transform, float to, float duration) =>
-            Tweening.To(getter: () => transform.localPosition.z,
-                        setter: z => transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, z),
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.localPosition.z, (target, value) => target.localPosition = new Vector3(target.localPosition.x, target.localPosition.y, value), to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenScale(this Transform transform, Vector3 to, float duration) =>
-            Tweening.To(getter: () => transform.localScale,
-                        setter: scale => transform.localScale = scale,
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.localScale, (target, value) => target.localScale = value, to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenScaleX(this Transform transform, float to, float duration) =>
-            Tweening.To(getter: () => transform.localScale.x,
-                        setter: x => transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z),
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.localScale.x, (target, value) => target.localScale = new Vector3(value, target.localScale.y, target.localScale.z), to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenScaleY(this Transform transform, float to, float duration) =>
-            Tweening.To(getter: () => transform.localScale.y,
-                        setter: y => transform.localScale = new Vector3(transform.localScale.x, y, transform.localScale.z),
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.localScale.y, (target, value) => target.localScale = new Vector3(target.localScale.x, value, target.localScale.z), to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenScaleZ(this Transform transform, float to, float duration) =>
-            Tweening.To(getter: () => transform.localScale.z,
-                        setter: z => transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, z),
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.localScale.z, (target, value) => target.localScale = new Vector3(target.localScale.x, target.localScale.y, value), to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenRotation(this Transform transform, Quaternion to, float duration) =>
-            Tweening.To(getter: () => transform.rotation,
-                        setter: rotation => transform.rotation = rotation,
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.rotation, (target, value) => target.rotation = value, to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenLocalRotation(this Transform transform, Quaternion to, float duration) =>
-            Tweening.To(getter: () => transform.localRotation,
-                        setter: rotation => transform.localRotation = rotation,
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.localRotation, (target, value) => target.localRotation = value, to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenEulerAngles(this Transform transform, Vector3 to, float duration) =>
             TweenRotation(transform, Quaternion.Euler(to), duration);
@@ -97,7 +83,6 @@ namespace Zigurous.Tweening
 
         public static Tween TweenLocalEulerAnglesZ(this Transform transform, float to, float duration) =>
             TweenLocalRotation(transform, Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, to), duration);
-
     }
 
 }

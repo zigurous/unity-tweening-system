@@ -18,29 +18,25 @@ A tween is an animation of a value from a start position to an end position usin
 Most of the time you will be creating tweens by using the shortcut extension methods available on most Unity objects. See the [Supported Types](/manual/supported-types) manual for the full list of classes that provide shortcut functions. Here are just a few examples:
 
 ```csharp
-transform.TweenPosition(endValue, duration);
-material.TweenColor(endValue, duration);
-camera.TweenFieldOfView(endValue, duration);
-light.TweenIntensity(endValue, duration);
+transform.TweenPosition(Vector3.zero, duration);
+material.TweenColor(Color.white, duration);
+camera.TweenFieldOfView(90f, duration);
+light.TweenIntensity(1f, duration);
 ```
 <br/>
 
 ### Generic Approach
 
-Although most of the time you will not be creating tweens with this approach, it is the basis of the entire tweening system so it is valuable to understand how it works. Essentially any value represented by a number can be tweened. The [Supported Types](/manual/supported-types) manual lists all of the specific types that can be tweened.
+Although most of the time you will not be creating tweens with this approach, it is the basis of the entire tweening system so it is valuable to understand how it works. Essentially any value represented by a number can be tweened. The [Supported Types](/manual/supported-types) manual provides a list of all types that can be tweened.
 
 ```csharp
-float currentValue, endValue, duration;
-
 // Setup delegates to get and set a value
-TweenGetter<float> getter = () => { return currentValue; };
-TweenSetter<float> setter = newValue => { currentValue = newValue; };
+TweenGetter<Transform, Vector3> getter = (target) => target.position;
+TweenSetter<Transform, Vector3> setter = (target, value) => target.position = value;
 
-// Create a tween that animates to the end value from the current value
-Tweening.To<float>(getter, setter, endValue, duration);
-
-// Create a tween that animates from the end value to the current value
-Tweening.From<float>(getter, setter, endValue, duration);
+// Create a tween that animates to the end value over a duration
+Tweening.To(transform, getter, setter, Vector3.one, 1f);
+Tweening.From(transform, getter, setter, Vector3.one, 1f);
 ```
 
 <hr/>
@@ -69,10 +65,10 @@ All of these properties can be set with [property chaining](/manual/property-cha
 
 ## 🌪️ Controlling tweens
 
-Often times you might want to manually control the state of the tween, even if it is just pausing and resuming a tween. There are several methods available to transition a tween to a different state. *Note*: not all states can be transitioned to depending on the current state. See [Managing Tweens](/manual/managing-tweens) for ways to control tweens globally.
+Often times you might want to manually control the state of the tween, even if it is just pausing and resuming a tween. There are several methods available to transition a tween to a different state. *Note:* not all states can be transitioned to depending on the current state. See [Managing Tweens](/manual/managing-tweens) for ways to control tweens globally.
 
 ```csharp
-tween.Play(); // starts or resumes the the tween
+tween.Play(); // starts or resumes the tween
 tween.Stop(); // pauses the tween if it is already playing
 tween.Restart(); // restarts the tween from the beginning if not killed
 tween.Complete(); // completes the tween, jumping to the end value
@@ -92,7 +88,7 @@ There are a number of properties available to read the current state of a tween.
 - `Killed`: The tween is killed, making it no longer usable.
 
 ```csharp
-TweenState state = tween.state; // the current animation state of the tween
+TweenState state = tween.State; // the current animation state of the tween
 
 bool playing = tween.IsPlaying; // true if playing
 bool stopped = tween.IsStopped; // true if stopped
@@ -100,9 +96,9 @@ bool complete = tween.IsComplete; // true if complete
 bool killed = tween.IsKilled; // true if killed
 bool delayed = tween.IsDelayed; // true if delayed
 
-float elapsed = tween.elapsed; // the amount of seconds playing
+float elapsed = tween.Elapsed; // the amount of seconds playing
 float percent = tween.PercentComplete; // the percentage of completion
-float delayElapsed = tween.delayElapsed; // the amount of seconds delayed
+float delayElapsed = tween.DelayElapsed; // the amount of seconds delayed
 
-int iterations = tween.iterations; // the number of times completed
+int iterations = tween.Iterations; // the number of times completed
 ```

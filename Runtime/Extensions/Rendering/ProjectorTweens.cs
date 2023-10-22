@@ -5,30 +5,24 @@ namespace Zigurous.Tweening
     public static class ProjectorTweens
     {
         public static Tween TweenNearClipPlane(this Projector projector, float to, float duration) =>
-            Tweening.To(getter: () => projector.nearClipPlane,
-                        setter: nearClipPlane => projector.nearClipPlane = nearClipPlane,
-                        to, duration).SetTarget(projector);
+            Tweening.To(projector, (target) => target.nearClipPlane, (target, value) => target.nearClipPlane = value, to, duration)
+                    .SetReference(projector);
 
         public static Tween TweenFarClipPlane(this Projector projector, float to, float duration) =>
-            Tweening.To(getter: () => projector.farClipPlane,
-                        setter: farClipPlane => projector.farClipPlane = farClipPlane,
-                        to, duration).SetTarget(projector);
+            Tweening.To(projector, (target) => target.farClipPlane, (target, value) => target.farClipPlane = value, to, duration)
+                    .SetReference(projector);
 
         public static Tween TweenFieldOfView(this Projector projector, float to, float duration) =>
-            Tweening.To(getter: () => projector.fieldOfView,
-                        setter: fieldOfView => projector.fieldOfView = fieldOfView,
-                        to, duration).SetTarget(projector);
+            Tweening.To(projector, (target) => target.fieldOfView, (target, value) => target.fieldOfView = value, to, duration)
+                    .SetReference(projector);
 
         public static Tween TweenAspectRatio(this Projector projector, float to, float duration) =>
-            Tweening.To(getter: () => projector.aspectRatio,
-                        setter: aspectRatio => projector.aspectRatio = aspectRatio,
-                        to, duration).SetTarget(projector);
+            Tweening.To(projector, (target) => target.aspectRatio, (target, value) => target.aspectRatio = value, to, duration)
+                    .SetReference(projector);
 
         public static Tween TweenOrthographicSize(this Projector projector, float to, float duration) =>
-            Tweening.To(getter: () => projector.orthographicSize,
-                        setter: orthographicSize => projector.orthographicSize = orthographicSize,
-                        to, duration).SetTarget(projector);
-
+            Tweening.To(projector, (target) => target.orthographicSize, (target, value) => target.orthographicSize = value, to, duration)
+                    .SetReference(projector);
     }
 
 }

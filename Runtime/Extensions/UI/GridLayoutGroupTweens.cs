@@ -6,15 +6,12 @@ namespace Zigurous.Tweening
     public static class GridLayoutGroupTweens
     {
         public static Tween TweenSpacing(this GridLayoutGroup layoutGroup, Vector2 to, float duration) =>
-            Tweening.To(getter: () => layoutGroup.spacing,
-                        setter: spacing => layoutGroup.spacing = spacing,
-                        to, duration).SetTarget(layoutGroup);
+            Tweening.To(layoutGroup, (target) => target.spacing, (target, value) => target.spacing = value, to, duration)
+                    .SetReference(layoutGroup);
 
         public static Tween TweenCellSize(this GridLayoutGroup layoutGroup, Vector2 to, float duration) =>
-            Tweening.To(getter: () => layoutGroup.cellSize,
-                        setter: cellSize => layoutGroup.cellSize = cellSize,
-                        to, duration).SetTarget(layoutGroup);
-
+            Tweening.To(layoutGroup, (target) => target.cellSize, (target, value) => target.cellSize = value, to, duration)
+                    .SetReference(layoutGroup);
     }
 
 }

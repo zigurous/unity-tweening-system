@@ -5,70 +5,56 @@ namespace Zigurous.Tweening
     public static class LightTweens
     {
         public static Tween TweenColor(this Light light, Color to, float duration) =>
-            Tweening.To(getter: () => light.color,
-                        setter: color => light.color = color,
-                        to, duration).SetTarget(light);
+            Tweening.To(light, (target) => target.color, (target, value) => target.color = value, to, duration)
+                    .SetReference(light);
 
         public static Tween TweenColorTemperature(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.colorTemperature,
-                        setter: colorTemperature => light.colorTemperature = colorTemperature,
-                        to, duration).SetTarget(light);
+            Tweening.To(light, (target) => target.colorTemperature, (target, value) => target.colorTemperature = value, to, duration)
+                    .SetReference(light);
 
         public static Tween TweenIntensity(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.intensity,
-                        setter: intensity => light.intensity = intensity,
-                        to, duration).SetTarget(light);
+            Tweening.To(light, (target) => target.intensity, (target, value) => target.intensity = value, to, duration)
+                    .SetReference(light);
 
         public static Tween TweenBounceIntensity(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.bounceIntensity,
-                        setter: bounceIntensity => light.bounceIntensity = bounceIntensity,
-                        to, duration).SetTarget(light);
+            Tweening.To(light, (target) => target.bounceIntensity, (target, value) => target.bounceIntensity = value, to, duration)
+                    .SetReference(light);
 
         public static Tween TweenRange(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.range,
-                        setter: range => light.range = range,
-                        to, duration).SetTarget(light);
+            Tweening.To(light, (target) => target.range, (target, value) => target.range = value, to, duration)
+                    .SetReference(light);
 
         public static Tween TweenShadowStrength(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.shadowStrength,
-                        setter: shadowStrength => light.shadowStrength = shadowStrength,
-                        to, duration).SetTarget(light);
+            Tweening.To(light, (target) => target.shadowStrength, (target, value) => target.shadowStrength = value, to, duration)
+                    .SetReference(light);
 
         public static Tween TweenShadowBias(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.shadowBias,
-                        setter: shadowBias => light.shadowBias = shadowBias,
-                        to, duration).SetTarget(light);
+            Tweening.To(light, (target) => target.shadowBias, (target, value) => target.shadowBias = value, to, duration)
+                    .SetReference(light);
 
         public static Tween TweenShadowNormalBias(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.shadowNormalBias,
-                        setter: shadowNormalBias => light.shadowNormalBias = shadowNormalBias,
-                        to, duration).SetTarget(light);
+            Tweening.To(light, (target) => target.shadowNormalBias, (target, value) => target.shadowNormalBias = value, to, duration)
+                    .SetReference(light);
 
         public static Tween TweenShadowNearPlane(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.shadowNearPlane,
-                        setter: shadowNearPlane => light.shadowNearPlane = shadowNearPlane,
-                        to, duration).SetTarget(light);
+            Tweening.To(light, (target) => target.shadowNearPlane, (target, value) => target.shadowNearPlane = value, to, duration)
+                    .SetReference(light);
 
         public static Tween TweenSpotAngle(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.spotAngle,
-                        setter: spotAngle => light.spotAngle = spotAngle,
-                        to, duration).SetTarget(light);
+            Tweening.To(light, (target) => target.spotAngle, (target, value) => target.spotAngle = value, to, duration)
+                    .SetReference(light);
 
         public static Tween TweenInnerSpotAngle(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.innerSpotAngle,
-                        setter: innerSpotAngle => light.innerSpotAngle = innerSpotAngle,
-                        to, duration).SetTarget(light);
+            Tweening.To(light, (target) => target.innerSpotAngle, (target, value) => target.innerSpotAngle = value, to, duration)
+                    .SetReference(light);
 
         public static Tween TweenCookieSize(this Light light, float to, float duration) =>
-            Tweening.To(getter: () => light.cookieSize,
-                        setter: cookieSize => light.cookieSize = cookieSize,
-                        to, duration).SetTarget(light);
+            Tweening.To(light, (target) => target.cookieSize, (target, value) => target.cookieSize = value, to, duration)
+                    .SetReference(light);
 
         public static Tween TweenBoundingSphereOverride(this Light light, Vector4 to, float duration) =>
-            Tweening.To(getter: () => light.boundingSphereOverride,
-                        setter: boundingSphereOverride => light.boundingSphereOverride = boundingSphereOverride,
-                        to, duration).SetTarget(light);
-
+            Tweening.To(light, (target) => target.boundingSphereOverride, (target, value) => target.boundingSphereOverride = value, to, duration)
+                    .SetReference(light);
     }
 
 }

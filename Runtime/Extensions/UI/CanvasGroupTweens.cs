@@ -5,10 +5,8 @@ namespace Zigurous.Tweening
     public static class CanvasGroupTweens
     {
         public static Tween TweenAlpha(this CanvasGroup canvasGroup, float to, float duration) =>
-            Tweening.To(getter: () => canvasGroup.alpha,
-                        setter: alpha => canvasGroup.alpha = alpha,
-                        to, duration).SetTarget(canvasGroup);
-
+            Tweening.To(canvasGroup, (target) => target.alpha, (target, value) => target.alpha = value, to, duration)
+                    .SetReference(canvasGroup);
     }
 
 }

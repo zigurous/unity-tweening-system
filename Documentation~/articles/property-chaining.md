@@ -8,13 +8,25 @@ Property/method chaining is a technique that allows multiple properties to be as
 
 <hr/>
 
-## ⛓️ Example
+## ⛓️ Examples
 
 ```csharp
+// using a tween shortcut
 transform.TweenPosition(Vector3.zero, 1f)
          .SetDelay(3f)
-         .SetReversed(true)
+         .SetReversed()
          .SetEase(Ease.CubicInOut)
          .SetLoops(-1, LoopType.PingPong)
          .OnLoop(() => Debug.Log("looped!"));
+```
+
+```csharp
+// building from scratch
+Tween tween = new Tweener<Transform, Vector3>(transform)
+     .SetGetter((target) => target.position)
+     .SetSetter((target, value) => target.position = value)
+     .SetEndValue(Vector3.zero)
+     .SetDuration(1f)
+     .SetEase(Ease.QuadOut)
+     .OnComplete(() => Debug.Log("complete!"));
 ```

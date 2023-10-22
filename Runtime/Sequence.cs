@@ -11,22 +11,22 @@ namespace Zigurous.Tweening
         /// <summary>
         /// The index of the current tween in the sequence being played (Read only).
         /// </summary>
-        public int currentIndex { get; private set; } = -1;
+        public int CurrentIndex { get; private set; } = -1;
 
         /// <summary>
         /// The tweens contained in the sequence (Read only).
         /// </summary>
-        public List<Tween> tweens { get; internal set; } = new List<Tween>();
+        public readonly List<Tween> Tweens = new List<Tween>();
 
         /// <summary>
         /// The tween in the sequence currently being played (Read only).
         /// </summary>
-        public Tween activeTween
+        public Tween ActiveTween
         {
             get
             {
-                if (currentIndex >= 0 && currentIndex < tweens.Count) {
-                    return tweens[currentIndex];
+                if (CurrentIndex >= 0 && CurrentIndex < Tweens.Count) {
+                    return Tweens[CurrentIndex];
                 } else {
                     return null;
                 }
@@ -65,7 +65,7 @@ namespace Zigurous.Tweening
         /// <returns>The sequence itself to allow for chaining.</returns>
         public Sequence Append(Tween tween)
         {
-            tweens.Add(Prepare(tween));
+            Tweens.Add(Prepare(tween));
             return this;
         }
 
@@ -76,7 +76,7 @@ namespace Zigurous.Tweening
         /// <returns>The sequence itself to allow for chaining.</returns>
         public Sequence Prepend(Tween tween)
         {
-            tweens.Insert(0, Prepare(tween));
+            Tweens.Insert(0, Prepare(tween));
             return this;
         }
 
@@ -91,12 +91,12 @@ namespace Zigurous.Tweening
         private void Next()
         {
             if (reversed) {
-                currentIndex--;
+                CurrentIndex--;
             } else {
-                currentIndex++;
+                CurrentIndex++;
             }
 
-            Tween tween = activeTween;
+            Tween tween = ActiveTween;
 
             if (tween != null) {
                 tween.Play();
@@ -107,9 +107,9 @@ namespace Zigurous.Tweening
         protected override bool IsFinished()
         {
             if (reversed) {
-                return currentIndex < 0;
+                return CurrentIndex < 0;
             } else {
-                return currentIndex >= tweens.Count;
+                return CurrentIndex >= Tweens.Count;
             }
         }
 
@@ -117,12 +117,12 @@ namespace Zigurous.Tweening
         protected override void OnStart()
         {
             if (reversed) {
-                currentIndex = tweens.Count - 1;
+                CurrentIndex = Tweens.Count - 1;
             } else {
-                currentIndex = 0;
+                CurrentIndex = 0;
             }
 
-            Tween tween = activeTween;
+            Tween tween = ActiveTween;
 
             if (tween != null) {
                 tween.Play();
@@ -132,7 +132,7 @@ namespace Zigurous.Tweening
         /// <inheritdoc/>
         protected override void OnStop()
         {
-            Tween tween = activeTween;
+            Tween tween = ActiveTween;
 
             if (tween != null) {
                 tween.Stop();
@@ -142,7 +142,7 @@ namespace Zigurous.Tweening
         /// <inheritdoc/>
         protected override void OnResume()
         {
-            Tween tween = activeTween;
+            Tween tween = ActiveTween;
 
             if (tween != null) {
                 tween.Play();
@@ -152,13 +152,13 @@ namespace Zigurous.Tweening
         /// <inheritdoc/>
         protected override void OnLoop()
         {
-            foreach (Tween tween in tweens)
+            foreach (Tween tween in Tweens)
             {
                 if (loopType == LoopType.PingPong || loopType == LoopType.PingPongWithDelay) {
                     tween.reversed = !tween.reversed;
                 }
 
-                tween.elapsed = 0f;
+                tween.Elapsed = 0f;
                 tween.Animate();
             }
         }
@@ -166,7 +166,7 @@ namespace Zigurous.Tweening
         /// <inheritdoc/>
         protected override void OnComplete()
         {
-            foreach (Tween tween in tweens)
+            foreach (Tween tween in Tweens)
             {
                 if (tween != null) {
                     tween.Complete();
@@ -177,22 +177,22 @@ namespace Zigurous.Tweening
         /// <inheritdoc/>
         protected override void OnKill()
         {
-            foreach (Tween tween in tweens)
+            foreach (Tween tween in Tweens)
             {
                 if (tween != null) {
                     tween.Kill();
                 }
             }
 
-            tweens.Clear();
-            currentIndex = -1;
+            Tweens.Clear();
+            CurrentIndex = -1;
         }
 
         /// <inheritdoc/>
         protected override void OnReset()
         {
-            tweens.Clear();
-            currentIndex = -1;
+            Tweens.Clear();
+            CurrentIndex = -1;
         }
 
     }

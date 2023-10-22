@@ -11,7 +11,7 @@ The system is lightweight, optimized, type-safe, and memory efficient. Hundreds 
 - [Tweens](https://docs.zigurous.com/com.zigurous.tweening/manual/tweens)
 - [Sequences](https://docs.zigurous.com/com.zigurous.tweening/manual/sequences)
 - [Easing](https://docs.zigurous.com/com.zigurous.tweening/manual/easing)
-- [Callbacks](https://docs.zigurous.com/com.zigurous.tweening/manual/callbacks)
+- [Events](https://docs.zigurous.com/com.zigurous.tweening/manual/events)
 - [Property Chaining](https://docs.zigurous.com/com.zigurous.tweening/manual/property-chaining)
 - [Managing Tweens](https://docs.zigurous.com/com.zigurous.tweening/manual/managing-tweens)
 - [Supported Types](https://docs.zigurous.com/com.zigurous.tweening/manual/supported-types)

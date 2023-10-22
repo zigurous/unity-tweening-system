@@ -5,45 +5,36 @@ namespace Zigurous.Tweening
     public static class RectTransformTweens
     {
         public static Tween TweenAnchoredPosition(this RectTransform transform, Vector2 to, float duration) =>
-            Tweening.To(getter: () => transform.anchoredPosition,
-                        setter: anchoredPosition => transform.anchoredPosition = anchoredPosition,
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.anchoredPosition, (target, value) => target.anchoredPosition = value, to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenAnchoredPosition3D(this RectTransform transform, Vector3 to, float duration) =>
-            Tweening.To(getter: () => transform.anchoredPosition3D,
-                        setter: anchoredPosition3D => transform.anchoredPosition3D = anchoredPosition3D,
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.anchoredPosition3D, (target, value) => target.anchoredPosition3D = value, to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenAnchorMin(this RectTransform transform, Vector2 to, float duration) =>
-            Tweening.To(getter: () => transform.anchorMin,
-                        setter: anchorMin => transform.anchorMin = anchorMin,
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.anchorMin, (target, value) => target.anchorMin = value, to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenAnchorMax(this RectTransform transform, Vector2 to, float duration) =>
-            Tweening.To(getter: () => transform.anchorMax,
-                        setter: anchorMax => transform.anchorMax = anchorMax,
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.anchorMax, (target, value) => target.anchorMax = value, to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenOffsetMin(this RectTransform transform, Vector2 to, float duration) =>
-            Tweening.To(getter: () => transform.offsetMin,
-                        setter: offsetMin => transform.offsetMin = offsetMin,
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.offsetMin, (target, value) => target.offsetMin = value, to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenOffsetMax(this RectTransform transform, Vector2 to, float duration) =>
-            Tweening.To(getter: () => transform.offsetMax,
-                        setter: offsetMax => transform.offsetMax = offsetMax,
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.offsetMax, (target, value) => target.offsetMax = value, to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenPivot(this RectTransform transform, Vector2 to, float duration) =>
-            Tweening.To(getter: () => transform.pivot,
-                        setter: pivot => transform.pivot = pivot,
-                        to, duration).SetTarget(transform);
+            Tweening.To(transform, (target) => target.pivot, (target, value) => target.pivot = value, to, duration)
+                    .SetReference(transform);
 
         public static Tween TweenSizeDelta(this RectTransform transform, Vector2 to, float duration) =>
-            Tweening.To(getter: () => transform.sizeDelta,
-                        setter: sizeDelta => transform.sizeDelta = sizeDelta,
-                        to, duration).SetTarget(transform);
-
+            Tweening.To(transform, (target) => target.sizeDelta, (target, value) => target.sizeDelta = value, to, duration)
+                    .SetReference(transform);
     }
 
 }
