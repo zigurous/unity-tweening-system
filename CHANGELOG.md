@@ -5,26 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.6.2] - 2022/10/16
+## [3.0.0] - TBD
+
+### Added
+
+- Support for creating generic tweens with `short` values
+- New extension methods for tweening `MaterialPropertyBlock`
+- New extension method `Shadow.TweenAlpha`
+- New interface `ITweenEventHandler` that can be used to respond to tween events without allocating GC from delegates
+- New utility functions to change color components
+
+### Changed
+
+- Refactored tween extensions to not use closures to reduce GC allocations
+  - Source objects are now cached in the tween and passed to the getter/setter functions
+- Changed property name casing to match C# conventions
+- Renamed `Transform.TweenScale` to `Transform.TweenLocalScale`
+- Renamed `Shadow.TweenEffectColor` to `Shadow.TweenColor`
+- Renamed `Shadow.TweenEffectDistance` to `Shadow.TweenDistance`
 
 ### Fixed
 
 - Fixed tweens not updating when the duration is set to zero
-
-### Added
-
-- New extension method `ShadowTweens.TweenAlpha`
-
-### Changed
-
-- Renamed `ShadowTweens.TweenEffectColor` to `ShadowTweens.TweenColor`
-- Renamed `ShadowTweens.TweenEffectDistance` to `ShadowTweens.TweenDistance`
+- Fixed interpolation snapping to round to the nearest integer instead of always rounding down
 
 ## [2.6.1] - 2022/05/11
 
 ### Fixed
 
-- Prevented errors caused when tweens are created while the game or scene is unloading
+- Prevented errors when tweens are created while the game or scene is unloading
 
 ### Changed
 
