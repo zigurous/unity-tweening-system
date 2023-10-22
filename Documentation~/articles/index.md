@@ -30,7 +30,7 @@ The system is lightweight, optimized, type-safe, and memory efficient. Hundreds 
 
 #### 〽️ [Easing](/manual/easing)
 
-#### 🗣️ [Callbacks](/manual/callbacks)
+#### 🎫 [Events](/manual/events)
 
 #### ⛓️ [Property Chaining](/manual/property-chaining)
 

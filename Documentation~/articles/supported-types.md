@@ -76,6 +76,7 @@ All of the following types offer shortcut functions for creating tweens:
 - `LineRenderer`
 - `LookAtConstraint`
 - `Material`
+- `MaterialPropertyBlock`
 - `NavMeshAgent`
 - `NavMeshObstacle`
 - `OcclusionArea`

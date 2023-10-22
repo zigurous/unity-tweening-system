@@ -36,8 +36,8 @@
         "path": "/manual/easing"
       },
       {
-        "name": "Callbacks",
-        "path": "/manual/callbacks"
+        "name": "Events",
+        "path": "/manual/events"
       },
       {
         "name": "Property Chaining",
