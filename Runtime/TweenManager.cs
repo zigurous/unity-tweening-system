@@ -135,7 +135,7 @@ namespace Zigurous.Tweening
                 tweener.Reset();
             }
 
-            tweener.state = TweenState.Ready;
+            tweener.State = TweenState.Ready;
             tweener.internalState = InternalTweenState.Queued;
 
             return tweener;
@@ -164,7 +164,7 @@ namespace Zigurous.Tweening
                 sequence.Reset();
             }
 
-            sequence.state = TweenState.Ready;
+            sequence.State = TweenState.Ready;
             sequence.internalState = InternalTweenState.Queued;
 
             return sequence;

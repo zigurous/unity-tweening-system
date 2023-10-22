@@ -78,7 +78,7 @@
         /// <inheritdoc/>
         protected override void OnStart()
         {
-            if (iterations == 0 && getter != null) {
+            if (Iterations == 0 && getter != null) {
                 startValue = getter(target);
             }
         }

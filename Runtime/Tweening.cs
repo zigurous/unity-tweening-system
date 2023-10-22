@@ -502,7 +502,7 @@ namespace Zigurous.Tweening
             Sequence sequence = TweenManager.Instance.BuildSequence();
 
             if (tweens != null && tweens.Length > 0) {
-                sequence.tweens.AddRange(tweens);
+                sequence.Tweens.AddRange(tweens);
             }
 
             return sequence;
