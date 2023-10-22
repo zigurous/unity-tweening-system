@@ -5,12 +5,12 @@ namespace Zigurous.Tweening
     public static class BoxColliderTweens
     {
         public static Tween TweenCenter(this BoxCollider collider, Vector3 to, float duration) =>
-            Tweening.To(collider, (source) => source.center, (source, value) => source.center = value, to, duration)
-                    .SetTarget(collider);
+            Tweening.To(collider, (target) => target.center, (target, value) => target.center = value, to, duration)
+                    .SetReference(collider);
 
         public static Tween TweenSize(this BoxCollider collider, Vector3 to, float duration) =>
-            Tweening.To(collider, (source) => source.size, (source, value) => source.size = value, to, duration)
-                    .SetTarget(collider);
+            Tweening.To(collider, (target) => target.size, (target, value) => target.size = value, to, duration)
+                    .SetReference(collider);
     }
 
 }

@@ -5,24 +5,24 @@ namespace Zigurous.Tweening
     public static class SpringJointTweens
     {
         public static Tween TweenSpring(this SpringJoint joint, float to, float duration) =>
-            Tweening.To(joint, (source) => source.spring, (source, value) => source.spring = value, to, duration)
-                    .SetTarget(joint);
+            Tweening.To(joint, (target) => target.spring, (target, value) => target.spring = value, to, duration)
+                    .SetReference(joint);
 
         public static Tween TweenDamper(this SpringJoint joint, float to, float duration) =>
-            Tweening.To(joint, (source) => source.damper, (source, value) => source.damper = value, to, duration)
-                    .SetTarget(joint);
+            Tweening.To(joint, (target) => target.damper, (target, value) => target.damper = value, to, duration)
+                    .SetReference(joint);
 
         public static Tween TweenMinDistance(this SpringJoint joint, float to, float duration) =>
-            Tweening.To(joint, (source) => source.minDistance, (source, value) => source.minDistance = value, to, duration)
-                    .SetTarget(joint);
+            Tweening.To(joint, (target) => target.minDistance, (target, value) => target.minDistance = value, to, duration)
+                    .SetReference(joint);
 
         public static Tween TweenMaxDistance(this SpringJoint joint, float to, float duration) =>
-            Tweening.To(joint, (source) => source.maxDistance, (source, value) => source.maxDistance = value, to, duration)
-                    .SetTarget(joint);
+            Tweening.To(joint, (target) => target.maxDistance, (target, value) => target.maxDistance = value, to, duration)
+                    .SetReference(joint);
 
         public static Tween TweenTolerance(this SpringJoint joint, float to, float duration) =>
-            Tweening.To(joint, (source) => source.tolerance, (source, value) => source.tolerance = value, to, duration)
-                    .SetTarget(joint);
+            Tweening.To(joint, (target) => target.tolerance, (target, value) => target.tolerance = value, to, duration)
+                    .SetReference(joint);
     }
 
 }

@@ -6,7 +6,7 @@ namespace Zigurous.Tweening
     {
         public static Tween TweenVolume(this AudioListener listener, float to, float duration) =>
             Tweening.To(listener, (source) => AudioListener.volume, (source, value) => AudioListener.volume = value, to, duration)
-                    .SetTarget(listener);
+                    .SetReference(listener);
     }
 
 }

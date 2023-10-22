@@ -5,12 +5,12 @@ namespace Zigurous.Tweening
     public static class ScrollbarTweens
     {
         public static Tween TweenValue(this Scrollbar scrollbar, float to, float duration) =>
-            Tweening.To(scrollbar, (source) => source.value, (source, value) => source.value = value, to, duration)
-                    .SetTarget(scrollbar);
+            Tweening.To(scrollbar, (target) => target.value, (target, value) => target.value = value, to, duration)
+                    .SetReference(scrollbar);
 
         public static Tween TweenSize(this Scrollbar scrollbar, float to, float duration) =>
-            Tweening.To(scrollbar, (source) => source.size, (source, value) => source.size = value, to, duration)
-                    .SetTarget(scrollbar);
+            Tweening.To(scrollbar, (target) => target.size, (target, value) => target.size = value, to, duration)
+                    .SetReference(scrollbar);
     }
 
 }

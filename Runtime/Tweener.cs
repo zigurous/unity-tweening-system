@@ -1,44 +1,44 @@
 ﻿namespace Zigurous.Tweening
 {
     /// <summary>
-    /// A tween that animates a parameter over time on a source object from a
-    /// start value to an end value.
+    /// A tween that animates a parameter over time on an object from a start
+    /// value to an end value.
     /// </summary>
-    /// <typeparam name="S">The type of object to tween.</typeparam>
-    /// <typeparam name="T">The type of parameter to tween.</typeparam>
-    public class Tweener<S,T> : Tween
+    /// <typeparam name="T">The type of object to tween.</typeparam>
+    /// <typeparam name="U">The type of parameter to tween.</typeparam>
+    public class Tweener<T,U> : Tween
     {
         /// <summary>
-        /// The source object being tweened.
+        /// The object being tweened.
         /// </summary>
-        public S source;
-
-        /// <summary>
-        /// The function that interpolates values between the tween's start and
-        /// end value.
-        /// </summary>
-        public Interpolater<T> interpolater;
+        public T target;
 
         /// <summary>
         /// The function that gets the current value of the parameter being
         /// tweened.
         /// </summary>
-        public TweenGetter<S,T> getter;
+        public TweenGetter<T,U> getter;
 
         /// <summary>
         /// The function that sets a new value of the parameter being tweened.
         /// </summary>
-        public TweenSetter<S,T> setter;
+        public TweenSetter<T,U> setter;
+
+        /// <summary>
+        /// The function that interpolates values between the tween's start and
+        /// end value.
+        /// </summary>
+        public Interpolater<U> interpolater;
 
         /// <summary>
         /// The initial value of the parameter at the start of the tween.
         /// </summary>
-        public T startValue;
+        public U startValue;
 
         /// <summary>
         /// The desired value of the parameter at the end of the tween.
         /// </summary>
-        public T endValue;
+        public U endValue;
 
         /// <summary>
         /// Creates a new tweener.
@@ -46,7 +46,16 @@
         public Tweener() : base()
         {
             type = TweenType.Tweener;
-            template = typeof(Tweener<S,T>);
+            template = typeof(Tweener<T,U>);
+        }
+
+        /// <summary>
+        /// Creates a new tweener with the specified target object.
+        /// </summary>
+        /// <param name="target">The object to tween.</param>
+        public Tweener(T target) : this()
+        {
+            this.SetTarget(target);
         }
 
         /// <inheritdoc/>
@@ -63,21 +72,21 @@
             }
 
             float time = EaseFunction.lookup[ease](percent);
-            setter(source, interpolater(startValue, endValue, time, snapping));
+            setter(target, interpolater(startValue, endValue, time, snapping));
         }
 
         /// <inheritdoc/>
         protected override void OnStart()
         {
             if (iterations == 0 && getter != null) {
-                startValue = getter(source);
+                startValue = getter(target);
             }
         }
 
         /// <inheritdoc/>
         protected override void OnKill()
         {
-            source = default(S);
+            target = default(T);
             interpolater = null;
             getter = null;
             setter = null;
@@ -86,7 +95,7 @@
         /// <inheritdoc/>
         protected override void OnReset()
         {
-            source = default(S);
+            target = default(T);
             interpolater = null;
             getter = null;
             setter = null;

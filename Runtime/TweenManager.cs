@@ -12,7 +12,7 @@ namespace Zigurous.Tweening
     internal sealed class TweenManager : MonoBehaviour
     {
         private static bool isUnloading = false;
-        private static object lockObject = new object();
+        private static readonly object lockObject = new object();
 
         private static volatile TweenManager instance;
         internal static TweenManager Instance
@@ -56,7 +56,7 @@ namespace Zigurous.Tweening
             if (instance == null)
             {
                 instance = this;
-                SceneManager.sceneUnloaded += SceneUnloaded;
+                SceneManager.sceneUnloaded += OnSceneUnloaded;
             }
             else
             {
@@ -71,7 +71,7 @@ namespace Zigurous.Tweening
             if (instance == this)
             {
                 instance = null;
-                SceneManager.sceneUnloaded -= SceneUnloaded;
+                SceneManager.sceneUnloaded -= OnSceneUnloaded;
             }
 
             foreach (Tween tween in tweens) {
@@ -114,23 +114,23 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Recycles or creates a new tween object.
         /// </summary>
-        internal Tweener<S,T> BuildTweener<S,T>()
+        internal Tweener<T,U> BuildTweener<T,U>()
         {
-            Tweener<S,T> tweener = null;
+            Tweener<T,U> tweener = null;
 
             foreach (Tween tween in tweens)
             {
                 if (tween.internalState == InternalTweenState.Recycled &&
                     tween.type == TweenType.Tweener &&
-                    tween.template == typeof(Tweener<S,T>))
+                    tween.template == typeof(Tweener<T,U>))
                 {
-                    tweener = (Tweener<S,T>)tween;
+                    tweener = (Tweener<T,U>)tween;
                     break;
                 }
             }
 
             if (tweener == null) {
-                tweener = new Tweener<S,T>();
+                tweener = new Tweener<T,U>();
             } else {
                 tweener.Reset();
             }
@@ -184,7 +184,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Kills all tweens that are animating objects on the unloaded scene.
         /// </summary>
-        private void SceneUnloaded(Scene scene)
+        private void OnSceneUnloaded(Scene scene)
         {
             foreach (Tween tween in tweens)
             {

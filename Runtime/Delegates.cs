@@ -1,28 +1,27 @@
 ﻿namespace Zigurous.Tweening
 {
     /// <summary>
-    /// A function delegate that gets the current value of a parameter from a
-    /// source object.
-    /// </summary>
-    /// <typeparam name="S">The type of the source object.</typeparam>
-    /// <typeparam name="T">The type of the parameter.</typeparam>
-    /// <param name="source">The source object to get the value from.</param>
-    /// <returns>The current value of the parameter.</returns>
-    public delegate T TweenGetter<S,T>(S source);
-
-    /// <summary>
-    /// A function delegate that sets a new value of a parameter on a source
+    /// A function delegate that gets the current value of a parameter from an
     /// object.
     /// </summary>
-    /// <typeparam name="S">The type of the source object.</typeparam>
-    /// <typeparam name="T">The type of the parameter.</typeparam>
-    /// <param name="source">The source object to set the value on.</param>
+    /// <typeparam name="T">The type of object to get the parameter from.</typeparam>
+    /// <typeparam name="U">The type of the parameter.</typeparam>
+    /// <param name="target">The object to get the value from.</param>
+    /// <returns>The current value of the parameter.</returns>
+    public delegate U TweenGetter<T,U>(T target);
+
+    /// <summary>
+    /// A function delegate that sets a new value of a parameter on an object.
+    /// </summary>
+    /// <typeparam name="T">The type of object to set the parameter on.</typeparam>
+    /// <typeparam name="U">The type of the parameter.</typeparam>
+    /// <param name="target">The object to set the value on.</param>
     /// <param name="value">The new value of the parameter.</param>
-    public delegate void TweenSetter<S,T>(S source, T value);
+    public delegate void TweenSetter<T,U>(T target, U value);
 
     /// <summary>
     /// A function delegate that can be invoked during various tween events
-    /// and/or state changes.
+    /// and/or state changes, such as on complete.
     /// </summary>
     public delegate void TweenCallback();
 

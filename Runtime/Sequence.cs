@@ -16,7 +16,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// The tweens contained in the sequence (Read only).
         /// </summary>
-        public List<Tween> tweens { get; internal set; } = new List<Tween>();
+        public readonly List<Tween> tweens = new List<Tween>();
 
         /// <summary>
         /// The tween in the sequence currently being played (Read only).

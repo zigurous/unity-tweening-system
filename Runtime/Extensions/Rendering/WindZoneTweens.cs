@@ -5,24 +5,24 @@ namespace Zigurous.Tweening
     public static class WindZoneTweens
     {
         public static Tween TweenRadius(this WindZone windZone, float to, float duration) =>
-            Tweening.To(windZone, (source) => source.radius, (source, value) => source.radius = value, to, duration)
-                    .SetTarget(windZone);
+            Tweening.To(windZone, (target) => target.radius, (target, value) => target.radius = value, to, duration)
+                    .SetReference(windZone);
 
         public static Tween TweenWindMain(this WindZone windZone, float to, float duration) =>
-            Tweening.To(windZone, (source) => source.windMain, (source, value) => source.windMain = value, to, duration)
-                    .SetTarget(windZone);
+            Tweening.To(windZone, (target) => target.windMain, (target, value) => target.windMain = value, to, duration)
+                    .SetReference(windZone);
 
         public static Tween TweenWindTurbulence(this WindZone windZone, float to, float duration) =>
-            Tweening.To(windZone, (source) => source.windTurbulence, (source, value) => source.windTurbulence = value, to, duration)
-                    .SetTarget(windZone);
+            Tweening.To(windZone, (target) => target.windTurbulence, (target, value) => target.windTurbulence = value, to, duration)
+                    .SetReference(windZone);
 
         public static Tween TweenWindPulseMagnitude(this WindZone windZone, float to, float duration) =>
-            Tweening.To(windZone, (source) => source.windPulseMagnitude, (source, value) => source.windPulseMagnitude = value, to, duration)
-                    .SetTarget(windZone);
+            Tweening.To(windZone, (target) => target.windPulseMagnitude, (target, value) => target.windPulseMagnitude = value, to, duration)
+                    .SetReference(windZone);
 
         public static Tween TweenWindPulseFrequency(this WindZone windZone, float to, float duration) =>
-            Tweening.To(windZone, (source) => source.windPulseFrequency, (source, value) => source.windPulseFrequency = value, to, duration)
-                    .SetTarget(windZone);
+            Tweening.To(windZone, (target) => target.windPulseFrequency, (target, value) => target.windPulseFrequency = value, to, duration)
+                    .SetReference(windZone);
     }
 
 }

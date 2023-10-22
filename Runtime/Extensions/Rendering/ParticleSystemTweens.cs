@@ -5,8 +5,8 @@ namespace Zigurous.Tweening
     public static class ParticleSystemTweens
     {
         public static Tween TweenTime(this ParticleSystem particleSystem, float to, float duration) =>
-            Tweening.To(particleSystem, (source) => source.time, (source, value) => source.time = value, to, duration)
-                    .SetTarget(particleSystem);
+            Tweening.To(particleSystem, (target) => target.time, (target, value) => target.time = value, to, duration)
+                    .SetReference(particleSystem);
     }
 
 }
