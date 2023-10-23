@@ -6,6 +6,7 @@ namespace Zigurous.Tweening
     /// Properties for changing global tweening settings.
     /// </summary>
     [AddComponentMenu("Zigurous/Tweening/Tweening Settings")]
+    [HelpURL("https://docs.zigurous.com/com.zigurous.tweening/api/Zigurous.Tweening/Settings")]
     public sealed class Settings : MonoBehaviour
     {
         /// <summary>
