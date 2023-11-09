@@ -86,7 +86,7 @@
         /// <inheritdoc/>
         protected override void OnKill()
         {
-            target = default(T);
+            target = default;
             interpolater = null;
             getter = null;
             setter = null;
@@ -95,7 +95,7 @@
         /// <inheritdoc/>
         protected override void OnReset()
         {
-            target = default(T);
+            target = default;
             interpolater = null;
             getter = null;
             setter = null;

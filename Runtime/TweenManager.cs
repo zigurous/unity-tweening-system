@@ -12,7 +12,7 @@ namespace Zigurous.Tweening
     internal sealed class TweenManager : MonoBehaviour
     {
         private static bool isUnloading = false;
-        private static readonly object lockObject = new object();
+        private static readonly object lockObject = new();
 
         private static volatile TweenManager instance;
         internal static TweenManager Instance
@@ -31,9 +31,11 @@ namespace Zigurous.Tweening
 
                         if (instance == null)
                         {
-                            GameObject singleton = new GameObject();
-                            singleton.name = typeof(TweenManager).Name;
-                            singleton.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
+                            GameObject singleton = new()
+                            {
+                                name = typeof(TweenManager).Name,
+                                hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector
+                            };
                             singleton.AddComponent<TweenManager>();
                             DontDestroyOnLoad(singleton);
                         }
@@ -45,9 +47,10 @@ namespace Zigurous.Tweening
         }
 
         public static bool HasInstance => instance != null;
+
         internal static bool Unloading => isUnloading;
 
-        internal List<Tween> tweens = new List<Tween>(Settings.initialCapacity);
+        internal List<Tween> tweens = new(Settings.initialCapacity);
 
         private void Awake()
         {

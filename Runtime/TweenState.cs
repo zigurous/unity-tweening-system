@@ -77,29 +77,20 @@ namespace Zigurous.Tweening
         internal static bool CanTransition(this TweenState state, TweenState transition)
         {
             // Cannot transition to self
-            if (state == transition) {
-                return false;
-            }
+            if (state == transition) return false;
 
             // Killed tweens cannot make any state changes
-            if (state == TweenState.Killed) {
-                return false;
-            }
+            if (state == TweenState.Killed) return false;
 
             // Cannot transition to Ready state, reserved internally
-            if (transition == TweenState.Ready) {
-                return false;
-            }
+            if (transition == TweenState.Ready) return false;
 
             // Determine state-specific transitions
-            switch (transition)
+            return transition switch
             {
-                case TweenState.Stopped:
-                    return state == TweenState.Playing;
-
-                default:
-                    return true;
-            }
+                TweenState.Stopped => state == TweenState.Playing,
+                _ => true,
+            };
         }
 
     }

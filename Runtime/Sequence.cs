@@ -16,7 +16,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// The tweens contained in the sequence (Read only).
         /// </summary>
-        public readonly List<Tween> Tweens = new List<Tween>();
+        public readonly List<Tween> Tweens = new();
 
         /// <summary>
         /// The tween in the sequence currently being played (Read only).
@@ -97,10 +97,7 @@ namespace Zigurous.Tweening
             }
 
             Tween tween = ActiveTween;
-
-            if (tween != null) {
-                tween.Play();
-            }
+            tween?.Play();
         }
 
         /// <inheritdoc/>
@@ -123,30 +120,21 @@ namespace Zigurous.Tweening
             }
 
             Tween tween = ActiveTween;
-
-            if (tween != null) {
-                tween.Play();
-            }
+            tween?.Play();
         }
 
         /// <inheritdoc/>
         protected override void OnStop()
         {
             Tween tween = ActiveTween;
-
-            if (tween != null) {
-                tween.Stop();
-            }
+            tween?.Stop();
         }
 
         /// <inheritdoc/>
         protected override void OnResume()
         {
             Tween tween = ActiveTween;
-
-            if (tween != null) {
-                tween.Play();
-            }
+            tween?.Play();
         }
 
         /// <inheritdoc/>
@@ -166,22 +154,16 @@ namespace Zigurous.Tweening
         /// <inheritdoc/>
         protected override void OnComplete()
         {
-            foreach (Tween tween in Tweens)
-            {
-                if (tween != null) {
-                    tween.Complete();
-                }
+            foreach (Tween tween in Tweens) {
+                tween?.Complete();
             }
         }
 
         /// <inheritdoc/>
         protected override void OnKill()
         {
-            foreach (Tween tween in Tweens)
-            {
-                if (tween != null) {
-                    tween.Kill();
-                }
+            foreach (Tween tween in Tweens) {
+                tween?.Kill();
             }
 
             Tweens.Clear();

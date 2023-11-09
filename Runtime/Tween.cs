@@ -256,13 +256,8 @@
                 Animate();
                 OnUpdate();
 
-                if (eventHandler != null) {
-                    eventHandler.OnTweenUpdate(this);
-                }
-
-                if (onUpdate != null) {
-                    onUpdate.Invoke();
-                }
+                eventHandler?.OnTweenUpdate(this);
+                onUpdate?.Invoke();
 
                 // Once finished we check if the tween should loop before
                 // considering it complete
@@ -322,13 +317,8 @@
             {
                 OnLoop();
 
-                if (eventHandler != null) {
-                    eventHandler.OnTweenLoop(this);
-                }
-
-                if (onLoop != null) {
-                    onLoop.Invoke();
-                }
+                eventHandler?.OnTweenLoop(this);
+                onLoop?.Invoke();
             }
 
             OnStart();
@@ -336,13 +326,8 @@
 
             if (Iterations == 0)
             {
-                if (eventHandler != null) {
-                    eventHandler.OnTweenStart(this);
-                }
-
-                if (onStart != null) {
-                    onStart.Invoke();
-                }
+                eventHandler?.OnTweenStart(this);
+                onStart?.Invoke();
             }
         }
 
@@ -359,13 +344,8 @@
 
             OnStop();
 
-            if (eventHandler != null) {
-                eventHandler.OnTweenStop(this);
-            }
-
-            if (onStop != null) {
-                onStop.Invoke();
-            }
+            eventHandler?.OnTweenStop(this);
+            onStop?.Invoke();
         }
 
         /// <summary>
@@ -421,13 +401,8 @@
             Animate();
             OnComplete();
 
-            if (eventHandler != null) {
-                eventHandler.OnTweenComplete(this);
-            }
-
-            if (onComplete != null) {
-                onComplete.Invoke();
-            }
+            eventHandler?.OnTweenComplete(this);
+            onComplete?.Invoke();
 
             if (autoKill) {
                 Kill();
@@ -449,13 +424,8 @@
 
             OnKill();
 
-            if (eventHandler != null) {
-                eventHandler.OnTweenKill(this);
-            }
-
-            if (onKill != null) {
-                onKill.Invoke();
-            }
+            eventHandler?.OnTweenKill(this);
+            onKill?.Invoke();
 
             eventHandler = null;
             onKill = null;
