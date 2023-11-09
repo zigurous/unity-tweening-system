@@ -6,7 +6,7 @@ slug: "/manual/tweens"
 
 A tween is an animation of a value from a start position to an end position using an easing function, providing a natural sense of motion. The **Tweening** package provides two main types of tweens, both of which inherit from the base class [Tween](/api/Zigurous.Tweening/Tween).
 
-- [Tweener](/api/Zigurous.Tweening/Tweener-1)
+- [Tweener](/api/Zigurous.Tweening/Tweener-2)
 - [Sequence](/api/Zigurous.Tweening/Sequence)
 
 <hr/>
@@ -58,7 +58,7 @@ tween.autoStart = true; // starts the tween automatically after being initialize
 tween.autoKill = true; // kills the tween automatically after completing
 ```
 
-There are also [callback functions](/manual/callbacks) that can be set on any tween.<br/>
+There are also [callback functions](/manual/events) that can be set on any tween.<br/>
 All of these properties can be set with [property chaining](/manual/property-chaining) methods.
 
 <hr/>

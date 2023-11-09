@@ -16,10 +16,10 @@ apiRules:
 - exclude:
     uidRegex: ^Zigurous.Tweening.Tween.On*
 - exclude:
-    uidRegex: ^Zigurous.Tweening.Tweener`1.Animate
+    uidRegex: ^Zigurous.Tweening.Tweener`2.Animate
 - exclude:
-    uidRegex: ^Zigurous.Tweening.Tweener`1.IsFinished
+    uidRegex: ^Zigurous.Tweening.Tweener`2.IsFinished
 - exclude:
-    uidRegex: ^Zigurous.Tweening.Tweener`1.On*
+    uidRegex: ^Zigurous.Tweening.Tweener`2.On*
 - exclude:
     uidRegex: ^Zigurous.Tweening.*.Tweens
