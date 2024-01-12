@@ -20,7 +20,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// A dictionary of every timing function classified by ease type.
         /// </summary>
-        internal static Dictionary<Ease, TimingCurve> lookup = new Dictionary<Ease, TimingCurve>(32, new EaseEqualityComparer())
+        internal static Dictionary<Ease, TimingCurve> lookup = new(32, new EaseEqualityComparer())
         {
             { Ease.Linear, Linear },
 

@@ -11,44 +11,37 @@ namespace Zigurous.Tweening
     [AddComponentMenu("")]
     internal sealed class TweenManager : MonoBehaviour
     {
+        internal static volatile TweenManager instance;
+        private static readonly object threadLock = new();
         private static bool isUnloading = false;
-        private static readonly object lockObject = new();
 
-        private static volatile TweenManager instance;
-        internal static TweenManager Instance
+        private static TweenManager GetInstance()
         {
-            get
+            if (instance == null)
             {
-                if (isUnloading) {
-                    return null;
-                }
-
-                if (instance == null)
+                lock (threadLock)
                 {
-                    lock (lockObject)
-                    {
-                        instance = FindObjectOfType<TweenManager>();
+                    instance = FindObjectOfType<TweenManager>();
 
-                        if (instance == null)
+                    if (instance == null && !isUnloading)
+                    {
+                        GameObject singleton = new()
                         {
-                            GameObject singleton = new()
-                            {
-                                name = typeof(TweenManager).Name,
-                                hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector
-                            };
-                            singleton.AddComponent<TweenManager>();
-                            DontDestroyOnLoad(singleton);
-                        }
+                            name = typeof(TweenManager).Name,
+                            hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector
+                        };
+
+                        return singleton.AddComponent<TweenManager>();
                     }
                 }
-
-                return instance;
             }
+
+            return instance;
         }
 
+        public static TweenManager Instance => GetInstance();
         public static bool HasInstance => instance != null;
-
-        internal static bool Unloading => isUnloading;
+        public static bool IsUnloading = isUnloading;
 
         internal List<Tween> tweens = new(Settings.initialCapacity);
 
@@ -59,7 +52,12 @@ namespace Zigurous.Tweening
             if (instance == null)
             {
                 instance = this;
-                SceneManager.sceneUnloaded += OnSceneUnloaded;
+
+                if (Application.isPlaying)
+                {
+                    SceneManager.sceneUnloaded += OnSceneUnloaded;
+                    DontDestroyOnLoad(this);
+                }
             }
             else
             {

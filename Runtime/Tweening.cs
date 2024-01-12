@@ -246,7 +246,7 @@ namespace Zigurous.Tweening
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T,U>(Interpolater<U> interpolater, T target, TweenGetter<T,U> getter, TweenSetter<T,U> setter, U endValue, float duration)
         {
-            if (TweenManager.Unloading) {
+            if (TweenManager.IsUnloading) {
                 return null;
             }
 
@@ -459,7 +459,7 @@ namespace Zigurous.Tweening
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween From<T,U>(Interpolater<U> interpolater, T target, TweenGetter<T,U> getter, TweenSetter<T,U> setter, U endValue, float duration)
         {
-            if (TweenManager.Unloading) {
+            if (TweenManager.IsUnloading) {
                 return null;
             }
 
@@ -481,7 +481,7 @@ namespace Zigurous.Tweening
         /// <returns>The new tween sequence.</returns>
         public static Sequence Sequence()
         {
-            if (!TweenManager.Unloading) {
+            if (!TweenManager.IsUnloading) {
                 return TweenManager.Instance.BuildSequence();
             } else {
                 return null;
@@ -495,7 +495,7 @@ namespace Zigurous.Tweening
         /// <returns>The new tween sequence.</returns>
         public static Sequence Sequence(params Tween[] tweens)
         {
-            if (TweenManager.Unloading) {
+            if (TweenManager.IsUnloading) {
                 return null;
             }
 

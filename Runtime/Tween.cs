@@ -224,7 +224,7 @@
         {
             Reset();
 
-            if (!TweenManager.Unloading) {
+            if (!TweenManager.IsUnloading) {
                 TweenManager.Instance.Track(this);
             }
         }
