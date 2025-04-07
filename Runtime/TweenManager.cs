@@ -49,7 +49,7 @@ namespace Zigurous.Tweening
         {
             isUnloading = false;
 
-            if (instance == null)
+            if (instance == null || instance == this)
             {
                 instance = this;
 
