@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "com.zigurous.animation": "https://github.com/zigurous/unity-animation-library.git"
+  }
+}

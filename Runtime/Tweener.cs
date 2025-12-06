@@ -1,4 +1,6 @@
-﻿namespace Zigurous.Tweening
+﻿using Zigurous.Animation;
+
+namespace Zigurous.Tweening
 {
     /// <summary>
     /// A tween that animates a parameter over time on an object from a start

@@ -1,3 +1,5 @@
+using Zigurous.Animation;
+
 namespace Zigurous.Tweening
 {
     /// <summary>

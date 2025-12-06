@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zigurous.Animation;
 
 namespace Zigurous.Tweening
 {
@@ -27,7 +28,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// The overshoot value used in easing functions.
         /// </summary>
-        public static float overshoot = 1.70158f;
+        public static float overshoot = EaseFunction.overshoot;
 
         /// <summary>
         /// The initial amount of tweens memory is allocated for when the system
@@ -67,7 +68,7 @@ namespace Zigurous.Tweening
 
         [SerializeField]
         [Tooltip("The overshoot value used in easing functions.")]
-        private float m_Overshoot = 1.70158f;
+        private float m_Overshoot = EaseFunction.overshoot;
 
         [SerializeField]
         [Tooltip("The initial amount of tweens memory is allocated for when the system starts. Additional memory will be allocated as needed.")]
@@ -105,6 +106,7 @@ namespace Zigurous.Tweening
             Settings.autoStart = m_AutoStart;
             Settings.autoKill = m_AutoKill;
             Settings.recyclable = m_Recyclable;
+            EaseFunction.overshoot = m_Overshoot;
         }
 
         /// <summary>
@@ -145,6 +147,7 @@ namespace Zigurous.Tweening
         {
             m_Overshoot = overshoot;
             Settings.overshoot = overshoot;
+            EaseFunction.overshoot = overshoot;
         }
 
         /// <summary>

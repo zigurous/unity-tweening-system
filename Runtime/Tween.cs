@@ -1,4 +1,6 @@
-﻿namespace Zigurous.Tweening
+﻿using Zigurous.Animation;
+
+namespace Zigurous.Tweening
 {
     /// <summary>
     /// The base class of every tween.
