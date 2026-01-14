@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Zigurous.Tweening
@@ -48,8 +49,13 @@ namespace Zigurous.Tweening
             Tweening.To(light, (target) => target.innerSpotAngle, (target, value) => target.innerSpotAngle = value, to, duration)
                     .SetReference(light);
 
+        [Obsolete("This method is obsolete. Use TweenCookieSize2D instead.")]
         public static Tween TweenCookieSize(this Light light, float to, float duration) =>
             Tweening.To(light, (target) => target.cookieSize, (target, value) => target.cookieSize = value, to, duration)
+                    .SetReference(light);
+
+        public static Tween TweenCookieSize2D(this Light light, Vector2 to, float duration) =>
+            Tweening.To(light, (target) => target.cookieSize2D, (target, value) => target.cookieSize2D = value, to, duration)
                     .SetReference(light);
 
         public static Tween TweenBoundingSphereOverride(this Light light, Vector4 to, float duration) =>

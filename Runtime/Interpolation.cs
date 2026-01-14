@@ -7,19 +7,19 @@ namespace Zigurous.Tweening
     /// </summary>
     public static class Interpolation
     {
-        internal static readonly Interpolater<float> _float = Lerp;
-        internal static readonly Interpolater<double> _double = Lerp;
-        internal static readonly Interpolater<int> _int = Lerp;
-        internal static readonly Interpolater<long> _long = Lerp;
-        internal static readonly Interpolater<short> _short = Lerp;
-        internal static readonly Interpolater<Vector2> _Vector2 = Lerp;
-        internal static readonly Interpolater<Vector2Int> _Vector2Int = Lerp;
-        internal static readonly Interpolater<Vector3> _Vector3 = Lerp;
-        internal static readonly Interpolater<Vector3Int> _Vector3Int = Lerp;
-        internal static readonly Interpolater<Vector4> _Vector4 = Lerp;
-        internal static readonly Interpolater<Quaternion> _Quaternion = Lerp;
-        internal static readonly Interpolater<Rect> _Rect = Lerp;
-        internal static readonly Interpolater<Color> _Color = Lerp;
+        internal static readonly Interpolater<float> Float = Lerp;
+        internal static readonly Interpolater<double> Double = Lerp;
+        internal static readonly Interpolater<int> Int = Lerp;
+        internal static readonly Interpolater<long> Long = Lerp;
+        internal static readonly Interpolater<short> Short = Lerp;
+        internal static readonly Interpolater<Vector2> Vector2 = Lerp;
+        internal static readonly Interpolater<Vector2Int> Vector2Int = Lerp;
+        internal static readonly Interpolater<Vector3> Vector3 = Lerp;
+        internal static readonly Interpolater<Vector3Int> Vector3Int = Lerp;
+        internal static readonly Interpolater<Vector4> Vector4 = Lerp;
+        internal static readonly Interpolater<Quaternion> Quaternion = Lerp;
+        internal static readonly Interpolater<Rect> Rect = Lerp;
+        internal static readonly Interpolater<Color> Color = Lerp;
 
         /// <summary>
         /// Linearly interpolates between <paramref name="a"/> and
@@ -104,7 +104,7 @@ namespace Zigurous.Tweening
         /// <returns>The interpolated value between the start and end value.</returns>
         public static Vector2 Lerp(Vector2 a, Vector2 b, float t, bool snapping = false)
         {
-            Vector2 value = Vector2.Lerp(a, b, t);
+            Vector2 value = UnityEngine.Vector2.Lerp(a, b, t);
             return snapping ? Snap(value) : value;
         }
 
@@ -135,7 +135,7 @@ namespace Zigurous.Tweening
         /// <returns>The interpolated value between the start and end value.</returns>
         public static Vector3 Lerp(Vector3 a, Vector3 b, float t, bool snapping = false)
         {
-            Vector3 value = Vector3.Lerp(a, b, t);
+            Vector3 value = UnityEngine.Vector3.Lerp(a, b, t);
             return snapping ? Snap(value) : value;
         }
 
@@ -167,7 +167,7 @@ namespace Zigurous.Tweening
         /// <returns>The interpolated value between the start and end value.</returns>
         public static Vector4 Lerp(Vector4 a, Vector4 b, float t, bool snapping = false)
         {
-            Vector4 value = Vector4.Lerp(a, b, t);
+            Vector4 value = UnityEngine.Vector4.Lerp(a, b, t);
             return snapping ? Snap(value) : value;
         }
 
@@ -182,7 +182,7 @@ namespace Zigurous.Tweening
         /// <returns>The interpolated value between the start and end value.</returns>
         public static Quaternion Lerp(Quaternion a, Quaternion b, float t, bool snapping = false)
         {
-            Quaternion value = Quaternion.Lerp(a, b, t);
+            Quaternion value = UnityEngine.Quaternion.Lerp(a, b, t);
             return snapping ? Snap(value) : value;
         }
 
@@ -213,7 +213,7 @@ namespace Zigurous.Tweening
         /// <returns>The interpolated value between the start and end value.</returns>
         public static Color Lerp(Color a, Color b, float t, bool snapping = false)
         {
-            Color value = Color.Lerp(a, b, t);
+            Color value = UnityEngine.Color.Lerp(a, b, t);
             return snapping ? Snap(value) : value;
         }
 
@@ -254,7 +254,7 @@ namespace Zigurous.Tweening
         /// <returns>The value snapped to the nearest whole number.</returns>
         internal static Quaternion Snap(Quaternion value)
         {
-            return Quaternion.Euler(Snap(value.eulerAngles));
+            return UnityEngine.Quaternion.Euler(Snap(value.eulerAngles));
         }
 
         /// <summary>

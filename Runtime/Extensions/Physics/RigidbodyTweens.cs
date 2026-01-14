@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Zigurous.Tweening
 {
@@ -13,7 +14,7 @@ namespace Zigurous.Tweening
                     .SetReference(rigidbody);
 
         public static Tween TweenVelocity(this Rigidbody rigidbody, Vector3 to, float duration) =>
-            Tweening.To(rigidbody, (target) => target.velocity, (target, value) => target.velocity = value, to, duration)
+            Tweening.To(rigidbody, (target) => target.linearVelocity, (target, value) => target.linearVelocity = value, to, duration)
                     .SetReference(rigidbody);
 
         public static Tween TweenAngularVelocity(this Rigidbody rigidbody, Vector3 to, float duration) =>
@@ -36,12 +37,22 @@ namespace Zigurous.Tweening
             Tweening.To(rigidbody, (target) => target.centerOfMass, (target, value) => target.centerOfMass = value, to, duration)
                     .SetReference(rigidbody);
 
+        [Obsolete("This method is obsolete. Use TweenLinearDamping instead.")]
         public static Tween TweenDrag(this Rigidbody rigidbody, float to, float duration) =>
             Tweening.To(rigidbody, (target) => target.drag, (target, value) => target.drag = value, to, duration)
                     .SetReference(rigidbody);
 
+        public static Tween TweenLinearDamping(this Rigidbody rigidbody, float to, float duration) =>
+            Tweening.To(rigidbody, (target) => target.linearDamping, (target, value) => target.linearDamping = value, to, duration)
+                    .SetReference(rigidbody);
+
+        [Obsolete("This method is obsolete. Use TweenAngularDamping instead.")]
         public static Tween TweenAngularDrag(this Rigidbody rigidbody, float to, float duration) =>
             Tweening.To(rigidbody, (target) => target.angularDrag, (target, value) => target.angularDrag = value, to, duration)
+                    .SetReference(rigidbody);
+
+        public static Tween TweenAngularDamping(this Rigidbody rigidbody, float to, float duration) =>
+            Tweening.To(rigidbody, (target) => target.angularDamping, (target, value) => target.angularDamping = value, to, duration)
                     .SetReference(rigidbody);
 
         public static Tween TweenInertiaTensor(this Rigidbody rigidbody, Vector3 to, float duration) =>

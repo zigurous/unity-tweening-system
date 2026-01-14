@@ -61,7 +61,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, float> getter, TweenSetter<T, float> setter, float endValue, float duration) =>
-            To(Interpolation._float, target, getter, setter, endValue, duration);
+            To(Interpolation.Float, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
@@ -75,7 +75,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, double> getter, TweenSetter<T, double> setter, double endValue, float duration) =>
-            To(Interpolation._double, target, getter, setter, endValue, duration);
+            To(Interpolation.Double, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
@@ -89,7 +89,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, int> getter, TweenSetter<T, int> setter, int endValue, float duration) =>
-            To(Interpolation._int, target, getter, setter, endValue, duration);
+            To(Interpolation.Int, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
@@ -103,7 +103,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, long> getter, TweenSetter<T, long> setter, long endValue, float duration) =>
-            To(Interpolation._long, target, getter, setter, endValue, duration);
+            To(Interpolation.Long, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
@@ -117,7 +117,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, short> getter, TweenSetter<T, short> setter, short endValue, float duration) =>
-            To(Interpolation._short, target, getter, setter, endValue, duration);
+            To(Interpolation.Short, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
@@ -131,7 +131,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, Vector2> getter, TweenSetter<T, Vector2> setter, Vector2 endValue, float duration) =>
-            To(Interpolation._Vector2, target, getter, setter, endValue, duration);
+            To(Interpolation.Vector2, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
@@ -145,7 +145,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, Vector2Int> getter, TweenSetter<T, Vector2Int> setter, Vector2Int endValue, float duration) =>
-            To(Interpolation._Vector2Int, target, getter, setter, endValue, duration);
+            To(Interpolation.Vector2Int, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
@@ -159,7 +159,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, Vector3> getter, TweenSetter<T, Vector3> setter, Vector3 endValue, float duration) =>
-            To(Interpolation._Vector3, target, getter, setter, endValue, duration);
+            To(Interpolation.Vector3, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
@@ -173,7 +173,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, Vector3Int> getter, TweenSetter<T, Vector3Int> setter, Vector3Int endValue, float duration) =>
-            To(Interpolation._Vector3Int, target, getter, setter, endValue, duration);
+            To(Interpolation.Vector3Int, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
@@ -187,7 +187,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, Vector4> getter, TweenSetter<T, Vector4> setter, Vector4 endValue, float duration) =>
-            To(Interpolation._Vector4, target, getter, setter, endValue, duration);
+            To(Interpolation.Vector4, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
@@ -201,7 +201,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, Quaternion> getter, TweenSetter<T, Quaternion> setter, Quaternion endValue, float duration) =>
-            To(Interpolation._Quaternion, target, getter, setter, endValue, duration);
+            To(Interpolation.Quaternion, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
@@ -215,7 +215,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, Rect> getter, TweenSetter<T, Rect> setter, Rect endValue, float duration) =>
-            To(Interpolation._Rect, target, getter, setter, endValue, duration);
+            To(Interpolation.Rect, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter to a given end value over
@@ -229,7 +229,7 @@ namespace Zigurous.Tweening
         /// <param name="duration">The duration of the tween.</param>
         /// <returns>A new tween that animates the parameter.</returns>
         public static Tween To<T>(T target, TweenGetter<T, Color> getter, TweenSetter<T, Color> setter, Color endValue, float duration) =>
-            To(Interpolation._Color, target, getter, setter, endValue, duration);
+            To(Interpolation.Color, target, getter, setter, endValue, duration);
 
         /// <summary>
         /// Creates a tween that animates a parameter on an object to a given

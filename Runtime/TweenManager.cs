@@ -21,7 +21,7 @@ namespace Zigurous.Tweening
             {
                 lock (threadLock)
                 {
-                    instance = FindObjectOfType<TweenManager>();
+                    instance = FindFirstObjectByType<TweenManager>();
 
                     if (instance == null && !isUnloading)
                     {
