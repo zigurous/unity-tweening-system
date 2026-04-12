@@ -250,16 +250,22 @@ namespace Zigurous.Tweening
                 return null;
             }
 
-            Tweener<T,U> tween = TweenManager.Instance.BuildTweener<T,U>();
-            tween.target = target;
-            tween.getter = getter;
-            tween.setter = setter;
-            tween.interpolater = interpolater;
-            tween.endValue = endValue;
-            tween.duration = duration;
-            tween.reversed = false;
+            TweenManager manager = TweenManager.Instance;
 
-            return tween;
+            if (manager != null)
+            {
+                Tweener<T,U> tween = manager.BuildTweener<T,U>();
+                tween.target = target;
+                tween.getter = getter;
+                tween.setter = setter;
+                tween.interpolater = interpolater;
+                tween.endValue = endValue;
+                tween.duration = duration;
+                tween.reversed = false;
+                return tween;
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -463,16 +469,22 @@ namespace Zigurous.Tweening
                 return null;
             }
 
-            Tweener<T,U> tween = TweenManager.Instance.BuildTweener<T,U>();
-            tween.target = target;
-            tween.getter = getter;
-            tween.setter = setter;
-            tween.interpolater = interpolater;
-            tween.endValue = endValue;
-            tween.duration = duration;
-            tween.reversed = true;
+            TweenManager manager = TweenManager.Instance;
 
-            return tween;
+            if (manager != null)
+            {
+                Tweener<T,U> tween = manager.BuildTweener<T,U>();
+                tween.target = target;
+                tween.getter = getter;
+                tween.setter = setter;
+                tween.interpolater = interpolater;
+                tween.endValue = endValue;
+                tween.duration = duration;
+                tween.reversed = true;
+                return tween;
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -481,11 +493,8 @@ namespace Zigurous.Tweening
         /// <returns>The new tween sequence.</returns>
         public static Sequence Sequence()
         {
-            if (!TweenManager.IsUnloading) {
-                return TweenManager.Instance.BuildSequence();
-            } else {
-                return null;
-            }
+            TweenManager manager = TweenManager.Instance;
+            return manager != null ? manager.BuildSequence() : null;
         }
 
         /// <summary>
@@ -495,13 +504,12 @@ namespace Zigurous.Tweening
         /// <returns>The new tween sequence.</returns>
         public static Sequence Sequence(params Tween[] tweens)
         {
-            if (TweenManager.IsUnloading) {
-                return null;
-            }
+            TweenManager manager = TweenManager.Instance;
+            if (manager == null) return null;
 
-            Sequence sequence = TweenManager.Instance.BuildSequence();
+            Sequence sequence = manager.BuildSequence();
 
-            if (tweens != null && tweens.Length > 0) {
+            if (sequence != null && tweens != null && tweens.Length > 0) {
                 sequence.Tweens.AddRange(tweens);
             }
 

@@ -117,6 +117,8 @@ namespace Zigurous.Tweening
         /// </summary>
         internal Tweener<T,U> BuildTweener<T,U>()
         {
+            if (IsUnloading) return null;
+
             Tweener<T,U> tweener = null;
 
             foreach (Tween tween in tweens)
@@ -147,6 +149,8 @@ namespace Zigurous.Tweening
         /// </summary>
         internal Sequence BuildSequence()
         {
+            if (IsUnloading) return null;
+
             Sequence sequence = null;
 
             foreach (Tween tween in tweens)
