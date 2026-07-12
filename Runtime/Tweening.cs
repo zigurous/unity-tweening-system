@@ -16,7 +16,7 @@ namespace Zigurous.Tweening
         {
             get
             {
-                if (TweenManager.HasInstance) {
+                if (TweenManager.IsLoaded) {
                     return TweenManager.Instance.tweens.Count;
                 } else {
                     return 0;
@@ -31,7 +31,7 @@ namespace Zigurous.Tweening
         {
             get
             {
-                if (!TweenManager.HasInstance) {
+                if (!TweenManager.IsLoaded) {
                     return 0;
                 }
 
@@ -521,7 +521,7 @@ namespace Zigurous.Tweening
         /// </summary>
         public static void PlayAll()
         {
-            if (!TweenManager.HasInstance) {
+            if (!TweenManager.IsLoaded) {
                 return;
             }
 
@@ -538,7 +538,7 @@ namespace Zigurous.Tweening
         /// <param name="id">The id of the tween(s) to play.</param>
         public static void Play(int id)
         {
-            if (!TweenManager.HasInstance) {
+            if (!TweenManager.IsLoaded) {
                 return;
             }
 
@@ -567,7 +567,7 @@ namespace Zigurous.Tweening
         /// </summary>
         public static void StopAll()
         {
-            if (!TweenManager.HasInstance) {
+            if (!TweenManager.IsLoaded) {
                 return;
             }
 
@@ -584,7 +584,7 @@ namespace Zigurous.Tweening
         /// <param name="id">The id of the tween(s) to stop.</param>
         public static void Stop(int id)
         {
-            if (!TweenManager.HasInstance) {
+            if (!TweenManager.IsLoaded) {
                 return;
             }
 
@@ -613,7 +613,7 @@ namespace Zigurous.Tweening
         /// </summary>
         public static void RestartAll()
         {
-            if (!TweenManager.HasInstance) {
+            if (!TweenManager.IsLoaded) {
                 return;
             }
 
@@ -630,7 +630,7 @@ namespace Zigurous.Tweening
         /// <param name="id">The id of the tween(s) to restart.</param>
         public static void Restart(int id)
         {
-            if (!TweenManager.HasInstance) {
+            if (!TweenManager.IsLoaded) {
                 return;
             }
 
@@ -659,7 +659,7 @@ namespace Zigurous.Tweening
         /// </summary>
         public static void CompleteAll()
         {
-            if (!TweenManager.HasInstance) {
+            if (!TweenManager.IsLoaded) {
                 return;
             }
 
@@ -676,7 +676,7 @@ namespace Zigurous.Tweening
         /// <param name="id">The id of the tween(s) to complete.</param>
         public static void Complete(int id)
         {
-            if (!TweenManager.HasInstance) {
+            if (!TweenManager.IsLoaded) {
                 return;
             }
 
@@ -707,7 +707,7 @@ namespace Zigurous.Tweening
         /// <param name="complete">Whether to complete the tweens before being killed.</param>
         public static void KillAll(bool complete = false)
         {
-            if (!TweenManager.HasInstance) {
+            if (!TweenManager.IsLoaded) {
                 return;
             }
 
@@ -726,7 +726,7 @@ namespace Zigurous.Tweening
         /// <param name="complete">Whether to complete the tweens before being killed.</param>
         public static void Kill(int id, bool complete = false)
         {
-            if (!TweenManager.HasInstance) {
+            if (!TweenManager.IsLoaded) {
                 return;
             }
 
