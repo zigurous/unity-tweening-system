@@ -11,12 +11,12 @@ namespace Zigurous.Tweening
         /// <summary>
         /// The index of the current tween in the sequence being played (Read only).
         /// </summary>
-        public int CurrentIndex { get; private set; } = -1;
+        public int currentIndex { get; private set; } = -1;
 
         /// <summary>
         /// The tweens contained in the sequence (Read only).
         /// </summary>
-        public readonly List<Tween> Tweens = new();
+        public readonly List<Tween> tweens = new();
 
         /// <summary>
         /// The tween in the sequence currently being played (Read only).
@@ -25,8 +25,8 @@ namespace Zigurous.Tweening
         {
             get
             {
-                if (CurrentIndex >= 0 && CurrentIndex < Tweens.Count) {
-                    return Tweens[CurrentIndex];
+                if (currentIndex >= 0 && currentIndex < tweens.Count) {
+                    return tweens[currentIndex];
                 } else {
                     return null;
                 }
@@ -65,7 +65,7 @@ namespace Zigurous.Tweening
         /// <returns>The sequence itself to allow for chaining.</returns>
         public Sequence Append(Tween tween)
         {
-            Tweens.Add(Prepare(tween));
+            tweens.Add(Prepare(tween));
             return this;
         }
 
@@ -76,7 +76,7 @@ namespace Zigurous.Tweening
         /// <returns>The sequence itself to allow for chaining.</returns>
         public Sequence Prepend(Tween tween)
         {
-            Tweens.Insert(0, Prepare(tween));
+            tweens.Insert(0, Prepare(tween));
             return this;
         }
 
@@ -91,9 +91,9 @@ namespace Zigurous.Tweening
         private void Next()
         {
             if (reversed) {
-                CurrentIndex--;
+                currentIndex--;
             } else {
-                CurrentIndex++;
+                currentIndex++;
             }
 
             Tween tween = ActiveTween;
@@ -104,9 +104,9 @@ namespace Zigurous.Tweening
         protected override bool IsFinished()
         {
             if (reversed) {
-                return CurrentIndex < 0;
+                return currentIndex < 0;
             } else {
-                return CurrentIndex >= Tweens.Count;
+                return currentIndex >= tweens.Count;
             }
         }
 
@@ -114,9 +114,9 @@ namespace Zigurous.Tweening
         protected override void OnStart()
         {
             if (reversed) {
-                CurrentIndex = Tweens.Count - 1;
+                currentIndex = tweens.Count - 1;
             } else {
-                CurrentIndex = 0;
+                currentIndex = 0;
             }
 
             Tween tween = ActiveTween;
@@ -140,13 +140,13 @@ namespace Zigurous.Tweening
         /// <inheritdoc/>
         protected override void OnLoop()
         {
-            foreach (Tween tween in Tweens)
+            foreach (Tween tween in tweens)
             {
                 if (loopType == LoopType.PingPong || loopType == LoopType.PingPongWithDelay) {
                     tween.reversed = !tween.reversed;
                 }
 
-                tween.Elapsed = 0f;
+                tween.elapsed = 0f;
                 tween.Animate();
             }
         }
@@ -154,7 +154,7 @@ namespace Zigurous.Tweening
         /// <inheritdoc/>
         protected override void OnComplete()
         {
-            foreach (Tween tween in Tweens) {
+            foreach (Tween tween in tweens) {
                 tween?.Complete();
             }
         }
@@ -162,19 +162,19 @@ namespace Zigurous.Tweening
         /// <inheritdoc/>
         protected override void OnKill()
         {
-            foreach (Tween tween in Tweens) {
+            foreach (Tween tween in tweens) {
                 tween?.Kill();
             }
 
-            Tweens.Clear();
-            CurrentIndex = -1;
+            tweens.Clear();
+            currentIndex = -1;
         }
 
         /// <inheritdoc/>
         protected override void OnReset()
         {
-            Tweens.Clear();
-            CurrentIndex = -1;
+            tweens.Clear();
+            currentIndex = -1;
         }
 
     }

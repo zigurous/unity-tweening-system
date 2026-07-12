@@ -88,17 +88,17 @@ There are a number of properties available to read the current state of a tween.
 - `Killed`: The tween is killed, making it no longer usable.
 
 ```csharp
-TweenState state = tween.State; // the current animation state of the tween
+TweenState state = tween.state;
 
-bool playing = tween.IsPlaying; // true if playing
-bool stopped = tween.IsStopped; // true if stopped
-bool complete = tween.IsComplete; // true if complete
-bool killed = tween.IsKilled; // true if killed
-bool delayed = tween.IsDelayed; // true if delayed
+bool playing = tween.IsPlaying;
+bool stopped = tween.IsStopped;
+bool complete = tween.IsComplete;
+bool killed = tween.IsKilled;
+bool delayed = tween.IsDelayed;
 
-float elapsed = tween.Elapsed; // the amount of seconds playing
-float percent = tween.PercentComplete; // the percentage of completion
-float delayElapsed = tween.DelayElapsed; // the amount of seconds delayed
+float elapsed = tween.elapsed;
+float elapsedDelay = tween.elapsedDelay;
+float percent = tween.PercentComplete;
 
-int iterations = tween.Iterations; // the number of times completed
+int iterations = tween.iterations;
 ```

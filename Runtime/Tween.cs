@@ -55,27 +55,27 @@ namespace Zigurous.Tweening
         /// <summary>
         /// The animation state of the tween.
         /// </summary>
-        public TweenState State { get; internal set; } = TweenState.Ready;
+        public TweenState state { get; internal set; } = TweenState.Ready;
 
         /// <summary>
         /// Whether the tween is playing.
         /// </summary>
-        public bool IsPlaying => State == TweenState.Playing;
+        public bool IsPlaying => state == TweenState.Playing;
 
         /// <summary>
         /// Whether the tween is stopped.
         /// </summary>
-        public bool IsStopped => State == TweenState.Stopped;
+        public bool IsStopped => state == TweenState.Stopped;
 
         /// <summary>
         /// Whether the tween is complete.
         /// </summary>
-        public bool IsComplete => State == TweenState.Complete;
+        public bool IsComplete => state == TweenState.Complete;
 
         /// <summary>
         /// Whether the tween is killed.
         /// </summary>
-        public bool IsKilled => State == TweenState.Killed;
+        public bool IsKilled => state == TweenState.Killed;
 
         /// <summary>
         /// The easing function type used by the tween to animate values.
@@ -88,33 +88,33 @@ namespace Zigurous.Tweening
         public float duration = Settings.defaultDuration;
 
         /// <summary>
-        /// The amount of seconds that have elapsed since the tween started.
-        /// </summary>
-        public float Elapsed { get; internal set; }
-
-        /// <summary>
-        /// The tween's percentage of completion.
-        /// </summary>
-        public float PercentComplete => duration > 0f ? UnityEngine.Mathf.Clamp01(Elapsed / duration) : 1f;
-
-        /// <summary>
         /// The amount of seconds the tween waits before playing after being
         /// started.
         /// </summary>
         public float delay = Settings.defaultDelay;
 
         /// <summary>
+        /// The amount of seconds that have elapsed since the tween started.
+        /// </summary>
+        public float elapsed { get; internal set; }
+
+        /// <summary>
         /// The amount of seconds that have elapsed during the tween's delayed
         /// state, when applicable.
         /// </summary>
-        public float DelayElapsed { get; internal set; }
+        public float elapsedDelay { get; internal set; }
 
         /// <summary>
         /// Whether the tween is currently in a delayed state, i.e., the tween
         /// has been started but the elapsed time has not exceeded the delay
         /// duration.
         /// </summary>
-        public bool IsDelayed => DelayElapsed < delay;
+        public bool IsDelayed => elapsedDelay < delay;
+
+        /// <summary>
+        /// The tween's percentage of completion.
+        /// </summary>
+        public float PercentComplete => duration > 0f ? UnityEngine.Mathf.Clamp01(elapsed / duration) : 1f;
 
         /// <summary>
         /// The number of times the tween loops. A value of -1 will loop the
@@ -130,12 +130,12 @@ namespace Zigurous.Tweening
         /// <summary>
         /// The number of times the tween has completed.
         /// </summary>
-        public int Iterations { get; internal set; }
+        public int iterations { get; internal set; }
 
         /// <summary>
         /// The configuration flags set on the tween.
         /// </summary>
-        private Flag Flags = 0;
+        private Flag flags = 0;
 
         /// <summary>
         /// Animates from the end value to the start value as opposed to
@@ -245,7 +245,7 @@ namespace Zigurous.Tweening
         {
             if (!IsPlaying)
             {
-                if (State == TweenState.Ready && autoStart) {
+                if (state == TweenState.Ready && autoStart) {
                     Play();
                 }
                 return;
@@ -253,7 +253,7 @@ namespace Zigurous.Tweening
 
             if (!IsDelayed)
             {
-                Elapsed += deltaTime;
+                elapsed += deltaTime;
 
                 Animate();
                 OnUpdate();
@@ -269,12 +269,12 @@ namespace Zigurous.Tweening
             }
             else
             {
-                DelayElapsed += deltaTime;
+                elapsedDelay += deltaTime;
 
                 // Start the tween once the delay is complete and only if the
                 // elapsed time is zero which indicates it has never been
                 // updated yet
-                if (DelayElapsed >= delay && Elapsed == 0f) {
+                if (elapsedDelay >= delay && elapsed == 0f) {
                     Start();
                 }
             }
@@ -286,13 +286,13 @@ namespace Zigurous.Tweening
         /// </summary>
         public void Play()
         {
-            if (!State.CanTransition(TweenState.Playing)) {
+            if (!state.CanTransition(TweenState.Playing)) {
                 return;
             }
 
-            TweenState previousState = State;
+            TweenState previousState = state;
 
-            State = TweenState.Playing;
+            state = TweenState.Playing;
             internalState = InternalTweenState.Active;
 
             if (previousState == TweenState.Stopped)
@@ -301,8 +301,8 @@ namespace Zigurous.Tweening
             }
             else
             {
-                Elapsed = 0f;
-                DelayElapsed = 0f;
+                elapsed = 0f;
+                elapsedDelay = 0f;
 
                 if (!IsDelayed) {
                     Start();
@@ -315,7 +315,7 @@ namespace Zigurous.Tweening
         /// </summary>
         private void Start()
         {
-            if (Iterations > 0)
+            if (iterations > 0)
             {
                 OnLoop();
 
@@ -326,7 +326,7 @@ namespace Zigurous.Tweening
             OnStart();
             Animate();
 
-            if (Iterations == 0)
+            if (iterations == 0)
             {
                 eventHandler?.OnTweenStart(this);
                 onStart?.Invoke();
@@ -338,11 +338,11 @@ namespace Zigurous.Tweening
         /// </summary>
         public void Stop()
         {
-            if (!State.CanTransition(TweenState.Stopped)) {
+            if (!state.CanTransition(TweenState.Stopped)) {
                 return;
             }
 
-            State = TweenState.Stopped;
+            state = TweenState.Stopped;
 
             OnStop();
 
@@ -356,18 +356,18 @@ namespace Zigurous.Tweening
         /// <returns>True if the tween is looped.</returns>
         private bool Loop()
         {
-            Iterations++;
+            iterations++;
 
-            if (Iterations >= loops && loops != -1) {
+            if (iterations >= loops && loops != -1) {
                 return false;
             }
 
-            Elapsed = 0f;
+            elapsed = 0f;
 
             switch (loopType)
             {
                 case LoopType.RestartWithDelay:
-                    DelayElapsed = 0f;
+                    elapsedDelay = 0f;
                     break;
 
                 case LoopType.PingPong:
@@ -376,7 +376,7 @@ namespace Zigurous.Tweening
 
                 case LoopType.PingPongWithDelay:
                     reversed = !reversed;
-                    DelayElapsed = 0f;
+                    elapsedDelay = 0f;
                     break;
             }
 
@@ -392,13 +392,13 @@ namespace Zigurous.Tweening
         /// </summary>
         public void Complete()
         {
-            if (!State.CanTransition(TweenState.Complete)) {
+            if (!state.CanTransition(TweenState.Complete)) {
                 return;
             }
 
-            State = TweenState.Complete;
-            Elapsed = duration;
-            DelayElapsed = delay;
+            state = TweenState.Complete;
+            elapsed = duration;
+            elapsedDelay = delay;
 
             Animate();
             OnComplete();
@@ -417,11 +417,11 @@ namespace Zigurous.Tweening
         /// </summary>
         public void Kill()
         {
-            if (!State.CanTransition(TweenState.Killed)) {
+            if (!state.CanTransition(TweenState.Killed)) {
                 return;
             }
 
-            State = TweenState.Killed;
+            state = TweenState.Killed;
             internalState = InternalTweenState.Dequeued;
 
             OnKill();
@@ -455,20 +455,20 @@ namespace Zigurous.Tweening
             id = -1;
             sceneIndex = -1;
 
-            State = TweenState.Ready;
+            state = TweenState.Ready;
             internalState = InternalTweenState.Queued;
 
             ease = Settings.defaultEase;
             duration = Settings.defaultDuration;
-            Elapsed = 0f;
+            elapsed = 0f;
             delay = Settings.defaultDelay;
-            DelayElapsed = 0f;
+            elapsedDelay = 0f;
 
             loops = 0;
             loopType = LoopType.Restart;
-            Iterations = 0;
+            iterations = 0;
 
-            Flags = 0;
+            flags = 0;
             reversed = false;
             snapping = false;
             autoStart = Settings.autoStart;
@@ -488,15 +488,15 @@ namespace Zigurous.Tweening
 
         internal bool GetFlag(Flag flag)
         {
-            return Flags.Has(flag);
+            return flags.Has(flag);
         }
 
         internal void SetFlag(Flag flag, bool on)
         {
             if (on) {
-                Flags |= flag;
+                flags |= flag;
             } else {
-                Flags &= ~flag;
+                flags &= ~flag;
             }
         }
 
@@ -504,7 +504,7 @@ namespace Zigurous.Tweening
         /// Determines if the tween has finished playing.
         /// </summary>
         /// <returns>True if the tween has finished playing.</returns>
-        protected virtual bool IsFinished() => Elapsed >= duration;
+        protected virtual bool IsFinished() => elapsed >= duration;
 
         /// <summary>
         /// Override to handle custom logic when the tween is updated.
