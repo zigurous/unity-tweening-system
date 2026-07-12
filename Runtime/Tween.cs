@@ -1,11 +1,12 @@
-﻿using Zigurous.Animation;
+﻿using UnityEngine;
+using Zigurous.Animation;
 
 namespace Zigurous.Tweening
 {
     /// <summary>
     /// The base class of every tween.
     /// </summary>
-    public abstract class Tween
+    public abstract class Tween : CustomYieldInstruction
     {
         /// <summary>
         /// A set of configuration flags available for a tween.
@@ -56,6 +57,12 @@ namespace Zigurous.Tweening
         /// The animation state of the tween.
         /// </summary>
         public TweenState state { get; internal set; } = TweenState.Ready;
+
+        /// <summary>
+        /// Suspends execution of the active coroutine until the tween has
+        /// finished running.
+        /// </summary>
+        public override bool keepWaiting => state != TweenState.Complete && state != TweenState.Killed;
 
         /// <summary>
         /// Whether the tween is playing.
@@ -224,7 +231,7 @@ namespace Zigurous.Tweening
         /// </summary>
         public Tween()
         {
-            Reset();
+            Recycle();
 
             if (!TweenManager.IsUnloading) {
                 TweenManager.Instance.Track(this);
@@ -450,7 +457,7 @@ namespace Zigurous.Tweening
         /// <summary>
         /// Resets all properties of the tween back to their default values.
         /// </summary>
-        internal void Reset()
+        internal void Recycle()
         {
             id = -1;
             sceneIndex = -1;

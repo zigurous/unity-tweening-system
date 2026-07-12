@@ -16,6 +16,14 @@ apiRules:
 - exclude:
     uidRegex: ^Zigurous.Tweening.Tween.On*
 - exclude:
+    uidRegex: ^Zigurous.Tweening.Tween.keepWaiting
+- exclude:
+    uidRegex: ^Zigurous.Tweening.Tween.Current
+- exclude:
+    uidRegex: ^Zigurous.Tweening.Tween.MoveNext
+- exclude:
+    uidRegex: ^Zigurous.Tweening.Tween.Reset
+- exclude:
     uidRegex: ^Zigurous.Tweening.Tweener`1.Animate
 - exclude:
     uidRegex: ^Zigurous.Tweening.Tweener`1.IsFinished

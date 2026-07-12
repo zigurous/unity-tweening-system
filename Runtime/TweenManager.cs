@@ -135,7 +135,7 @@ namespace Zigurous.Tweening
             if (tweener == null) {
                 tweener = new Tweener<T,U>();
             } else {
-                tweener.Reset();
+                tweener.Recycle();
             }
 
             tweener.state = TweenState.Ready;
@@ -166,7 +166,7 @@ namespace Zigurous.Tweening
             if (sequence == null) {
                 sequence = new Sequence();
             } else {
-                sequence.Reset();
+                sequence.Recycle();
             }
 
             sequence.state = TweenState.Ready;
