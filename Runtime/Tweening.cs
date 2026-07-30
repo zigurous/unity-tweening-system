@@ -796,7 +796,7 @@ namespace Zigurous.Tweening
 
             foreach (Tween tween in tweens)
             {
-                if (tween.id == id) {
+                if (tween.id == id && tween.internalState != InternalTweenState.Recycled && tween.internalState != InternalTweenState.Killed) {
                     return true;
                 }
             }
