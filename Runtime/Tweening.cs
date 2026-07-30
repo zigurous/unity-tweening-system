@@ -771,6 +771,39 @@ namespace Zigurous.Tweening
             }
         }
 
+        /// <summary>
+        /// Checks if the target object is currently being animated from a tween.
+        /// </summary>
+        /// <param name="target">The target to check.</param>
+        /// <returns>True if the object is currently being animated, false otherwise.</returns>
+        public static bool IsTweening<T>(T target) where T : class
+        {
+            return IsTweening(target.GetHashCode());
+        }
+
+        /// <summary>
+        /// Checks if a tween with the provided id is currently being animated.
+        /// </summary>
+        /// <param name="id">The tween id to check.</param>
+        /// <returns>True if a tween with the provided id is currently being animated, false otherwise.</returns>
+        public static bool IsTweening(int id)
+        {
+            if (!TweenManager.IsLoaded) {
+                return false;
+            }
+
+            List<Tween> tweens = TweenManager.Instance.tweens;
+
+            foreach (Tween tween in tweens)
+            {
+                if (tween.id == id) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
     }
 
 }
